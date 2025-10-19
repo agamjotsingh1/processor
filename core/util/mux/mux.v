@@ -1,11 +1,9 @@
-module mux_2 #(
-	parameter WIDTH = 1
-)(
-	input wire [WIDTH - 1: 0] in1,
-	input wire [WIDTH - 1: 0] in2,
+module mux (
+	input wire [63:0] in1,
+	input wire [63:0] in2,
 	input wire sel,
 
-	output wire [WIDTH - 1: 0] out
+	output wire [63:0] out
 );
-	assign out = (sel == 1'b0) ? in1 : in2;
+	assign out = sel ? in1 : in2;
 endmodule
