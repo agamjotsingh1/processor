@@ -1,5 +1,5 @@
 // full adder
-module full_adder(
+module full_adder (
 	input wire a, // input #1
 	input wire b, // input #2
 	input wire cin, // carry in
@@ -10,7 +10,7 @@ module full_adder(
 	assign cout = (a & b) | (a & cin) | (b & cin);
 endmodule
 
-module adder(
+module adder (
 	input wire [63:0] a, // input #1
 	input wire [63:0] b, // input #2
 	input wire cin, // carry in
@@ -37,37 +37,30 @@ module adder(
 	assign cout = cinner[64];
 endmodule
 
-/* extended_adder -> adder with inputs 128 bit and 64 bit
-*/
+// extended_adder -> adder with inputs 128 bit
+// used in mul, has no cin wire
 module extended_adder (
 	input wire [127:0] a, // input #1
-	input wire [63:0] b, // input #2
-	input wire cin, // carry in
+	input wire [127:0] b, // input #2
 
-	output wire [127:0] sum,
-	output wire cout // carry out
+	output wire [127:0] sum
 );
-	// inner wiring to make the to transfer carry
-	wire cinner;
+    // inner wiring to make the to transfer carry
+	wire cinner [128:0];
+	assign cinner[0] = 1'b0;
 
-	// adds 64 bits of b to first 64 bits of a
-	adder adder_1 (
-		.a(a[63:0]),
-		.b(b),
-		.cin(cin),
-		.sum(sum[63:0]),
-		.cout(cinner)
-	);
+	genvar i;
+	generate
+		for (i = 0; i < 128; i = i + 1) begin
+			full_adder fa (
+				.a(a[i]),
+				.b(b[i]),
+				.cin(cinner[i]),
+				.sum(sum[i]),
+				.cout(cinner[i + 1])
+			);
+		end
+	endgenerate
 
-	// all zeros
-	wire [63:0] dummy_zeros;
-	assign dummy_zeroes = 64'b0;
-
-	adder adder_2 (
-		.a(a[127:64]),
-		.b(dummy_zeroes),
-		.cin(cinner),
-		.sum(sum[127:64]),
-		.cout(cout)
-	);
+	assign cout = cinner[128];
 endmodule

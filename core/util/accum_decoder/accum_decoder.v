@@ -1,14 +1,5 @@
-module unit_accum_decoder (
-	input wire in,
-	input wire set, // set
-	output wire [1:0] out
-);
-	assign out[0] = in | set;
-	assign out[1] = set;
-endmodule
-
 module accum_decoder #(
-	parameter N = 1 // number of inputs
+	parameter N = 6 // number of inputs
 )(
 	input wire [N - 1: 0] in,
 	input wire set, // set
@@ -17,11 +8,8 @@ module accum_decoder #(
 );
 	generate
 		if(N == 1) begin
-			unit_accum_decoder decoder (
-				.in(in[0]), 
-				.set(set),
-				.out(out[1:0])
-			);
+			assign out[0] = in | set;
+	        assign out[1] = set;
 		end
 		else begin
 			wire [(1 << (N - 1)) - 1: 0] decoder_low_out;

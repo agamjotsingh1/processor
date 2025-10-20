@@ -1,4 +1,6 @@
-module sr (
+module sr #(
+	parameter N = 0 // number of shifts = 2**N
+)(
 	input wire [63:0] in,
 	input wire en, // enable
 
