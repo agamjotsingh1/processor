@@ -8,5 +8,5 @@ module shift (
 
     output wire [63:0] out
 );
-    assign out = control ? (in >>> amt): (in >> amt)
+    assign out = control ? (in >>> amt): (in >> amt);
 endmodule

@@ -15,6 +15,17 @@ submod="$2"
 mkdir -p ./build
 mkdir -p ./build/${mod}
 
+# Check existence of files
+if [ ! -f ./${mod}/${submod}.v ]; then
+    echo "Design source file not found!"
+    exit 1
+fi
+
+if [ ! -f ./tb/${mod}/${submod}_tb.v ]; then
+    echo "Testbench file not found!"
+    exit 1
+fi
+
 # Execute iverilog command
 iverilog -g2005-sv -o ./build/${mod}/${submod}.vvp ./tb/${mod}/${submod}_tb.v ./${mod}/${submod}.v
 
