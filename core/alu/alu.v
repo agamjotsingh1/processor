@@ -7,8 +7,8 @@ module alu (
 
     output reg [63:0] out
 );
-    reg [1:0] control;
-    reg [2:0] select;
+    wire [1:0] control;
+    wire [2:0] select;
 
     alu_control alu_control_instance (
         .funct3(funct3),
@@ -46,7 +46,7 @@ module alu (
         .control(control),
         .out(div_out)
     );
-
+    
     shift_left shift_left_instance (
         .in(in1),
         .amt(in2[5:0]),
