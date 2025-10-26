@@ -26,9 +26,9 @@ module alu_control (
             end
 
             // sltu
-            10'b010_0000000: begin
+            10'b011_0000000: begin
                 select = 3'b000;
-                control = 2'b10;
+                control = 2'b11;
             end
 
             // mul
@@ -98,7 +98,7 @@ module alu_control (
             end
 
             // xor
-            10'b101_0000000: begin
+            10'b100_0000000: begin
                 select = 3'b101;
                 control = 2'b00; // not needed
             end

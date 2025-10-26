@@ -1,40 +1,80 @@
 #!/bin/bash
 
-# Check if name argument is provided
-if [ $# -ne 2 ]; then
-    echo "Error: Incorrect Usage"
-    echo "Usage: $0 <module> <submodule>"
-    exit 1
-fi
+# Usage: ./run.sh <module> [submodule]
 
-# Get the module name from the first argument
 mod="$1"
-submod="$2"
+submod="${2:-}"  # Optional second argument
 
-# Create build directory if it doesn't exist
-mkdir -p ./build
-mkdir -p ./build/${mod}
-
-# Check existence of files
-if [ ! -f ./${mod}/${submod}.v ]; then
-    echo "Design source file not found!"
+# Validate mandatory module argument
+if [ -z "$mod" ]; then
+    echo "Error: Module name not provided!"
+    echo "Usage: $0 <module> [submodule]"
     exit 1
 fi
 
-if [ ! -f ./tb/${mod}/${submod}_tb.v ]; then
-    echo "Testbench file not found!"
-    exit 1
-fi
+# Setup directories
+build_dir="./build/${mod}"
+mkdir -p "$build_dir"
 
-# Execute iverilog command
-iverilog -g2005-sv -o ./build/${mod}/${submod}.vvp ./tb/${mod}/${submod}_tb.v ./${mod}/${submod}.v
+# Check behavior based on arguments
+if [ -n "$submod" ]; then
+    # ------------------------------
+    # Case 1: Submodule explicitly given
+    # ------------------------------
+    design="./${mod}/${submod}.v"
+    tb="./tb/${mod}/${submod}_tb.v"
 
-# Check if compilation was successful
-if [ $? -eq 0 ]; then
-    echo "Successfully compiled ${submod} to ./build/${mod}/${submod}.vvp"
+    if [ ! -f "$design" ]; then
+        echo "Error: Design file not found -> $design"
+        exit 1
+    fi
+
+    if [ ! -f "$tb" ]; then
+        echo "Error: Testbench file not found -> $tb"
+        exit 1
+    fi
+
+    echo "Compiling specific submodule: ${mod}/${submod}"
+    iverilog -g2005-sv -o "${build_dir}/${submod}.vvp" "$tb" "$design"
+
+    if [ $? -ne 0 ]; then
+        echo "❌ Compilation failed for ${mod}/${submod}"
+        exit 1
+    fi
+
+    echo "✅ Compiled -> ${build_dir}/${submod}.vvp"
+    vvp "${build_dir}/${submod}.vvp"
+
 else
-    echo "Compilation failed for ${mod}/${submod}"
-    exit 1
-fi
+    # ------------------------------
+    # Case 2: No submodule provided → build the whole module directory
+    # ------------------------------
+    design_dir="./${mod}"
 
-vvp ./build/${mod}/${submod}.vvp
+    if [ ! -d "$design_dir" ]; then
+        echo "Error: Module folder not found -> $design_dir"
+        exit 1
+    fi
+
+    dep_files=$(find "$design_dir" -maxdepth 1 -type f -name "*.v" | sort)
+    tb="./tb/${mod}/${mod}_tb.v"
+
+    if [ ! -f "$tb" ]; then
+        echo "Error: Expected top-level testbench not found -> $tb"
+        exit 1
+    fi
+
+    echo "Detected top module: ${mod}"
+    echo "Resolved dependencies:"
+    echo "$dep_files"
+    
+    iverilog -g2005-sv -o "${build_dir}/${mod}.vvp" $tb $dep_files
+
+    if [ $? -ne 0 ]; then
+        echo "❌ Compilation failed for ${mod}"
+        exit 1
+    fi
+
+    echo "✅ Compiled with dependencies -> ${build_dir}/${mod}.vvp"
+    vvp "${build_dir}/${mod}.vvp"
+fi

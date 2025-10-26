@@ -1,4 +1,4 @@
-module shift (
+module shift_right (
     input wire signed [63:0] in,
     input wire [5:0] amt,
 
