@@ -1,6 +1,7 @@
 module alu_control (
     input wire [31:0] instr,
 
+    // ALUOp
     output reg [1:0] control,
     output reg [2:0] select
 );
@@ -26,117 +27,117 @@ module alu_control (
             17'b0100011_000_zzzzzzz, // sb
             17'b0100011_001_zzzzzzz, // sh
             17'b0100011_010_zzzzzzz, // sw
-            17'b0100011_011_zzzzzzz, // sd
+            17'b0100011_011_zzzzzzz // sd
             : begin
                 select = 3'b000;
                 control = 2'b00;
             end
 
-            17'b0110011_000_0100000, // sub
+            17'b0110011_000_0100000 // sub
             : begin
                 select = 3'b000;
                 control = 2'b01;
             end
 
             17'b0110011_010_0000000, // slt
-            17'b0010011_010_zzzzzzz, // slti
+            17'b0010011_010_zzzzzzz // slti
             : begin
                 select = 3'b000;
                 control = 2'b10;
             end
 
             17'b0110011_011_0000000, // sltu
-            17'b0010011_011_zzzzzzz, // sltui
+            17'b0010011_011_zzzzzzz // sltui
             : begin
                 select = 3'b000;
                 control = 2'b11;
             end
 
-            17'b0110011_000_0000001, // mul
+            17'b0110011_000_0000001 // mul
             : begin
                 select = 3'b001;
                 control = 2'b00;
             end
 
-            17'b0110011_001_0000001, // mulh
+            17'b0110011_001_0000001 // mulh
             : begin
                 select = 3'b001;
                 control = 2'b01;
             end
 
-            17'b0110011_010_0000001, // mulhsu
+            17'b0110011_010_0000001 // mulhsu
             : begin
                 select = 3'b001;
                 control = 2'b10;
             end
 
-            17'b0110011_011_0000001, // mulhu
+            17'b0110011_011_0000001 // mulhu
             : begin
                 select = 3'b001;
                 control = 2'b11;
             end
 
-            17'b0110011_100_0000001, // div
+            17'b0110011_100_0000001 // div
             : begin
                 select = 3'b010;
                 control = 2'b00;
             end
 
-            17'b0110011_101_0000001, // divu
+            17'b0110011_101_0000001 // divu
             : begin
                 select = 3'b010;
                 control = 2'b01;
             end
 
-            17'b0110011_110_0000001, // rem
+            17'b0110011_110_0000001 // rem
             : begin
                 select = 3'b010;
                 control = 2'b10;
             end
 
-            17'b0110011_111_0000001, // remu
+            17'b0110011_111_0000001 // remu
             : begin
                 select = 3'b010;
                 control = 2'b11;
             end
 
             17'b0110011_001_0000000, // sll
-            17'b0010011_001_zzzzzzz, // slli
+            17'b0010011_001_zzzzzzz // slli
             : begin
                 select = 3'b011;
                 control = 2'b00; // not needed
             end
 
             17'b0110011_101_0000000, // srl
-            17'b0010011_101_zzzzzzz, // srli
+            17'b0010011_101_zzzzzzz // srli
             : begin
                 select = 3'b100;
                 control = 2'b00; // only first bit used
             end
 
             17'b10110011_01_0100000, // sra
-            17'b0010011_101_zzzzzzz, // srai
+            17'b0010011_101_zzzzzzz // srai
             : begin
                 select = 3'b100;
                 control = 2'b01; // only first bit used
             end
 
             17'b0110011_100_0000000, // xor
-            17'b0010011_100_zzzzzzz, // xori
+            17'b0010011_100_zzzzzzz // xori
             : begin
                 select = 3'b101;
                 control = 2'b00; // not needed
             end
 
             17'b0110011_110_0000000, // or
-            17'b0010011_110_zzzzzzz, // ori
+            17'b0010011_110_zzzzzzz // ori
             : begin
                 select = 3'b110;
                 control = 2'b00; // not needed
             end
 
             17'b0110011_111_0000000, // and
-            17'b0010011_111_zzzzzzz, // andi
+            17'b0010011_111_zzzzzzz // andi
             : begin
                 select = 3'b111;
                 control = 2'b00; // not needed

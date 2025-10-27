@@ -23,23 +23,33 @@ module div (
     
     always @(*) begin
         case (control)
-            2'b00: out = quotient_signed;      // DIV
-            2'b01: out = quotient_unsigned;    // DIVU
-            2'b10: out = remainder_signed;     // REM
-            2'b11: out = remainder_unsigned;   // REMU
-            default: out = 64'b0;
-        endcase
-    end
+            // div
+            2'b00: begin
+                if(in2 == 0) out = 64'hFFFFFFFFFFFFFFFF;
+                //else if(in1 == 64'h8000000000000000 && in2 == 64'hFFFFFFFFFFFFFFFF) out = in1;
+                else out = quotient_signed;
+            end
 
-    /*
-    always @(*) begin
-        casez (control)
-            2'b00: out = $signed(in1) / $signed(in2);
-            2'b01: out = $unsigned(in1) / $unsigned(in2);
-            2'b10: out = $signed(in1) % $signed(in2);
-            2'b11: out = $unsigned(in1) % $unsigned(in2);
+            // divu
+            2'b01: begin
+                if(in2 == 0) out = 64'hFFFFFFFFFFFFFFFF;
+                else out = quotient_unsigned;
+            end
+
+            // rem
+            2'b10: begin
+                if(in2 == 0) out = in1;
+                // else if(in1 == 64'h8000000000000000 && in2 == 64'hFFFFFFFFFFFFFFFF) out = 64'b0;
+                else out = remainder_signed;
+            end
+
+            // remu
+            2'b11: begin
+                if(in2 == 0) out = in1;
+                else out = remainder_unsigned;
+            end
+            
             default: out = 64'b0;
         endcase
     end
-    */
 endmodule

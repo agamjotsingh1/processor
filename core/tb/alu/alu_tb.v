@@ -3,14 +3,19 @@
 module tb_alu;
     reg [63:0] in1;
     reg [63:0] in2;
-    reg [2:0] funct3;
-    reg [6:0] funct7;
+    reg [1:0] control;
+    reg [2:0] select;
+    wire zero;
+    wire neg;
+    wire negu;
     wire [63:0] out;
 
-    // Expected value
+    // Expected values
     reg [63:0] expected_out;
+    reg expected_zero;
+    reg expected_neg;
+    reg expected_negu;
     reg [127:0] temp_mul_result;
-    reg [64:0] temp_add_result;
     
     // Test counters
     integer test_num;
@@ -21,33 +26,13 @@ module tb_alu;
     alu dut (
         .in1(in1),
         .in2(in2),
-        .funct3(funct3),
-        .funct7(funct7),
+        .control(control),
+        .select(select),
+        .zero(zero),
+        .neg(neg),
+        .negu(negu),
         .out(out)
     );
-
-    // Task to check results
-    task check_result;
-        input [1000:0] test_name;
-        begin
-            test_num = test_num + 1;
-            #1; // Small delay for signals to settle
-            if (out === expected_out) begin
-                $display("[PASS] Test %0d: %s", test_num, test_name);
-                $display("       Inputs: in1=%h, in2=%h, funct3=%b, funct7=%b", in1, in2, funct3, funct7);
-                $display("       Expected: out=%h", expected_out);
-                $display("       Got:      out=%h", out);
-                pass_count = pass_count + 1;
-            end else begin
-                $display("[FAIL] Test %0d: %s", test_num, test_name);
-                $display("       Inputs: in1=%h, in2=%h, funct3=%b, funct7=%b", in1, in2, funct3, funct7);
-                $display("       Expected: out=%h", expected_out);
-                $display("       Got:      out=%h", out);
-                fail_count = fail_count + 1;
-            end
-            $display("");
-        end
-    endtask
 
     initial begin
         // Initialize
@@ -56,335 +41,492 @@ module tb_alu;
         fail_count = 0;
         in1 = 0;
         in2 = 0;
-        funct3 = 0;
-        funct7 = 0;
+        control = 0;
+        select = 0;
 
         $display("========================================");
         $display("Starting ALU Module Testbench");
         $display("========================================\n");
 
         // ========================================
-        // ADD/SUB/SLT/SLTU TESTS (select = 3'b000)
+        // ADDSUB TESTS (select = 3'b000)
         // ========================================
         $display("--- ADD TESTS ---\n");
 
         // Test 1: ADD
-        funct3 = 3'b000;
-        funct7 = 7'b0000000;
+        test_num = test_num + 1;
+        select = 3'b000;
+        control = 2'b00;
         in1 = 64'h0000000000000005;
         in2 = 64'h0000000000000003;
         expected_out = in1 + in2;
-        check_result("ADD: 5 + 3 = 8");
+        expected_zero = (in1 == in2);
+        expected_neg = ($signed(in1) < $signed(in2));
+        expected_negu = ($unsigned(in1) < $unsigned(in2));
+        #1;
+        if (out === expected_out && zero === expected_zero && neg === expected_neg && negu === expected_negu) begin
+            $display("[PASS] Test %0d: ADD (5 + 3 = 8)", test_num);
+            pass_count = pass_count + 1;
+        end else begin
+            $display("[FAIL] Test %0d: ADD", test_num);
+            $display("       Expected: out=%h, zero=%b, neg=%b, negu=%b", expected_out, expected_zero, expected_neg, expected_negu);
+            $display("       Got:      out=%h, zero=%b, neg=%b, negu=%b", out, zero, neg, negu);
+            fail_count = fail_count + 1;
+        end
+        $display("");
 
         // Test 2: ADD with overflow
-        funct3 = 3'b000;
-        funct7 = 7'b0000000;
+        test_num = test_num + 1;
+        select = 3'b000;
+        control = 2'b00;
         in1 = 64'hFFFFFFFFFFFFFFFF;
         in2 = 64'h0000000000000001;
         expected_out = in1 + in2;
-        check_result("ADD: MAX + 1 (overflow)");
+        expected_zero = (in1 == in2);
+        expected_neg = ($signed(in1) < $signed(in2));
+        expected_negu = ($unsigned(in1) < $unsigned(in2));
+        #1;
+        if (out === expected_out && zero === expected_zero && neg === expected_neg && negu === expected_negu) begin
+            $display("[PASS] Test %0d: ADD overflow (MAX + 1)", test_num);
+            pass_count = pass_count + 1;
+        end else begin
+            $display("[FAIL] Test %0d: ADD overflow", test_num);
+            $display("       Expected: out=%h, zero=%b, neg=%b, negu=%b", expected_out, expected_zero, expected_neg, expected_negu);
+            $display("       Got:      out=%h, zero=%b, neg=%b, negu=%b", out, zero, neg, negu);
+            fail_count = fail_count + 1;
+        end
+        $display("");
 
         $display("--- SUB TESTS ---\n");
 
         // Test 3: SUB
-        funct3 = 3'b000;
-        funct7 = 7'b0100000;
+        test_num = test_num + 1;
+        select = 3'b000;
+        control = 2'b01;
         in1 = 64'h0000000000000008;
         in2 = 64'h0000000000000003;
         expected_out = in1 - in2;
-        check_result("SUB: 8 - 3 = 5");
-
-        // Test 4: SUB with borrow
-        funct3 = 3'b000;
-        funct7 = 7'b0100000;
-        in1 = 64'h0000000000000000;
-        in2 = 64'h0000000000000001;
-        expected_out = in1 - in2;
-        check_result("SUB: 0 - 1 (borrow)");
+        expected_zero = (in1 == in2);
+        expected_neg = ($signed(in1) < $signed(in2));
+        expected_negu = ($unsigned(in1) < $unsigned(in2));
+        #1;
+        if (out === expected_out && zero === expected_zero && neg === expected_neg && negu === expected_negu) begin
+            $display("[PASS] Test %0d: SUB (8 - 3 = 5)", test_num);
+            pass_count = pass_count + 1;
+        end else begin
+            $display("[FAIL] Test %0d: SUB", test_num);
+            $display("       Expected: out=%h, zero=%b, neg=%b, negu=%b", expected_out, expected_zero, expected_neg, expected_negu);
+            $display("       Got:      out=%h, zero=%b, neg=%b, negu=%b", out, zero, neg, negu);
+            fail_count = fail_count + 1;
+        end
+        $display("");
 
         $display("--- SLT TESTS ---\n");
 
-        // Test 5: SLT (true)
-        funct3 = 3'b010;
-        funct7 = 7'b0000000;
+        // Test 4: SLT (true)
+        test_num = test_num + 1;
+        select = 3'b000;
+        control = 2'b10;
         in1 = 64'h0000000000000003;
         in2 = 64'h0000000000000005;
         expected_out = ($signed(in1) < $signed(in2)) ? 64'b1 : 64'b0;
-        check_result("SLT: 3 < 5 (true)");
-
-        // Test 6: SLT (false)
-        funct3 = 3'b010;
-        funct7 = 7'b0000000;
-        in1 = 64'h0000000000000005;
-        in2 = 64'h0000000000000003;
-        expected_out = ($signed(in1) < $signed(in2)) ? 64'b1 : 64'b0;
-        check_result("SLT: 5 < 3 (false)");
-
-        // Test 7: SLT negative
-        funct3 = 3'b010;
-        funct7 = 7'b0000000;
-        in1 = 64'hFFFFFFFFFFFFFFFE; // -2
-        in2 = 64'h0000000000000005;
-        expected_out = ($signed(in1) < $signed(in2)) ? 64'b1 : 64'b0;
-        check_result("SLT: -2 < 5 (true)");
+        expected_zero = (in1 == in2);
+        expected_neg = ($signed(in1) < $signed(in2));
+        expected_negu = ($unsigned(in1) < $unsigned(in2));
+        #1;
+        if (out === expected_out && zero === expected_zero && neg === expected_neg && negu === expected_negu) begin
+            $display("[PASS] Test %0d: SLT (3 < 5 = true)", test_num);
+            pass_count = pass_count + 1;
+        end else begin
+            $display("[FAIL] Test %0d: SLT", test_num);
+            $display("       Expected: out=%h, zero=%b, neg=%b, negu=%b", expected_out, expected_zero, expected_neg, expected_negu);
+            $display("       Got:      out=%h, zero=%b, neg=%b, negu=%b", out, zero, neg, negu);
+            fail_count = fail_count + 1;
+        end
+        $display("");
 
         $display("--- SLTU TESTS ---\n");
 
-        // Test 8: SLTU (true)
-        funct3 = 3'b011;
-        funct7 = 7'b0000000;
-        in1 = 64'h0000000000000003;
-        in2 = 64'h0000000000000005;
-        expected_out = ($unsigned(in1) < $unsigned(in2)) ? 64'b1 : 64'b0;
-        check_result("SLTU: 3 < 5 (true)");
-
-        // Test 9: SLTU (false)
-        funct3 = 3'b011;
-        funct7 = 7'b0000000;
+        // Test 5: SLTU (false)
+        test_num = test_num + 1;
+        select = 3'b000;
+        control = 2'b11;
         in1 = 64'hFFFFFFFFFFFFFFFE;
         in2 = 64'h0000000000000005;
         expected_out = ($unsigned(in1) < $unsigned(in2)) ? 64'b1 : 64'b0;
-        check_result("SLTU: large < 5 (false)");
+        expected_zero = (in1 == in2);
+        expected_neg = ($signed(in1) < $signed(in2));
+        expected_negu = ($unsigned(in1) < $unsigned(in2));
+        #1;
+        if (out === expected_out && zero === expected_zero && neg === expected_neg && negu === expected_negu) begin
+            $display("[PASS] Test %0d: SLTU (large < 5 = false)", test_num);
+            pass_count = pass_count + 1;
+        end else begin
+            $display("[FAIL] Test %0d: SLTU", test_num);
+            $display("       Expected: out=%h, zero=%b, neg=%b, negu=%b", expected_out, expected_zero, expected_neg, expected_negu);
+            $display("       Got:      out=%h, zero=%b, neg=%b, negu=%b", out, zero, neg, negu);
+            fail_count = fail_count + 1;
+        end
+        $display("");
 
         // ========================================
         // MULTIPLICATION TESTS (select = 3'b001)
         // ========================================
         $display("--- MUL TESTS ---\n");
 
-        // Test 10: MUL
-        funct3 = 3'b000;
-        funct7 = 7'b0000001;
+        // Test 6: MUL
+        test_num = test_num + 1;
+        select = 3'b001;
+        control = 2'b00;
         in1 = 64'h0000000000000005;
         in2 = 64'h0000000000000003;
         temp_mul_result = $signed(in1) * $signed(in2);
         expected_out = temp_mul_result[63:0];
-        check_result("MUL: 5 * 3 = 15");
+        expected_zero = (in1 == in2);
+        expected_neg = ($signed(in1) < $signed(in2));
+        expected_negu = ($unsigned(in1) < $unsigned(in2));
+        #1;
+        if (out === expected_out) begin
+            $display("[PASS] Test %0d: MUL (5 * 3 = 15)", test_num);
+            pass_count = pass_count + 1;
+        end else begin
+            $display("[FAIL] Test %0d: MUL", test_num);
+            $display("       Expected: out=%h", expected_out);
+            $display("       Got:      out=%h", out);
+            fail_count = fail_count + 1;
+        end
+        $display("");
 
-        // Test 11: MUL negative
-        funct3 = 3'b000;
-        funct7 = 7'b0000001;
-        in1 = 64'h0000000000000007;
-        in2 = 64'hFFFFFFFFFFFFFFFE; // -2
-        temp_mul_result = $signed(in1) * $signed(in2);
-        expected_out = temp_mul_result[63:0];
-        check_result("MUL: 7 * (-2) = -14");
-
-        $display("--- MULH TESTS ---\n");
-
-        // Test 12: MULH
-        funct3 = 3'b001;
-        funct7 = 7'b0000001;
+        // Test 7: MULH
+        test_num = test_num + 1;
+        select = 3'b001;
+        control = 2'b01;
         in1 = 64'h7FFFFFFFFFFFFFFF;
         in2 = 64'h0000000000000002;
         temp_mul_result = $signed(in1) * $signed(in2);
         expected_out = temp_mul_result[127:64];
-        check_result("MULH: MAX_INT * 2 (upper)");
+        #1;
+        if (out === expected_out) begin
+            $display("[PASS] Test %0d: MULH (MAX_INT * 2 upper)", test_num);
+            pass_count = pass_count + 1;
+        end else begin
+            $display("[FAIL] Test %0d: MULH", test_num);
+            $display("       Expected: out=%h", expected_out);
+            $display("       Got:      out=%h", out);
+            fail_count = fail_count + 1;
+        end
+        $display("");
 
-        $display("--- MULHSU TESTS ---\n");
-
-        // Test 13: MULHSU
-        funct3 = 3'b010;
-        funct7 = 7'b0000001;
-        in1 = 64'hFFFFFFFFFFFFFFFE; // -2 signed
-        in2 = 64'h0000000000000005; // 5 unsigned
+        // Test 8: MULHSU
+        test_num = test_num + 1;
+        select = 3'b001;
+        control = 2'b10;
+        in1 = 64'hFFFFFFFFFFFFFFFE;
+        in2 = 64'h0000000000000005;
         temp_mul_result = $signed(in1) * $unsigned(in2);
         expected_out = temp_mul_result[127:64];
-        check_result("MULHSU: (-2) * 5u (upper)");
+        #1;
+        if (out === expected_out) begin
+            $display("[PASS] Test %0d: MULHSU ((-2) * 5u upper)", test_num);
+            pass_count = pass_count + 1;
+        end else begin
+            $display("[FAIL] Test %0d: MULHSU", test_num);
+            $display("       Expected: out=%h", expected_out);
+            $display("       Got:      out=%h", out);
+            fail_count = fail_count + 1;
+        end
+        $display("");
 
-        $display("--- MULHU TESTS ---\n");
-
-        // Test 14: MULHU
-        funct3 = 3'b011;
-        funct7 = 7'b0000001;
+        // Test 9: MULHU
+        test_num = test_num + 1;
+        select = 3'b001;
+        control = 2'b11;
         in1 = 64'hFFFFFFFFFFFFFFFF;
         in2 = 64'h0000000000000002;
         temp_mul_result = $unsigned(in1) * $unsigned(in2);
         expected_out = temp_mul_result[127:64];
-        check_result("MULHU: MAX_UINT * 2 (upper)");
+        #1;
+        if (out === expected_out) begin
+            $display("[PASS] Test %0d: MULHU (MAX_UINT * 2 upper)", test_num);
+            pass_count = pass_count + 1;
+        end else begin
+            $display("[FAIL] Test %0d: MULHU", test_num);
+            $display("       Expected: out=%h", expected_out);
+            $display("       Got:      out=%h", out);
+            fail_count = fail_count + 1;
+        end
+        $display("");
 
         // ========================================
         // DIVISION TESTS (select = 3'b010)
         // ========================================
         $display("--- DIV TESTS ---\n");
 
-        // Test 15: DIV
-        funct3 = 3'b100;
-        funct7 = 7'b0000001;
-        in1 = 64'h000000000000000A; // 10
-        in2 = 64'h0000000000000002; // 2
+        // Test 10: DIV
+        test_num = test_num + 1;
+        select = 3'b010;
+        control = 2'b00;
+        in1 = 64'h000000000000000A;
+        in2 = 64'h0000000000000002;
         expected_out = $signed(in1) / $signed(in2);
-        check_result("DIV: 10 / 2 = 5");
+        #1;
+        if (out === expected_out) begin
+            $display("[PASS] Test %0d: DIV (10 / 2 = 5)", test_num);
+            pass_count = pass_count + 1;
+        end else begin
+            $display("[FAIL] Test %0d: DIV", test_num);
+            $display("       Expected: out=%h", expected_out);
+            $display("       Got:      out=%h", out);
+            fail_count = fail_count + 1;
+        end
+        $display("");
 
-        // Test 16: DIV negative
-        funct3 = 3'b100;
-        funct7 = 7'b0000001;
-        in1 = 64'hFFFFFFFFFFFFFFF6; // -10
-        in2 = 64'h0000000000000002; // 2
-        expected_out = $signed(in1) / $signed(in2);
-        check_result("DIV: (-10) / 2 = -5");
-
-        $display("--- DIVU TESTS ---\n");
-
-        // Test 17: DIVU
-        funct3 = 3'b101;
-        funct7 = 7'b0000001;
-        in1 = 64'h000000000000000A; // 10
-        in2 = 64'h0000000000000002; // 2
+        // Test 11: DIVU
+        test_num = test_num + 1;
+        select = 3'b010;
+        control = 2'b01;
+        in1 = 64'h000000000000000A;
+        in2 = 64'h0000000000000002;
         expected_out = $unsigned(in1) / $unsigned(in2);
-        check_result("DIVU: 10 / 2 = 5");
+        #1;
+        if (out === expected_out) begin
+            $display("[PASS] Test %0d: DIVU (10 / 2 = 5)", test_num);
+            pass_count = pass_count + 1;
+        end else begin
+            $display("[FAIL] Test %0d: DIVU", test_num);
+            $display("       Expected: out=%h", expected_out);
+            $display("       Got:      out=%h", out);
+            fail_count = fail_count + 1;
+        end
+        $display("");
 
-        $display("--- REM TESTS ---\n");
-
-        // Test 18: REM
-        funct3 = 3'b110;
-        funct7 = 7'b0000001;
-        in1 = 64'h000000000000000B; // 11
-        in2 = 64'h0000000000000003; // 3
+        // Test 12: REM
+        test_num = test_num + 1;
+        select = 3'b010;
+        control = 2'b10;
+        in1 = 64'h000000000000000B;
+        in2 = 64'h0000000000000003;
         expected_out = $signed(in1) % $signed(in2);
-        check_result("REM: 11 % 3 = 2");
+        #1;
+        if (out === expected_out) begin
+            $display("[PASS] Test %0d: REM (11 %% 3 = 2)", test_num);
+            pass_count = pass_count + 1;
+        end else begin
+            $display("[FAIL] Test %0d: REM", test_num);
+            $display("       Expected: out=%h", expected_out);
+            $display("       Got:      out=%h", out);
+            fail_count = fail_count + 1;
+        end
+        $display("");
 
-        $display("--- REMU TESTS ---\n");
-
-        // Test 19: REMU
-        funct3 = 3'b111;
-        funct7 = 7'b0000001;
-        in1 = 64'h000000000000000B; // 11
-        in2 = 64'h0000000000000003; // 3
+        // Test 13: REMU
+        test_num = test_num + 1;
+        select = 3'b010;
+        control = 2'b11;
+        in1 = 64'h000000000000000B;
+        in2 = 64'h0000000000000003;
         expected_out = $unsigned(in1) % $unsigned(in2);
-        check_result("REMU: 11 % 3 = 2");
+        #1;
+        if (out === expected_out) begin
+            $display("[PASS] Test %0d: REMU (11 %% 3 = 2)", test_num);
+            pass_count = pass_count + 1;
+        end else begin
+            $display("[FAIL] Test %0d: REMU", test_num);
+            $display("       Expected: out=%h", expected_out);
+            $display("       Got:      out=%h", out);
+            fail_count = fail_count + 1;
+        end
+        $display("");
 
         // ========================================
-        // SHIFT LEFT TESTS (select = 3'b011)
+        // SHIFT TESTS
         // ========================================
-        $display("--- SLL TESTS ---\n");
+        $display("--- SHIFT LEFT TESTS ---\n");
 
-        // Test 20: SLL
-        funct3 = 3'b001;
-        funct7 = 7'b0000000;
+        // Test 14: SLL
+        test_num = test_num + 1;
+        select = 3'b011;
+        control = 2'b00;
         in1 = 64'h0000000000000001;
-        in2 = 64'h0000000000000004; // shift by 4
+        in2 = 64'h0000000000000004;
         expected_out = in1 << in2[5:0];
-        check_result("SLL: 1 << 4 = 16");
+        #1;
+        if (out === expected_out) begin
+            $display("[PASS] Test %0d: SLL (1 << 4 = 16)", test_num);
+            pass_count = pass_count + 1;
+        end else begin
+            $display("[FAIL] Test %0d: SLL", test_num);
+            $display("       Expected: out=%h", expected_out);
+            $display("       Got:      out=%h", out);
+            fail_count = fail_count + 1;
+        end
+        $display("");
 
-        // Test 21: SLL large
-        funct3 = 3'b001;
-        funct7 = 7'b0000000;
-        in1 = 64'h123456789ABCDEF0;
-        in2 = 64'h0000000000000008; // shift by 8
-        expected_out = in1 << in2[5:0];
-        check_result("SLL: X << 8");
+        $display("--- SHIFT RIGHT TESTS ---\n");
 
-        // ========================================
-        // SHIFT RIGHT TESTS (select = 3'b100)
-        // ========================================
-        $display("--- SRL TESTS ---\n");
-
-        // Test 22: SRL (logical)
-        funct3 = 3'b101;
-        funct7 = 7'b0000000;
+        // Test 15: SRL
+        test_num = test_num + 1;
+        select = 3'b100;
+        control = 2'b00;
         in1 = 64'h00000000000000F0;
-        in2 = 64'h0000000000000004; // shift by 4
+        in2 = 64'h0000000000000004;
         expected_out = in1 >> in2[5:0];
-        check_result("SRL: 0xF0 >> 4 = 0x0F");
+        #1;
+        if (out === expected_out) begin
+            $display("[PASS] Test %0d: SRL (0xF0 >> 4 = 0x0F)", test_num);
+            pass_count = pass_count + 1;
+        end else begin
+            $display("[FAIL] Test %0d: SRL", test_num);
+            $display("       Expected: out=%h", expected_out);
+            $display("       Got:      out=%h", out);
+            fail_count = fail_count + 1;
+        end
+        $display("");
 
-        // Test 23: SRL negative value
-        funct3 = 3'b101;
-        funct7 = 7'b0000000;
+        // Test 16: SRA
+        test_num = test_num + 1;
+        select = 3'b100;
+        control = 2'b01;
         in1 = 64'h8000000000000000;
-        in2 = 64'h0000000000000004; // shift by 4
-        expected_out = in1 >> in2[5:0];
-        check_result("SRL: 0x8000... >> 4 (logical)");
-
-        $display("--- SRA TESTS ---\n");
-
-        // Test 24: SRA (arithmetic)
-        funct3 = 3'b101;
-        funct7 = 7'b0100000;
-        in1 = 64'h00000000000000F0;
-        in2 = 64'h0000000000000004; // shift by 4
+        in2 = 64'h0000000000000004;
         expected_out = $signed(in1) >>> in2[5:0];
-        check_result("SRA: 0xF0 >>> 4 (positive)");
-
-        // Test 25: SRA negative value (sign extend)
-        funct3 = 3'b101;
-        funct7 = 7'b0100000;
-        in1 = 64'h8000000000000000;
-        in2 = 64'h0000000000000004; // shift by 4
-        expected_out = $signed(in1) >>> in2[5:0];
-        check_result("SRA: 0x8000... >>> 4 (sign extend)");
-
-        // Test 26: SRA -1
-        funct3 = 3'b101;
-        funct7 = 7'b0100000;
-        in1 = 64'hFFFFFFFFFFFFFFFF; // -1
-        in2 = 64'h0000000000000008; // shift by 8
-        expected_out = $signed(in1) >>> in2[5:0];
-        check_result("SRA: -1 >>> 8 = -1");
+        #1;
+        if (out === expected_out) begin
+            $display("[PASS] Test %0d: SRA (0x8000... >>> 4 sign extend)", test_num);
+            pass_count = pass_count + 1;
+        end else begin
+            $display("[FAIL] Test %0d: SRA", test_num);
+            $display("       Expected: out=%h", expected_out);
+            $display("       Got:      out=%h", out);
+            fail_count = fail_count + 1;
+        end
+        $display("");
 
         // ========================================
-        // LOGICAL OPERATION TESTS
+        // LOGICAL OPERATIONS
         // ========================================
-        $display("--- XOR TESTS ---\n");
+        $display("--- LOGICAL OPERATION TESTS ---\n");
 
-        // Test 27: XOR
-        funct3 = 3'b100;
-        funct7 = 7'b0000000;
+        // Test 17: XOR
+        test_num = test_num + 1;
+        select = 3'b101;
+        control = 2'b00;
         in1 = 64'h5555555555555555;
         in2 = 64'hAAAAAAAAAAAAAAAA;
         expected_out = in1 ^ in2;
-        check_result("XOR: 0x5555 ^ 0xAAAA = 0xFFFF");
+        #1;
+        if (out === expected_out) begin
+            $display("[PASS] Test %0d: XOR (0x5555 ^ 0xAAAA = 0xFFFF)", test_num);
+            pass_count = pass_count + 1;
+        end else begin
+            $display("[FAIL] Test %0d: XOR", test_num);
+            $display("       Expected: out=%h", expected_out);
+            $display("       Got:      out=%h", out);
+            fail_count = fail_count + 1;
+        end
+        $display("");
 
-        // Test 28: XOR self (zero)
-        funct3 = 3'b100;
-        funct7 = 7'b0000000;
-        in1 = 64'h123456789ABCDEF0;
-        in2 = 64'h123456789ABCDEF0;
-        expected_out = in1 ^ in2;
-        check_result("XOR: X ^ X = 0");
-
-        $display("--- OR TESTS ---\n");
-
-        // Test 29: OR
-        funct3 = 3'b110;
-        funct7 = 7'b0000000;
+        // Test 18: OR
+        test_num = test_num + 1;
+        select = 3'b110;
+        control = 2'b00;
         in1 = 64'h5555555555555555;
         in2 = 64'hAAAAAAAAAAAAAAAA;
         expected_out = in1 | in2;
-        check_result("OR: 0x5555 | 0xAAAA = 0xFFFF");
+        #1;
+        if (out === expected_out) begin
+            $display("[PASS] Test %0d: OR (0x5555 | 0xAAAA = 0xFFFF)", test_num);
+            pass_count = pass_count + 1;
+        end else begin
+            $display("[FAIL] Test %0d: OR", test_num);
+            $display("       Expected: out=%h", expected_out);
+            $display("       Got:      out=%h", out);
+            fail_count = fail_count + 1;
+        end
+        $display("");
 
-        // Test 30: OR with zero
-        funct3 = 3'b110;
-        funct7 = 7'b0000000;
-        in1 = 64'h123456789ABCDEF0;
-        in2 = 64'h0000000000000000;
-        expected_out = in1 | in2;
-        check_result("OR: X | 0 = X");
-
-        $display("--- AND TESTS ---\n");
-
-        // Test 31: AND
-        funct3 = 3'b111;
-        funct7 = 7'b0000000;
+        // Test 19: AND
+        test_num = test_num + 1;
+        select = 3'b111;
+        control = 2'b00;
         in1 = 64'h5555555555555555;
         in2 = 64'hAAAAAAAAAAAAAAAA;
         expected_out = in1 & in2;
-        check_result("AND: 0x5555 & 0xAAAA = 0");
+        #1;
+        if (out === expected_out) begin
+            $display("[PASS] Test %0d: AND (0x5555 & 0xAAAA = 0)", test_num);
+            pass_count = pass_count + 1;
+        end else begin
+            $display("[FAIL] Test %0d: AND", test_num);
+            $display("       Expected: out=%h", expected_out);
+            $display("       Got:      out=%h", out);
+            fail_count = fail_count + 1;
+        end
+        $display("");
 
-        // Test 32: AND with all 1s (identity)
-        funct3 = 3'b111;
-        funct7 = 7'b0000000;
-        in1 = 64'h123456789ABCDEF0;
-        in2 = 64'hFFFFFFFFFFFFFFFF;
-        expected_out = in1 & in2;
-        check_result("AND: X & 0xFFFF = X");
+        // ========================================
+        // FLAG TESTS
+        // ========================================
+        $display("--- FLAG TESTS ---\n");
 
-        // Test 33: AND masking
-        funct3 = 3'b111;
-        funct7 = 7'b0000000;
-        in1 = 64'h123456789ABCDEF0;
-        in2 = 64'h00000000FFFFFFFF;
-        expected_out = in1 & in2;
-        check_result("AND: mask lower 32 bits");
+        // Test 20: Zero flag (equal values)
+        test_num = test_num + 1;
+        select = 3'b000;
+        control = 2'b00;
+        in1 = 64'h0000000000000005;
+        in2 = 64'h0000000000000005;
+        expected_zero = 1'b1;
+        expected_neg = 1'b0;
+        expected_negu = 1'b0;
+        #1;
+        if (zero === expected_zero && neg === expected_neg && negu === expected_negu) begin
+            $display("[PASS] Test %0d: Zero flag (5 == 5)", test_num);
+            pass_count = pass_count + 1;
+        end else begin
+            $display("[FAIL] Test %0d: Zero flag", test_num);
+            $display("       Expected: zero=%b, neg=%b, negu=%b", expected_zero, expected_neg, expected_negu);
+            $display("       Got:      zero=%b, neg=%b, negu=%b", zero, neg, negu);
+            fail_count = fail_count + 1;
+        end
+        $display("");
+
+        // Test 21: Neg flag (signed less than)
+        test_num = test_num + 1;
+        in1 = 64'h0000000000000003;
+        in2 = 64'h0000000000000005;
+        expected_zero = 1'b0;
+        expected_neg = 1'b1;
+        expected_negu = 1'b1;
+        #1;
+        if (zero === expected_zero && neg === expected_neg && negu === expected_negu) begin
+            $display("[PASS] Test %0d: Neg flag (3 < 5)", test_num);
+            pass_count = pass_count + 1;
+        end else begin
+            $display("[FAIL] Test %0d: Neg flag", test_num);
+            $display("       Expected: zero=%b, neg=%b, negu=%b", expected_zero, expected_neg, expected_negu);
+            $display("       Got:      zero=%b, neg=%b, negu=%b", zero, neg, negu);
+            fail_count = fail_count + 1;
+        end
+        $display("");
+
+        // Test 22: Negu flag (unsigned comparison)
+        test_num = test_num + 1;
+        in1 = 64'h0000000000000005;
+        in2 = 64'hFFFFFFFFFFFFFFFE;
+        expected_zero = 1'b0;
+        expected_neg = 1'b0; // 5 > -2 in signed
+        expected_negu = 1'b1; // 5 < large unsigned
+        #1;
+        if (zero === expected_zero && neg === expected_neg && negu === expected_negu) begin
+            $display("[PASS] Test %0d: Negu flag (5 < 0xFFFE unsigned)", test_num);
+            pass_count = pass_count + 1;
+        end else begin
+            $display("[FAIL] Test %0d: Negu flag", test_num);
+            $display("       Expected: zero=%b, neg=%b, negu=%b", expected_zero, expected_neg, expected_negu);
+            $display("       Got:      zero=%b, neg=%b, negu=%b", zero, neg, negu);
+            fail_count = fail_count + 1;
+        end
+        $display("");
 
         // ========================================
         // FINAL RESULTS

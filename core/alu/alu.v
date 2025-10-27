@@ -2,21 +2,17 @@ module alu (
     input wire [63:0] in1,
     input wire [63:0] in2,
 
-    input wire [2:0] funct3,
-    input wire [6:0] funct7,
+    // ALUOp
+    input wire [1:0] control,
+    input wire [2:0] select,
+
+    // flags
+    output reg zero,
+    output reg neg, // if in1 < in2, neg = 1, 0 otherwise
+    output reg negu, // unsigned in1 and in2
 
     output reg [63:0] out
 );
-    wire [1:0] control;
-    wire [2:0] select;
-
-    alu_control alu_control_instance (
-        .funct3(funct3),
-        .funct7(funct7),
-        .control(control),
-        .select(select)
-    );
-
     wire [63:0] addsub_out;
     wire [63:0] mul_out;
     wire [63:0] div_out;
@@ -90,5 +86,9 @@ module alu (
             3'b111: out = and_out;
             default: out = 64'b0;
         endcase
+
+        zero = (in1 == in2) ? 1: 0;
+        neg = ($signed(in1) < $signed(in2)) ? 1: 0;
+        negu = ($unsigned(in1) < $unsigned(in2)) ? 1: 0;
     end
 endmodule

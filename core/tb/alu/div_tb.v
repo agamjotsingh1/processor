@@ -126,6 +126,20 @@ module tb_div;
         expected_out = $signed(in1) / $signed(in2);
         check_result("DIV: 100 / 10 = 10");
 
+        // Extra Test: Division by zero
+        control = 2'b00;
+        in1 = 64'h0000000000000064; // 100
+        in2 = 64'h0000000000000000; // 0
+        expected_out = 64'hFFFFFFFFFFFFFFFF;
+        check_result("DIV: 100/0 = FFFFFFFFFFFFFFFF");
+        
+        // Extra Test: Division overflow
+        control = 2'b00;
+        in1 = 64'h8000000000000000; // Most negative number
+        in2 = 64'hFFFFFFFFFFFFFFFF; // -1
+        expected_out = 64'h8000000000000000;
+        check_result("DIV: Overflow case = 8000000000000000");
+
         // ========================================
         // DIVU TESTS (control = 2'b01) - Unsigned division quotient
         // ========================================
@@ -247,6 +261,20 @@ module tb_div;
         in2 = 64'h0000000000000005; // 5
         expected_out = $signed(in1) % $signed(in2);
         check_result("REM: (-1) % 5");
+
+        // Extra Test: Remainder by zero
+        control = 2'b10;
+        in1 = 64'h0000000000000064; // 100
+        in2 = 64'h0000000000000000; // 0
+        expected_out = in1;
+        check_result("REM: Remainder by zero = in1");
+        
+        // Extra Test: Remainder overflow
+        control = 2'b10;
+        in1 = 64'h8000000000000000; // Most negative number
+        in2 = 64'hFFFFFFFFFFFFFFFF; // -1
+        expected_out = 64'h0000000000000000;
+        check_result("REM: Overflow case = 0");
 
         // ========================================
         // REMU TESTS (control = 2'b11) - Unsigned remainder
