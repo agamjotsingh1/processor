@@ -6,11 +6,9 @@ module regfile (
 	input wire [5:0] read_addr1,  // address
 	output wire [63:0] read_data1, // data
 
-
 	// read port #2
 	input wire [5:0] read_addr2,   // address
 	output wire [63:0] read_data2, // data
-
 
 	// write port
 	input wire [5:0] write_addr,   // address
@@ -25,6 +23,8 @@ module regfile (
 		if(write_enable & write_addr != 0) begin
 			reg_array[write_addr] <= write_data;
 		end
+		
+		reg_array[0] <= 64'b0;
 	end
 
 	assign read_data1 = (read_addr1 == 0) ? 64'b0 : reg_array[read_addr1];

@@ -26,7 +26,6 @@ module div (
             // div
             2'b00: begin
                 if(in2 == 0) out = 64'hFFFFFFFFFFFFFFFF;
-                //else if(in1 == 64'h8000000000000000 && in2 == 64'hFFFFFFFFFFFFFFFF) out = in1;
                 else out = quotient_signed;
             end
 
@@ -39,7 +38,6 @@ module div (
             // rem
             2'b10: begin
                 if(in2 == 0) out = in1;
-                // else if(in1 == 64'h8000000000000000 && in2 == 64'hFFFFFFFFFFFFFFFF) out = 64'b0;
                 else out = remainder_signed;
             end
 
