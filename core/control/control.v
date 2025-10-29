@@ -6,12 +6,22 @@ module control (
     output reg mem_read,
     output reg mem_to_reg,
     output reg jump_src,
-    output reg branch_src,
+    output reg [2:0] branch_src,
     output reg jalr_src,
     output reg u_src,
     output reg uj_src,
     output reg alu_src
 );
+    /* branch_src specs
+        000 -> no branch
+        001 -> beq 
+        010 -> bne
+        011 -> blt 
+        100 -> bge
+        101 -> bltu
+        110 -> bgeu
+    */
+
     always @(*) begin
         case (instr[6:0]) // opcode
             // R - type
@@ -21,27 +31,26 @@ module control (
                 mem_read = 0;
                 mem_to_reg = 0;
                 jump_src = 0;
-                branch_src = 0;
+                branch_src = 3'b000;
                 jalr_src = 0;
                 u_src = 0;
                 uj_src = 1;
                 alu_src = 0;
             end
 
-            // I-type
+            // I - type
             7'b0010011: begin 
                 reg_write = 1;
                 mem_write = 0;
                 mem_read = 0;
                 mem_to_reg = 0;
                 jump_src = 0;
-                branch_src = 0;
+                branch_src = 3'b000;
                 jalr_src = 0;
                 u_src = 0;
                 uj_src = 1;
                 alu_src = 1;
             end
-
 
             // I - type (load)
             7'b0000011: begin 
@@ -50,7 +59,7 @@ module control (
                 mem_read = 1;
                 mem_to_reg = 1;
                 jump_src = 0;
-                branch_src = 0;
+                branch_src = 3'b000;
                 jalr_src = 0;
                 u_src = 0;
                 uj_src = 1;
@@ -64,7 +73,7 @@ module control (
                 mem_read = 0;
                 mem_to_reg = 0;
                 jump_src = 0;
-                branch_src = 0;
+                branch_src = 3'b000;
                 jalr_src = 1;
                 u_src = 0;
                 uj_src = 1;
@@ -78,7 +87,7 @@ module control (
                 mem_read = 0;
                 mem_to_reg = 0;
                 jump_src = 0;
-                branch_src = 0;
+                branch_src = 3'b000;
                 jalr_src = 0;
                 u_src = 0;
                 uj_src = 1;
@@ -92,49 +101,60 @@ module control (
                 mem_read = 0;
                 mem_to_reg = 0;
                 jump_src = 0;
-                branch_src = 1;
+
+                // funct3 check for determining type of branch
+                case({instr[14:12]})
+                    3'b000: branch_src = 3'b001; // beq
+                    3'b001: branch_src = 3'b010; // bne
+                    3'b100: branch_src = 3'b011; // blt
+                    3'b101: branch_src = 3'b100; // bge
+                    3'b110: branch_src = 3'b101; // bltu
+                    3'b111: branch_src = 3'b110; // bgeu
+                    default: branch_src = 3'b000;
+                endcase
+
                 jalr_src = 0;
                 u_src = 0;
                 uj_src = 1;
                 alu_src = 0;
             end
 
-            // U-type (lui)
+            // U - type (lui)
             7'b0110111: begin 
                 reg_write = 1;
                 mem_write = 0;
                 mem_read = 0;
                 mem_to_reg = 0;
                 jump_src = 0;
-                branch_src = 0;
+                branch_src = 3'b000;
                 jalr_src = 0;
                 u_src = 0;
                 uj_src = 0;
                 alu_src = 0;
             end
 
-            // U-type (auipc)
+            // U - type (auipc)
             7'b0010111: begin 
                 reg_write = 1;
                 mem_write = 0;
                 mem_read = 0;
                 mem_to_reg = 0;
                 jump_src = 0;
-                branch_src = 0;
+                branch_src = 3'b000;
                 jalr_src = 0;
                 u_src = 1;
                 uj_src = 0;
                 alu_src = 0;
             end
 
-            // J-type
+            // J - type
             7'b1101111: begin 
                 reg_write = 1;
                 mem_write = 0;
                 mem_read = 0;
                 mem_to_reg = 0;
                 jump_src = 1;
-                branch_src = 1;
+                branch_src = 3'b000;
                 jalr_src = 0;
                 u_src = 0;
                 uj_src = 1;
@@ -147,7 +167,7 @@ module control (
                 mem_read = 0;
                 mem_to_reg = 0;
                 jump_src = 0;
-                branch_src = 0;
+                branch_src = 3'b000;
                 jalr_src = 0;
                 u_src = 0;
                 uj_src = 0;

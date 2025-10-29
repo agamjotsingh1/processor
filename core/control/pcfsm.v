@@ -1,7 +1,8 @@
 module pcfsm (
     input wire clk,
 
-    output reg stall 
+    output reg stall,
+    output reg reg_write_stall 
 );
     reg ff [0:2];
 
@@ -17,5 +18,6 @@ module pcfsm (
         ff[2] <= ff[1];
 
         stall = ~ff[0];
+        reg_write_stall = ~ff[2];
     end
 endmodule
