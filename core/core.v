@@ -119,6 +119,20 @@ module core (
         .out(alu_out)
     );
 
+    // for jal instructions
+    // the alu output and PC + 4 is passed through mux
+    wire [63:0] alu_jal_out;
+
+    // add by 1
+    // because the instruction memory is word addressable as opposed to byte addressability
+    wire [14:0] pc_plus_4;
+    assign pc_plus_4 = pc + 1;
+
+    // Multiplyu pc_plus_4 by 4 because right now pc + 4 (byte addressable)
+    // is actually pc + 1 (word addressable)
+    // where the pc itself is in word addressable format
+    assign alu_jal_out = jump_src ? pc_plus_4 << 2 : alu_out;
+
     wire branch;
 
     branch_control branch_control_instance (
@@ -135,10 +149,17 @@ module core (
     wire [63:0] pc_plus_imm;
     assign pc_plus_imm = {50'b0, pc} + imm;
 
+    // NOTE: for the following code
+    // please refer to the report for this
+    // this is not understantable without glancing the datapath
+
     // shift by 4 / add by 1
     // because the instruction memory is word addressable as opposed to byte addressability
     wire [14:0] next_imm_pc = pc + $signed((imm >> 2));
-    assign next_pc = branch ? (next_imm_pc): pc + 1;
 
-    assign write_data = uj_src ? alu_out: (u_src ? pc_plus_imm: imm);
+    // alu_jal_out because the value in rs1 = PC + 4 (byte addressable)
+    // to convert to word addressable we do (PC + 4)/2
+    assign next_pc = jalr_src ? (alu_jal_out >> 2) : ((branch | jump_src) ? (next_imm_pc): pc_plus_4);
+
+    assign write_data = uj_src ? (jalr_src ? (pc_plus_4 << 2) :alu_jal_out): (u_src ? pc_plus_imm: imm);
 endmodule
