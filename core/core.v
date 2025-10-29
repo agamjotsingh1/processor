@@ -161,5 +161,10 @@ module core (
     // to convert to word addressable we do (PC + 4)/2
     assign next_pc = jalr_src ? (alu_jal_out >> 2) : ((branch | jump_src) ? (next_imm_pc): pc_plus_4);
 
+    // DATA MEM is split into 8 sepereate interleaved memory units
+    // All of these 8 units will be written/read in parallel
+    // This is to support all store and load variants
+
+    
     assign write_data = uj_src ? (jalr_src ? (pc_plus_4 << 2) :alu_jal_out): (u_src ? pc_plus_imm: imm);
 endmodule

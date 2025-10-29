@@ -67,7 +67,7 @@ module control (
             end
 
             // I - type (jalr)
-            7'b0000011: begin 
+            7'b1100111: begin 
                 reg_write = 1;
                 mem_write = 0;
                 mem_read = 0;
