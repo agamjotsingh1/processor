@@ -7,7 +7,7 @@ module core_tb;
         .clk(clk)
     );
     
-    /*// Clock generation
+    // Clock generation
     initial begin
         clk = 0;
         forever #20 clk = ~clk;
@@ -17,6 +17,6 @@ module core_tb;
     initial begin
         #1000;
         $finish;
-    end*/
+    end
 endmodule
 

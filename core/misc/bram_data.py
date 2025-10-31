@@ -7,6 +7,10 @@ DATA_WIDTH = 32
 RADIX = 16
 HEX_FORMAT = f'0{DATA_WIDTH // 4}X'
 
+# ignore
+memory_initialization_radix=16;
+memory_initialization_vector=01200093 00400113 001080b3 fff10113 fe011ce3;
+
 data = """00000013,
 00a00093;"""
 

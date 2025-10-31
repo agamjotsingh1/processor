@@ -10,7 +10,8 @@ module control (
     output reg jalr_src,
     output reg u_src,
     output reg uj_src,
-    output reg alu_src
+    output reg alu_src,
+    output reg alu_fpu // 0 for alu, 1 for fpu
 );
     /* branch_src specs
         000 -> no branch
@@ -36,6 +37,7 @@ module control (
                 u_src = 0;
                 uj_src = 1;
                 alu_src = 0;
+                alu_fpu = 0;
             end
 
             // I - type
@@ -50,6 +52,7 @@ module control (
                 u_src = 0;
                 uj_src = 1;
                 alu_src = 1;
+                alu_fpu = 0;
             end
 
             // I - type (load)
@@ -64,6 +67,7 @@ module control (
                 u_src = 0;
                 uj_src = 1;
                 alu_src = 1;
+                alu_fpu = 0;
             end
 
             // I - type (jalr)
@@ -78,6 +82,7 @@ module control (
                 u_src = 0;
                 uj_src = 1;
                 alu_src = 1;
+                alu_fpu = 0;
             end
 
             // S - type
@@ -91,7 +96,8 @@ module control (
                 jalr_src = 0;
                 u_src = 0;
                 uj_src = 1;
-                alu_src = 0;
+                alu_src = 1;
+                alu_fpu = 0;
             end
 
             // B - type
@@ -117,6 +123,7 @@ module control (
                 u_src = 0;
                 uj_src = 1;
                 alu_src = 0;
+                alu_fpu = 0;
             end
 
             // U - type (lui)
@@ -131,6 +138,7 @@ module control (
                 u_src = 0;
                 uj_src = 0;
                 alu_src = 0;
+                alu_fpu = 0;
             end
 
             // U - type (auipc)
@@ -145,6 +153,7 @@ module control (
                 u_src = 1;
                 uj_src = 0;
                 alu_src = 0;
+                alu_fpu = 0;
             end
 
             // J - type
@@ -159,7 +168,24 @@ module control (
                 u_src = 0;
                 uj_src = 1;
                 alu_src = 0;
+                alu_fpu = 0;
             end
+
+            // D Class (FPU)
+            7'b1010011: begin 
+                reg_write = 1;
+                mem_write = 0;
+                mem_read = 0;
+                mem_to_reg = 0;
+                jump_src = 0;
+                branch_src = 3'b000;
+                jalr_src = 0;
+                u_src = 0;
+                uj_src = 1;
+                alu_src = 0;
+                alu_fpu = 1;
+            end
+
 
             default: begin 
                 reg_write = 0;
@@ -172,6 +198,7 @@ module control (
                 u_src = 0;
                 uj_src = 0;
                 alu_src = 0;
+                alu_fpu = 0;
             end
 
         endcase
