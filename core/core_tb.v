@@ -10,7 +10,7 @@ module core_tb;
     // Clock generation
     initial begin
         clk = 0;
-        forever #20 clk = ~clk;
+        /*forever #20 clk = ~clk;*/
     end
     
     // Simulation control

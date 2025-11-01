@@ -26,6 +26,6 @@ module pcfsm (
 
         stall = ~ff[0];
         reg_write_stall = ~ff[5];
-        mem_stall = ~(ff[3] | ff[4] | ff[5]);
+        mem_stall = ~(ff[3] | ff[4]);
     end
 endmodule

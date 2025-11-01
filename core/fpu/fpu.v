@@ -45,10 +45,10 @@ module fpu (
       .in2(in2),
       .out(quotient)
   );
-  FSQRT fp_sqrt (
+  /*FSQRT fp_sqrt (
       .in (in1),
       .out(sqrt)
-  );
+  );*/
   FCVT_int fp_ld (
       .in (in1),
       .out(fcvt_ld)
@@ -64,7 +64,7 @@ module fpu (
       3'b001: out = difference;
       3'b010: out = product;
       3'b011: out = quotient;
-      3'b100: out = sqrt;
+      3'b100: out = 64'b0;
       3'b101: out = fcvt_ld;
       3'b110: out = fcvt_dl;
       3'b111: out = 64'b0;

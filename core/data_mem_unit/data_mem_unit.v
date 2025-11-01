@@ -1,10 +1,4 @@
-// DATA MEM is split into 8 sepereate interleaved memory units
-// All of these 8 units will be written/read in parallel
-// This is to support all store and load variants
-
-// 16 bits are used because of the memory size currently
-// TODO: parameterize this code to make it dynamic to memory size
-
+// each data mem sub unit is 64 x (2^17) dimensions long
 module data_mem_unit (
     input wire clk,
     input wire en,
@@ -23,96 +17,78 @@ module data_mem_unit (
 
     output wire [63:0] dout
 );
-    wire [2:0] offset = addr[2:0];
-    wire [63:0] base_addr = {addr[63:3], 3'b000};
-    
-    // Data banks
-    wire [7:0] dout_banks [7:0];
-    wire [7:0] din_banks [7:0];
-    
-    // Write enables
-    wire [7:0] weas;
-    
-    // Rotated input data based on offset (barrel shifter)
-    wire [63:0] din_rotated [7:0];
-    
-    genvar i, j;
-    
-    // Generate rotated versions of input data for each possible offset
+    wire [2:0] col;
+    assign col = addr[2:0];
+
+    wire [60:0] row;
+    assign row = addr[63:3];
+
+    // short for "write enables"
+    wire [7:0] weas;  // enables for all 8 seperate data memory instances
+    reg [7:0] weas_unrotated;  // unrotated weas
+
+    always @(*) begin
+        case (bit_width)
+            2'b00: weas_unrotated = 8'b00000001; // 8 bits
+            2'b01: weas_unrotated = 8'b00000011; // 16 bits
+            2'b10: weas_unrotated = 8'b00001111; // 32 bits
+            2'b11: weas_unrotated = 8'b11111111; // 64 bits
+            default: weas_unrotated = 8'b00000000;
+        endcase
+    end
+
+    // circular left shift by 'col' to find actual write enables
+    assign weas = (weas_unrotated << col) | (weas_unrotated >> (8 - col));
+
+    wire [5:0] col_shift;
+    assign col_shift = {3'b0, col} << 3;
+
+    wire [5:0] reverse_col_shift;
+    assign reverse_col_shift = 64 - col_shift;
+
+    wire [63:0] din_rotated;
+    // same thing for din, but with shift amount = col * 8
+    assign din_rotated = (din << col_shift) | (din >> reverse_col_shift);
+
+    // memory addresses is arranged in a matrix-ish grid
+    // [0, 1, 2, 3, 4, 5, 6, 7
+    //  9,10,11,12,13,14,15,16
+    // .......................]
+
+    wire [63:0] dout_raw_unrotated_z;  // May contain z instead of zero
+
+    genvar i;
     generate
-        for (i = 0; i < 8; i = i + 1) begin : gen_din_rotate
-            for (j = 0; j < 8; j = j + 1) begin : gen_din_bytes
-                assign din_rotated[i][(j << 3) +: 8] = din[((i + j) & 3'b111) << 3 +: 8];
-            end
-        end
-    endgenerate
-    
-    // Select the correct rotated data based on offset
-    generate
-        for (i = 0; i < 8; i = i + 1) begin : gen_din_mux
-            assign din_banks[i] = din_rotated[offset][(i << 3) +: 8];
-        end
-    endgenerate
-    
-    // Generate write enables based on bit_width and offset
-    wire [7:0] weas_mask [7:0][3:0]; // [offset][bit_width]
-    
-    generate
-        for (i = 0; i < 8; i = i + 1) begin : gen_weas_offset
-            // byte (bit_width = 00)
-            assign weas_mask[i][0] = (8'b1 << i);
-            
-            // half word (bit_width = 01) - 2 bytes
-            assign weas_mask[i][1] = (8'b11 << i) | ((i > 6) ? (8'b11 >> (8 - i)) : 8'b0);
-            
-            // word (bit_width = 10) - 4 bytes
-            assign weas_mask[i][2] = (8'b1111 << i) | ((i > 4) ? (8'b1111 >> (8 - i)) : 8'b0);
-            
-            // double word (bit_width = 11) - 8 bytes
-            assign weas_mask[i][3] = 8'b11111111;
-        end
-    endgenerate
-    
-    assign weas = weas_mask[offset][bit_width];
-    
-    // Instantiate 8 memory banks
-    generate
-        for (i = 0; i < 8; i = i + 1) begin : mem_banks
+        for(i = 0; i < 8; i = i + 1) begin
             data_mem data_mem_sub_unit (
                 .clka(clk),
                 .ena(en),
                 .wea(weas[i] & wea),
-                .addra(base_addr[16:3]),
-                .dina(din_banks[i]),
-                .douta(dout_banks[i])
+                .addra(row[16:0] + (i < col ? 17'b1: 17'b0)),
+                .dina(din_rotated[(i << 3) +: 8]),
+                .douta(dout_raw_unrotated_z[(i << 3) +: 8])
             );
         end
     endgenerate
-    
-    // Rotated output data based on offset (barrel shifter)
-    wire [63:0] dout_rotated [7:0];
-    
-    generate
-        for (i = 0; i < 8; i = i + 1) begin : gen_dout_rotate
-            for (j = 0; j < 8; j = j + 1) begin : gen_dout_bytes
-                assign dout_rotated[i][j*8 +: 8] = dout_banks[((i + j) & 3'b111)];
-            end
-        end
-    endgenerate
-    
-    // Select the correct rotated output based on offset
-    wire [63:0] dout_raw;
-    
-    generate
-        for (i = 0; i < 8; i = i + 1) begin : gen_dout_mux
-            assign dout_raw[i*8 +: 8] = dout_rotated[offset][i*8 +: 8];
-        end
-    endgenerate
-    
-    // Sign extension using conditional operators
-    assign dout = (bit_width == 2'b00) ? (sign_extend ? {{56{dout_raw[7]}}, dout_raw[7:0]} : {56'b0, dout_raw[7:0]}) :
-                  (bit_width == 2'b01) ? (sign_extend ? {{48{dout_raw[15]}}, dout_raw[15:0]} : {48'b0, dout_raw[15:0]}) :
-                  (bit_width == 2'b10) ? (sign_extend ? {{32{dout_raw[31]}}, dout_raw[31:0]} : {32'b0, dout_raw[31:0]}) :
-                  dout_raw;
 
+    wire [63:0] dout_raw_unrotated;
+
+    // Convert z to 0 using or with 0
+    assign dout_raw_unrotated = dout_raw_unrotated_z | 64'b0;
+
+    reg [63:0] dout_raw_rotated;
+
+    // right circular shift for dout to get what was actually put in
+    always @(*) begin
+        dout_raw_rotated = (dout_raw_unrotated >> col_shift) | (dout_raw_unrotated << reverse_col_shift);
+
+        case (bit_width)
+            2'b00: dout_raw_rotated[63:8] = sign_extend ? {56{dout_raw_rotated[7]}} : 56'b0;
+            2'b01: dout_raw_rotated[63:16] = sign_extend ? {48{dout_raw_rotated[15]}} : 48'b0;
+            2'b10: dout_raw_rotated[63:32] = sign_extend ? {32{dout_raw_rotated[31]}} : 32'b0;
+            default: dout_raw_rotated[63:0] = dout_raw_rotated[63:0]; // to prevent unecessary latches
+        endcase
+    end
+
+    assign dout = dout_raw_rotated;
 endmodule

@@ -1,6 +1,6 @@
 module core (
     input wire clk,
-    output wire [63:0] metadata // for synthesis
+    output reg [14:0] debug_pc
 );
     reg [14:0] pc;
 
@@ -15,6 +15,7 @@ module core (
 
     // perform fsm for stalling
     // fyi, memory takes 2 extra cycles to load
+    
     pcfsm pcfsm_instance (
         .clk(clk),
         .stall(stall),
@@ -22,17 +23,16 @@ module core (
         .mem_stall(mem_stall)
     );
 
+    // stalls for memory read and write
     always @(posedge clk) begin
         if(~stall) pc <= next_pc;
+        debug_pc = next_pc;
     end
-
-    wire ena;
-    assign ena = 1'b1;
-
+    
     instr_mem_gen instr_mem (
         .clka(clk),       // input, clock for Port A
         .addra(pc),       // input, address for Port A
-        .ena(ena),           // enable pin for Port A  
+        .ena(1'b1),        // enable pin for Port A  
         .douta(instr)     // output, data output for Port A
     );
 
@@ -62,7 +62,7 @@ module core (
     assign fpu_mv_x_d = alu_fpu & (instr[31:27] == 5'b11100);
 
     wire [2:0] branch_src;
-
+    
     control control_instance (
         .instr(instr),
         .reg_write(reg_write), 
@@ -78,28 +78,28 @@ module core (
         .alu_fpu(alu_fpu)
     );
 
-    wire [5:0] rs1 = instr[19:15];
-    wire [5:0] rs2 = instr[24:20];
-    wire [5:0] rd = instr[11:7];
+    wire [5:0] rs1 = {fpu_rs1, instr[19:15]};
+    wire [5:0] rs2 = {fpu_rs2, instr[24:20]};
+    wire [5:0] rd = {fpu_rd, instr[11:7]};
 
     wire [63:0] read_data1;
     wire [63:0] read_data2;
 
     wire [63:0] write_data;
-
+    
     regfile regfile_instance (
         .clk(clk),
         .write_enable(reg_write & (~reg_write_stall)),
-        .read_addr1(fpu_rs1 ? rs1 + 32: rs1),
-        .read_addr2(fpu_rs2 ? rs2 + 32: rs2),
+        .read_addr1(rs1),
+        .read_addr2(rs2),
         .read_data1(read_data1),
         .read_data2(read_data2),
-        .write_addr(fpu_rd ? rd + 32: rd),
+        .write_addr(rd),
         .write_data(write_data)
     );
 
     wire [63:0] imm;
-
+    
     immgen immgen_instance (
         .instr(instr),
         .imm(imm)
@@ -108,7 +108,7 @@ module core (
     // ALUOp
     wire [1:0] control;
     wire [2:0] select;
-
+    
     alu_control alu_control_instance (
         .instr(instr),
         .control(control),
@@ -125,7 +125,7 @@ module core (
     wire zero, neg, negu;
 
     wire [63:0] alu_out;
-
+    
     alu alu_instance (
         .in1(alu_fpu_in1),
         .in2(alu_fpu_in2),
@@ -140,12 +140,12 @@ module core (
     // FPU
     wire [2:0] fpu_op;
     wire [63:0] fpu_out;
-
+    
     fpu_cntrl fpu_cntrl_instance (
         .instr(instr),
         .fpu_op(fpu_op)
     );
-
+    
     fpu fpu_instance (
         .in1(alu_fpu_in1),
         .in2(alu_fpu_in2),
@@ -190,7 +190,6 @@ module core (
     wire [1:0] mem_bit_width;
     wire [63:0] mem_out;
 
-    /* TODO
     data_mem_control data_mem_control_instance (
         .funct3(instr[14:12]),
         .mem_read(mem_read),
@@ -209,9 +208,9 @@ module core (
         .addr(alu_jal_out),
         .din(read_data2),
         .sign_extend(mem_sign_extend),
+        .bit_width(mem_bit_width),
         .dout(mem_out)
     );
-    */
 
     // auipc, lui, branch, jal support 
     // note that immgen block already gives out shifted by 12
@@ -239,5 +238,4 @@ module core (
                         :(u_src ? pc_plus_imm: imm)));
 
     assign write_data = (fpu_mv_d_x | fpu_mv_x_d) ? alu_fpu_in1: write_data_intermediate;
-    assign metadata = write_data;
 endmodule
