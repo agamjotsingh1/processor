@@ -1,3 +1,1 @@
-- data memory
 - fpu cleanup
-- variable cleanup

@@ -16,11 +16,17 @@ module core (
 
     // perform fsm for stalling
     // fyi, memory takes 2 extra cycles to load
-   
+
+    // DEBUG
+    //wire div_en;
+    
     pcfsm pcfsm_instance (
         .clk(clk),
         .stall(stall),
         .rst(rst),
+
+        // DEBUG
+        //.div_en(div_en),
         .reg_write_stall(reg_write_stall),
         .mem_stall(mem_stall)
     );
@@ -122,6 +128,11 @@ module core (
     alu alu_instance (
         .in1(alu_fpu_in1),
         .in2(alu_fpu_in2),
+
+        // DEBUG
+        //.clk(clk),
+        //.div_en(div_en),
+
         .control(control),
         .select(select),
         .zero(zero),

@@ -3,7 +3,7 @@ module data_mem_unit (
     input wire clk,
     input wire en,
     input wire wea, // write enable
-    input wire [63:0] addr, // only last 16 bits will be used
+    input wire [63:0] addr, // only last 11 bits will be used
     input wire [63:0] din,
     input wire sign_extend, // 1 if sign has to be extended (signed)
 
@@ -64,7 +64,7 @@ module data_mem_unit (
                 .clka(clk),
                 .ena(en),
                 .wea(weas[i] & wea),
-                .addra(row[16:0] + (i < col ? 17'b1: 17'b0)),
+                .addra(row[11:0] + (i < col ? 17'b1: 17'b0)),
                 .dina(din_rotated[(i << 3) +: 8]),
                 .douta(dout_raw_unrotated_z[(i << 3) +: 8])
             );

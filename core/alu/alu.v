@@ -2,6 +2,10 @@ module alu (
     input wire [63:0] in1,
     input wire [63:0] in2,
 
+    // DEBUG
+    // input wire clk,
+    // input wire div_en,
+
     // ALUOp
     input wire [1:0] control,
     input wire [2:0] select,
@@ -39,6 +43,11 @@ module alu (
     div div_instance (
         .in1(in1),
         .in2(in2),
+
+        // DEBUG
+        //.clk(clk),
+        //.div_en(div_en),
+
         .control(control),
         .out(div_out)
     );

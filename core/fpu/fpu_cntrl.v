@@ -1,17 +1,23 @@
 /*
 instrs supported:
-1. fadd.d (000)
-2. fsub.d (001)
-3. fmul.d (010)
-4. fdiv.d (011)
+1. fadd.d (00000)
+2. fsub.d (00001)
+3. fmul.d (00010)
+4. fdiv.d (00011)
 5. fsqrt.d (100)
-6. fcvt.l.d (double to long) (101)
-7. fcvt.d.l (long to double) (110)
+6. fcvt.l.d (double to long) (00101)
+7. fcvt.d.l (long to double) (00110)
+8. fmv.x.d (double to long) (00111)
+9. fmv.d.x (long to double) (01000)
 */
-
+/*
+* Flags to be added
+* fpu_rd -> 1 if destination resistor is fp
+* fpu_rs1 -> 1 if input resistor 1 is rs
+*/
 module fpu_cntrl (
     input [31:0] instr,
-    output reg [2:0] fpu_op
+    output reg [4:0] fpu_op
 );
   wire [ 4:0] funct5 = instr[31:27];
   wire [ 1:0] fmt = instr[26:25];
@@ -20,14 +26,16 @@ module fpu_cntrl (
   wire [13:0] diff = {funct5, fmt, opcode};
   always @(*) begin
     case (diff)
-      14'b00000011010011: fpu_op = 3'b000;
-      14'b00001011010011: fpu_op = 3'b001;
-      14'b00010011010011: fpu_op = 3'b010;
-      14'b00011011010011: fpu_op = 3'b011;
-      14'b01011011010011: fpu_op = 3'b100;
-      14'b11000011010011: fpu_op = 3'b101;
-      14'b11010011010011: fpu_op = 3'b110;
-      default: fpu_op = 3'b111;
+      14'b00000011010011: fpu_op = 5'b00000;
+      14'b00001011010011: fpu_op = 5'b00001;
+      14'b00010011010011: fpu_op = 5'b00010;
+      14'b00011011010011: fpu_op = 5'b00011;
+      14'b01011011010011: fpu_op = 5'b00100;
+      14'b11000011010011: fpu_op = 5'b00101;
+      14'b11010011010011: fpu_op = 5'b00110;
+      14'b11100011010011: fpu_op = 5'b00111;  // fmv.x.d
+      14'b11110011010011: fpu_op = 5'b01000;  // fmv.d.x
+      default: fpu_op = 5'b11111;
     endcase
   end
 endmodule
