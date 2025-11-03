@@ -8,8 +8,8 @@ module id_stage #(
     parameter BRANCH_SRC_WIDTH=3
 )(
     input wire clk,
-    input wire rst,
     input wire stall,
+    input wire [(BUS_WIDTH - 1):0] pc,
     input wire [(INSTR_WIDTH - 1):0] instr,
 
     // from WB stage
@@ -21,18 +21,17 @@ module id_stage #(
     output wire mem_write,
     output wire mem_read,
     output wire mem_to_reg,
-    output wire jump_src,
     output wire jalr_src,
     output wire u_src,
     output wire uj_src,
     output wire alu_src,
     output wire alu_fpu,
-    output wire fpu_rd,
-    output wire [(BRANCH_SRC_WIDTH -1):0] branch_src,
 
     // REGFILE Outputs
     output wire [(BUS_WIDTH - 1):0] read_data1,
     output wire [(BUS_WIDTH - 1):0] read_data2,
+    output wire [(REGFILE_LEN - 1):0] rs1,
+    output wire [(REGFILE_LEN - 1):0] rs2,
     output wire [(REGFILE_LEN - 1):0] rd,
 
     // ALU Controls
@@ -44,8 +43,16 @@ module id_stage #(
     output wire [(FPU_OP_WIDTH - 1):0] fpu_op,
 
     // IMMGEN output
-    output wire [(BUS_WIDTH - 1):0] imm
+    output wire [(BUS_WIDTH - 1):0] imm,
+
+    // NEXT IMM PC (wont go to next stage)
+    output wire imm_pc,
+    output wire [(BUS_WIDTH - 1):0] next_imm_pc
 );
+
+    wire jump_src;
+    wire [(BRANCH_SRC_WIDTH -1):0] branch_src;
+
     control control_instance (
         .instr(instr),
         .reg_write(reg_write), 
@@ -78,9 +85,9 @@ module id_stage #(
 
     assign fpu_rs2 = 1'b1; // second register is always fp (if alu_fp == 1)
 
-    wire [(REGFILE_LEN - 1):0] rs1 = {alu_fpu & fpu_rs1, instr[19:15]};
-    wire [(REGFILE_LEN - 1):0] rs2 = {alu_fpu & fpu_rs2, instr[24:20]};
-    assign [(REGFILE_LEN - 1):0] rd  = {alu_fpu & fpu_rd, instr[11:7]};
+    assign rs1 = {alu_fpu & fpu_rs1, instr[19:15]};
+    assign rs2 = {alu_fpu & fpu_rs2, instr[24:20]};
+    assign rd = {alu_fpu & fpu_rd, instr[11:7]};
 
     regfile regfile_instance (
         .clk(clk),
@@ -96,5 +103,38 @@ module id_stage #(
     immgen immgen_instance (
         .instr(instr),
         .imm(imm)
+    );
+
+    // BRANCH Flags
+    wire zero, neg, negu;
+
+    comparator comparator_instance (
+        .in1(read_data1),
+        .in2(read_data2),
+        .zero(zero),
+        .neg(neg),
+        .negu(negu)
+    );
+
+    // To branch or not to branch, that is the question
+    wire branch;
+
+    branch_control branch_control_instance (
+        .branch_src(branch_src),
+        .zero(zero),
+        .neg(neg),
+        .negu(negu),
+        .branch(branch)
+    );
+
+    assign imm_pc = branch | jump_src;
+
+    localparam ADD_CNTRL = 2'b00;
+
+    addsub addsub_jal_instance (
+        .in1(jalr_src ? read_data1: pc),
+        .in2(imm),
+        .control(ADD_CNTRL),
+        .out(next_jmp_pc)
     );
 endmodule

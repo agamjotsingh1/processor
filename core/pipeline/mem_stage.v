@@ -1,0 +1,67 @@
+module mem_stage #(
+    parameter BUS_WIDTH=64,
+    parameter MEM_BIT_WIDTH=2
+)(
+    input wire clk,
+
+    // Control Pins
+    input wire mem_write,
+    input wire mem_read,
+    input wire jalr_src,
+    input wire u_src,
+    input wire uj_src,
+
+    // IMMGEN output
+    input wire [(BUS_WIDTH - 1):0] imm,
+
+    input wire [(BUS_WIDTH - 1):0] pc,
+
+    output wire [(BUS_WIDTH - 1):0] mem_out,
+    output wire [(BUS_WIDTH - 1):0] write_data
+);
+    // NOTE: for the following code
+    // please refer to the report for this
+    // this is not understantable without glancing the datapath
+
+    // auipc, lui, branch, jal support 
+    // note that immgen block already gives out shifted by 12
+    // for branch and jal, imm is shifted by just 1
+    wire [(BUS_WIDTH - 1):0] pc_plus_imm;
+    assign pc_plus_imm = pc + imm;
+
+    wire [(BUS_WIDTH - 1):0] pc_plus_4 = pc + 4;
+
+    assign write_data = uj_src ?
+                        (jalr_src ? pc_plus_4: alu_fpu_result)
+                        :(u_src ? pc_plus_imm: imm);
+
+    // DATA MEM is split into 8 sepereate interleaved memory units
+    // All of these 8 units will be written/read in parallel
+    // This is to support all store and load variants
+    // W/ Parallel 2 cycle clock delay
+    wire mem_en, mem_wea, mem_sign_extend;
+    wire [(MEM_BIT_WIDTH - 1):0] mem_bit_width;
+
+    data_mem_control data_mem_control_instance (
+        .funct3(instr[14:12]),
+        .mem_read(mem_read),
+        .mem_write(mem_write),
+        //.mem_stall(mem_stall),
+        .mem_stall(1'b0),
+        .en(mem_en),
+        .wea(mem_wea),
+        .sign_extend(mem_sign_extend),
+        .bit_width(mem_bit_width)
+    );
+
+    data_mem_unit data_mem_instance (
+        .clk(clk),
+        .en(mem_en),
+        .wea(mem_wea),
+        .addr(alu_jal_out),
+        .din(read_data2),
+        .sign_extend(mem_sign_extend),
+        .bit_width(mem_bit_width),
+        .dout(mem_out)
+    );
+endmodule
