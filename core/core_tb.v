@@ -34,6 +34,8 @@ module core_tb;
     assign dut.pc_stall = 0;
     assign dut.if_id_stall = 0;
     assign dut.id_ex_stall = 0;
+    assign dut.ex_mem_stall = 0;
+    assign dut.mem_wb_stall = 0;
     
     initial begin
         clk = 0;

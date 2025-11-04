@@ -134,6 +134,6 @@ module id_stage #(
         .in1(jalr_src ? read_data1: pc),
         .in2(imm),
         .control(ADD_CNTRL),
-        .out(next_jmp_pc)
+        .out(next_imm_pc)
     );
 endmodule

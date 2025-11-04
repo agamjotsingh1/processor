@@ -1,5 +1,6 @@
 module mem_stage #(
     parameter BUS_WIDTH=64,
+    parameter INSTR_WIDTH=32,
     parameter MEM_BIT_WIDTH=2
 )(
     input wire clk,
@@ -11,10 +12,14 @@ module mem_stage #(
     input wire u_src,
     input wire uj_src,
 
+    input wire [(BUS_WIDTH - 1):0] alu_fpu_result,
+    input wire [(BUS_WIDTH - 1):0] mem_in,
+
     // IMMGEN output
     input wire [(BUS_WIDTH - 1):0] imm,
 
     input wire [(BUS_WIDTH - 1):0] pc,
+    input wire [(INSTR_WIDTH - 1):0] instr,
 
     output wire [(BUS_WIDTH - 1):0] mem_out,
     output wire [(BUS_WIDTH - 1):0] write_data
@@ -58,8 +63,8 @@ module mem_stage #(
         .clk(clk),
         .en(mem_en),
         .wea(mem_wea),
-        .addr(alu_jal_out),
-        .din(read_data2),
+        .addr(alu_fpu_result),
+        .din(mem_in),
         .sign_extend(mem_sign_extend),
         .bit_width(mem_bit_width),
         .dout(mem_out)

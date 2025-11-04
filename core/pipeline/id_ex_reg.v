@@ -1,5 +1,6 @@
 module id_ex_reg #(
     parameter BUS_WIDTH=64,
+    parameter INSTR_WIDTH=32,
     parameter REGFILE_LEN=6,
     parameter ALU_CONTROL_WIDTH=2,
     parameter ALU_SELECT_WIDTH=3,
@@ -41,6 +42,7 @@ module id_ex_reg #(
     input wire [(BUS_WIDTH - 1):0] in_imm,
 
     input wire [(BUS_WIDTH - 1):0] in_pc,
+    input wire [(INSTR_WIDTH - 1):0] in_instr,
 
     // ------ OUTPUTS ------
 
@@ -49,7 +51,7 @@ module id_ex_reg #(
     output wire out_mem_write,
     output wire out_mem_read,
     output wire out_mem_to_reg,
-    output wire in_jump_src,
+    output wire out_jump_src,
     output wire out_jalr_src,
     output wire out_u_src,
     output wire out_uj_src,
@@ -73,7 +75,8 @@ module id_ex_reg #(
     // IMMGEN output
     output wire [(BUS_WIDTH - 1):0] out_imm,
 
-    output wire [(BUS_WIDTH - 1):0] out_pc
+    output wire [(BUS_WIDTH - 1):0] out_pc,
+    output wire [(INSTR_WIDTH - 1):0] out_instr
 );
     // Control Pins
     reg reg_write; 
@@ -105,6 +108,7 @@ module id_ex_reg #(
     reg [(BUS_WIDTH - 1):0] imm;
 
     reg [(BUS_WIDTH - 1):0] pc;
+    reg [(INSTR_WIDTH - 1):0] instr;
 
     always @(posedge clk) begin
         if(rst) begin
@@ -139,6 +143,7 @@ module id_ex_reg #(
             
             // PC
             pc <= {BUS_WIDTH{1'b0}};
+            instr <= {INSTR_WIDTH{1'b0}};
         end
         if(~stall) begin
             // Control Pins
@@ -172,6 +177,7 @@ module id_ex_reg #(
             
             // PC
             pc <= in_pc;
+            instr <= in_instr;
         end
     end
 
@@ -207,4 +213,5 @@ module id_ex_reg #(
     
     // PC
     assign out_pc = pc;
+    assign out_instr = instr;
 endmodule

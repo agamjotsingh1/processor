@@ -6,7 +6,66 @@ Using 8 slave threads.
 WARNING: [XSIM 43-3431] One or more environment variables have been detected which affect the operation of the C compiler. These are typically not set in standard installations and are not tested by AMD, however they may be appropriate for your system, so the flow will attempt to continue.  If errors occur, try running xelab with the "-mt off -v 1" switches to see more information from the C compiler. The following environment variables have been detected:
 Starting static elaboration
 Pass Through NonSizing Optimizer
-WARNING: [VRFC 10-9543] actual bit length 3 differs from formal bit length 5 for port 'fpu_op' [/home/agamubuntu/Github/processor/core/pipeline/id_stage.v:83]
-WARNING: [VRFC 10-9543] actual bit length 1 differs from formal bit length 64 for port 'out' [/home/agamubuntu/Github/processor/core/pipeline/id_stage.v:138]
+WARNING: [VRFC 10-9543] actual bit length 3 differs from formal bit length 5 for port 'fpu_op' [/home/agamubuntu/Github/processor/core/pipeline/id_stage.v:82]
+WARNING: [VRFC 10-9543] actual bit length 3 differs from formal bit length 5 for port 'fpu_op' [/home/agamubuntu/Github/processor/core/pipeline/ex_stage.v:48]
+WARNING: [VRFC 10-9543] actual bit length 1 differs from formal bit length 4 for port 'wea' [/home/agamubuntu/Github/processor/core/data_mem_unit/data_mem_unit.v:66]
+WARNING: [VRFC 10-9543] actual bit length 17 differs from formal bit length 12 for port 'addra' [/home/agamubuntu/Github/processor/core/data_mem_unit/data_mem_unit.v:67]
+WARNING: [VRFC 10-9543] actual bit length 8 differs from formal bit length 32 for port 'dina' [/home/agamubuntu/Github/processor/core/data_mem_unit/data_mem_unit.v:68]
+WARNING: [VRFC 10-9543] actual bit length 8 differs from formal bit length 32 for port 'douta' [/home/agamubuntu/Github/processor/core/data_mem_unit/data_mem_unit.v:69]
 Completed static elaboration
-INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module blk_mem_gen_v8_4_11.blk_mem_gen_v8_4_11_output_stage...
+Compiling module blk_mem_gen_v8_4_11.blk_mem_gen_v8_4_11_softecc_outp...
+Compiling module blk_mem_gen_v8_4_11.blk_mem_gen_v8_4_11_mem_module(C...
+Compiling module blk_mem_gen_v8_4_11.blk_mem_gen_v8_4_11(C_FAMILY="zy...
+Compiling module xil_defaultlib.instr_mem_gen
+Compiling module xil_defaultlib.if_stage
+Compiling module xil_defaultlib.if_id_reg
+Compiling module xil_defaultlib.control
+Compiling module xil_defaultlib.alu_control
+Compiling module xil_defaultlib.fpu_cntrl
+Compiling module xil_defaultlib.regfile
+Compiling module xil_defaultlib.immgen
+Compiling module xil_defaultlib.comparator
+Compiling module xil_defaultlib.branch_control
+Compiling module xil_defaultlib.addsub
+Compiling module xil_defaultlib.id_stage(FPU_OP_WIDTH=3)
+Compiling module xil_defaultlib.id_ex_reg(FPU_OP_WIDTH=3)
+Compiling module xil_defaultlib.mul
+Compiling module xil_defaultlib.div
+Compiling module xil_defaultlib.shift_left
+Compiling module xil_defaultlib.shift_right
+Compiling module xil_defaultlib._xor
+Compiling module xil_defaultlib._or
+Compiling module xil_defaultlib._and
+Compiling module xil_defaultlib.alu
+Compiling module xil_defaultlib.shift_amount
+Compiling module xil_defaultlib.FPAdder
+Compiling module xil_defaultlib.FPSub
+Compiling module xil_defaultlib.FPMul
+Compiling module xil_defaultlib.mantissa_normalize
+Compiling module xil_defaultlib.FPDiv
+Compiling module xil_defaultlib.newton_ralphson
+Compiling module xil_defaultlib.quake3
+Compiling module xil_defaultlib.FSQRT
+Compiling module xil_defaultlib.FCVT_int
+Compiling module xil_defaultlib.leading_1
+Compiling module xil_defaultlib.FCVT_fp
+Compiling module xil_defaultlib.fpu
+Compiling module xil_defaultlib.ex_stage
+Compiling module xil_defaultlib.ex_mem_reg
+Compiling module xil_defaultlib.data_mem_control
+Compiling module blk_mem_gen_v8_4_11.blk_mem_gen_v8_4_11_output_stage...
+Compiling module blk_mem_gen_v8_4_11.blk_mem_gen_v8_4_11_softecc_outp...
+Compiling module blk_mem_gen_v8_4_11.blk_mem_gen_v8_4_11_mem_module(C...
+Compiling module blk_mem_gen_v8_4_11.blk_mem_gen_v8_4_11(C_FAMILY="zy...
+Compiling module xil_defaultlib.data_mem
+Compiling module xil_defaultlib.data_mem_unit_default
+Compiling module xil_defaultlib.mem_stage
+Compiling module xil_defaultlib.mem_wb_reg
+Compiling module xil_defaultlib.core(FPU_OP_WIDTH=3)
+Compiling module xil_defaultlib.core_tb
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot core_tb_behav

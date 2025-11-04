@@ -6,6 +6,7 @@ module core #(
     parameter ALU_SELECT_WIDTH=3,
     parameter FPU_OP_WIDTH=5,
     parameter BRANCH_SRC_WIDTH=3,
+    parameter MEM_BIT_WIDTH=2,
 
     // actual instr mem length = pow(2, INSTR_MEM_LEN)
     parameter INSTR_MEM_LEN=15
@@ -19,7 +20,6 @@ module core #(
     wire [(BUS_WIDTH - 1):0] next_imm_pc;
     wire [(REGFILE_LEN - 1):0] wb_rd;
     wire [(BUS_WIDTH - 1):0] wb_write_data;
-    wire [(BUS_WIDTH - 1):0] mem_out;
 
     //==============================================
     // IF STAGE 
@@ -159,6 +159,7 @@ module core #(
     wire id_ex_stall;
 
     wire [(BUS_WIDTH - 1):0] ex_pc;
+    wire [(INSTR_WIDTH - 1):0] ex_instr;
 
     // Control Pins
     wire ex_reg_write; 
@@ -184,7 +185,6 @@ module core #(
     wire [(ALU_SELECT_WIDTH - 1):0] ex_select;
 
     // FPU Controls
-    wire ex_fpu_rd;
     wire [(FPU_OP_WIDTH - 1):0] ex_fpu_op;
 
     // IMMGEN output
@@ -192,6 +192,7 @@ module core #(
 
     id_ex_reg #(
         .BUS_WIDTH(BUS_WIDTH),
+        .INSTR_WIDTH(INSTR_WIDTH),
         .REGFILE_LEN(REGFILE_LEN),
         .ALU_CONTROL_WIDTH(ALU_CONTROL_WIDTH),
         .ALU_SELECT_WIDTH(ALU_SELECT_WIDTH),
@@ -229,6 +230,7 @@ module core #(
 
         .in_imm(id_imm),
         .in_pc(id_pc),
+        .in_instr(id_instr),
 
         // Out Control Pins
         .out_reg_write(ex_reg_write),
@@ -257,13 +259,13 @@ module core #(
         .out_fpu_op(ex_fpu_op),
 
         .out_imm(ex_imm),
-        .out_pc(ex_pc)
+        .out_pc(ex_pc),
+        .out_instr(ex_instr)
     );
 
     //==============================================
     // EX Stage
     //==============================================
-
     wire [(BUS_WIDTH - 1):0] ex_alu_fpu_result;
 
     ex_stage #(
@@ -282,7 +284,6 @@ module core #(
         .control(ex_control),
         .select(ex_select),
         
-        .fpu_rd(ex_fpu_rd),
         .fpu_op(ex_fpu_op),
         
         .imm(ex_imm),
@@ -291,4 +292,147 @@ module core #(
         .alu_fpu_result(ex_alu_fpu_result)
     );
 
+    //==============================================
+    // EX MEM PIPELINE REGISTER
+    //==============================================
+
+    wire ex_mem_stall;
+
+    // Control Pins
+    wire mem_reg_write;
+    wire mem_mem_write;
+    wire mem_mem_read;
+    wire mem_mem_to_reg;
+    wire mem_jalr_src;
+    wire mem_u_src;
+    wire mem_uj_src;
+
+    // REGFILE Outputs
+    wire [(REGFILE_LEN - 1):0] mem_rs1;
+    wire [(REGFILE_LEN - 1):0] mem_rs2;
+    wire [(REGFILE_LEN - 1):0] mem_rd;
+
+    // IMMGEN and ALU Results
+    wire [(BUS_WIDTH - 1):0] mem_imm;
+
+    wire [(BUS_WIDTH - 1):0] mem_pc;
+    wire [(INSTR_WIDTH - 1):0] mem_instr;
+    wire [(BUS_WIDTH - 1):0] mem_alu_fpu_result;
+
+    // pretty trippy but bare with me
+    // first "mem" indicates stage, next "mem_in" is the variable name
+    wire [(BUS_WIDTH - 1):0] mem_mem_in;
+
+    ex_mem_reg #(
+        .BUS_WIDTH(BUS_WIDTH),
+        .INSTR_WIDTH(INSTR_WIDTH),
+        .REGFILE_LEN(REGFILE_LEN)
+    ) ex_mem_reg_instance (
+        .clk(clk),
+        .rst(rst),
+        .stall(ex_mem_stall),
+        
+        .in_reg_write(ex_reg_write),
+        .in_mem_write(ex_mem_write),
+        .in_mem_read(ex_mem_read),
+        .in_mem_to_reg(ex_mem_to_reg),
+        .in_jalr_src(ex_jalr_src),
+        .in_u_src(ex_u_src),
+        .in_uj_src(ex_uj_src),
+        
+        .in_rs1(ex_rs1),
+        .in_rs2(ex_rs2),
+        .in_rd(ex_rd),
+        
+        .in_imm(ex_imm),
+        .in_pc(ex_pc),
+        .in_instr(ex_instr),
+        .in_alu_fpu_result(ex_alu_fpu_result),
+        .in_mem_in(ex_read_data2),
+        
+        .out_reg_write(mem_reg_write),
+        .out_mem_write(mem_mem_write),
+        .out_mem_read(mem_mem_read),
+        .out_mem_to_reg(mem_mem_to_reg),
+        .out_jalr_src(mem_jalr_src),
+        .out_u_src(mem_u_src),
+        .out_uj_src(mem_uj_src),
+        
+        .out_rs1(mem_rs1),
+        .out_rs2(mem_rs2),
+        .out_rd(mem_rd),
+        
+        .out_imm(mem_imm),
+        .out_pc(mem_pc),
+        .out_instr(mem_instr),
+        .out_alu_fpu_result(mem_alu_fpu_result),
+        .out_mem_in(mem_mem_in)
+    );
+
+    //==============================================
+    // MEM STAGE
+    //==============================================
+
+    wire [(BUS_WIDTH - 1):0] mem_mem_out;
+    wire [(BUS_WIDTH - 1):0] mem_write_data;
+
+    mem_stage #(
+        .BUS_WIDTH(BUS_WIDTH),
+        .INSTR_WIDTH(INSTR_WIDTH),
+        .MEM_BIT_WIDTH(MEM_BIT_WIDTH)
+    ) mem_stage_instance (
+        .clk(clk),
+        
+        // Control Pins
+        .mem_write(mem_mem_write),
+        .mem_read(mem_mem_read),
+        .jalr_src(mem_jalr_src),
+        .u_src(mem_u_src),
+        .uj_src(mem_uj_src),
+        
+        // Data Inputs
+        .imm(mem_imm),
+        .pc(mem_pc),
+        .alu_fpu_result(mem_alu_fpu_result),
+        .mem_in(mem_mem_in),
+        .instr(mem_instr),
+        
+        // Data Outputs
+        .mem_out(mem_mem_out),
+        .write_data(mem_write_data)
+    );
+
+    //==============================================
+    // MEM WB PIPELINE REGISTER
+    //==============================================
+
+    wire mem_wb_stall;
+
+    wire wb_mem_to_reg;
+    wire [(BUS_WIDTH - 1):0] wb_mem_out;
+    wire [(BUS_WIDTH - 1):0] wb_reg_write_data;
+
+    mem_wb_reg #(
+        .BUS_WIDTH(BUS_WIDTH),
+        .INSTR_WIDTH(INSTR_WIDTH),
+        .REGFILE_LEN(REGFILE_LEN)
+    ) mem_wb_reg_instance (
+        .clk(clk),
+        .rst(rst),
+        .stall(mem_wb_stall),
+        
+        .in_reg_write(mem_reg_write),
+        .in_mem_to_reg(mem_mem_to_reg),
+        .in_rd(mem_rd),
+        .in_mem_out(mem_mem_out),
+        .in_write_data(mem_write_data),
+        
+        .out_reg_write(wb_reg_write),
+        .out_mem_to_reg(wb_mem_to_reg),
+        .out_rd(wb_rd),
+        .out_mem_out(wb_mem_out),
+        .out_write_data(wb_reg_write_data)
+    );
+
+    assign wb_write_data = mem_mem_to_reg ? wb_mem_out: wb_reg_write_data;
 endmodule

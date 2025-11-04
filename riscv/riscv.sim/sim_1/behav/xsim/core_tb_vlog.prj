@@ -1,19 +1,47 @@
 # compile verilog/system verilog design source files
 verilog xil_defaultlib  --include "../../../../../../../Xilinx/2025.1/data/rsb/busdef" \
+"../../../../riscv.gen/sources_1/ip/data_mem/sim/data_mem.v" \
 "../../../../riscv.gen/sources_1/ip/instr_mem_gen/sim/instr_mem_gen.v" \
+"../../../../../core/fpu/FCVT_fp.v" \
+"../../../../../core/fpu/FCVT_int.v" \
+"../../../../../core/fpu/FPAdder.v" \
+"../../../../../core/fpu/FPDiv.v" \
+"../../../../../core/fpu/FPMul.v" \
+"../../../../../core/fpu/FPSub.v" \
+"../../../../../core/fpu/FSQRT.v" \
+"../../../../../core/alu/_and.v" \
+"../../../../../core/alu/_or.v" \
+"../../../../../core/alu/_xor.v" \
 "../../../../../core/alu/addsub.v" \
+"../../../../../core/alu/alu.v" \
 "../../../../../core/alu/alu_control.v" \
 "../../../../../core/control/branch_control.v" \
 "../../../../../core/pipeline/comparator/comparator.v" \
 "../../../../../core/control/control.v" \
 "../../../../../core/core.v" \
+"../../../../../core/data_mem_unit/data_mem_control.v" \
+"../../../../../core/data_mem_unit/data_mem_unit.v" \
+"../../../../../core/alu/div.v" \
+"../../../../../core/pipeline/ex_mem_reg.v" \
+"../../../../../core/pipeline/ex_stage.v" \
+"../../../../../core/fpu/fpu.v" \
 "../../../../../core/fpu/fpu_cntrl.v" \
 "../../../../../core/pipeline/id_ex_reg.v" \
 "../../../../../core/pipeline/id_stage.v" \
 "../../../../../core/pipeline/if_id_reg.v" \
 "../../../../../core/pipeline/if_stage.v" \
 "../../../../../core/immgen/immgen.v" \
+"../../../../../core/fpu/leading_1.v" \
+"../../../../../core/pipeline/mem_stage.v" \
+"../../../../../core/pipeline/mem_wb_reg.v" \
+"../../../../../core/alu/mul.v" \
+"../../../../../core/fpu/newton_ralphson.v" \
+"../../../../../core/fpu/normalize.v" \
+"../../../../../core/fpu/quake3.v" \
 "../../../../../core/regfile/regfile.v" \
+"../../../../../core/fpu/shift_amount.v" \
+"../../../../../core/alu/shift_left.v" \
+"../../../../../core/alu/shift_right.v" \
 "../../../../../core/core_tb.v" \
 
 # compile glbl module

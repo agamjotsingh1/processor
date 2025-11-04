@@ -19,7 +19,6 @@ module ex_stage #(
     input wire [(ALU_SELECT_WIDTH - 1):0] select,
 
     // FPU Controls
-    input wire fpu_rd,
     input wire [(FPU_OP_WIDTH - 1):0] fpu_op,
 
     // IMMGEN output

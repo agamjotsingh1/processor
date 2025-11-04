@@ -22,13 +22,15 @@ module ex_mem_reg #(
     input wire [(REGFILE_LEN - 1):0] in_rs1,
     input wire [(REGFILE_LEN - 1):0] in_rs2,
     input wire [(REGFILE_LEN - 1):0] in_rd,
+    input wire [(INSTR_WIDTH - 1):0] in_instr,
 
     // IMMGEN output
     input wire [(BUS_WIDTH - 1):0] in_imm,
 
     input wire [(BUS_WIDTH - 1):0] in_pc,
 
-    input wire [(BUS_WIDTH - 1):0] in_alu_fpu_result
+    input wire [(BUS_WIDTH - 1):0] in_alu_fpu_result,
+    input wire [(BUS_WIDTH - 1):0] in_mem_in,
 
     // ------ OUTPUTS ------
 
@@ -50,7 +52,9 @@ module ex_mem_reg #(
     output wire [(BUS_WIDTH - 1):0] out_imm,
 
     output wire [(BUS_WIDTH - 1):0] out_pc,
-    input wire [(BUS_WIDTH - 1):0] out_alu_fpu_result
+    output wire [(INSTR_WIDTH - 1):0] out_instr,
+    output wire [(BUS_WIDTH - 1):0] out_alu_fpu_result,
+    output wire [(BUS_WIDTH - 1):0] out_mem_in
 );
     // Control Pins
     reg reg_write; 
@@ -67,10 +71,12 @@ module ex_mem_reg #(
     reg [(REGFILE_LEN - 1):0] rd;
 
     // immgen output
-    reg [(bus_width - 1):0] imm
+    reg [(BUS_WIDTH - 1):0] imm;
 
     reg [(BUS_WIDTH - 1):0] pc;
+    reg [(INSTR_WIDTH - 1):0] instr;
     reg [(BUS_WIDTH - 1):0] alu_fpu_result;
+    reg [(BUS_WIDTH - 1):0] mem_in;
 
     always @(posedge clk) begin
         if(rst) begin
@@ -93,6 +99,10 @@ module ex_mem_reg #(
             
             // PC
             pc <= {BUS_WIDTH{1'b0}};
+            instr <= {INSTR_WIDTH{1'b0}};
+
+            alu_fpu_result <= {BUS_WIDTH{1'b0}};
+            mem_in <= {BUS_WIDTH{1'b0}};
         end
         else if(~stall) begin
             // Control Pins
@@ -111,11 +121,13 @@ module ex_mem_reg #(
            
             // PC
             pc <= in_pc;
+            instr <= in_instr;
 
             // IMMGEN output
             imm <= in_imm;
 
             alu_fpu_result <= in_alu_fpu_result;
+            mem_in <= in_mem_in;
         end
     end
 
@@ -139,6 +151,8 @@ module ex_mem_reg #(
 
     // PC
     assign out_pc = pc;
+    assign out_instr = instr;
 
     assign out_alu_fpu_result = alu_fpu_result;
+    assign out_mem_in = mem_in;
 endmodule
