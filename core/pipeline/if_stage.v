@@ -31,7 +31,7 @@ module if_stage #(
     instr_mem_gen instr_mem (
         .clka(clk), // input, clock for Port A
         .addra(cur_pc[(INSTR_MEM_LEN - 1):0]), // input, address for Port A
-        .ena(1'b1), // enable pin for Port A  
+        .ena(~rst), // enable pin for Port A  
         .douta(instr) // output, data output for Port A
     );
 endmodule

@@ -14,8 +14,8 @@ module fpu (
 
     input wire [4:0] fpu_op,
 
-    output reg fpu_rd,
-    output reg fpu_rs1,
+    //output reg fpu_rd,
+    //output reg fpu_rs1,
     output reg [63:0] out
 );
 
@@ -47,10 +47,10 @@ module fpu (
       .in2(in2),
       .out(quotient)
   );
-  /*FSQRT fp_sqrt (
+  FSQRT fp_sqrt (
       .in (in1),
       .out(sqrt)
-  );*/
+  );
   FCVT_int fp_ld (
       .in (in1),
       .out(fcvt_ld)
@@ -59,54 +59,53 @@ module fpu (
       .in (in1),
       .out(fcvt_dl)
   );
-
   always @(*) begin
     case (fpu_op)
       5'b00000: begin
         out = sum;
-        fpu_rd = 1;
-        fpu_rs1 = 1;
+        //fpu_rd = 1;
+        //fpu_rs1 = 1;
       end
       5'b00001: begin
         out = difference;
-        fpu_rd = 1;
-        fpu_rs1 = 1;
+        //fpu_rd = 1;
+        //fpu_rs1 = 1;
       end
       5'b00010: begin
         out = product;
-        fpu_rs1 = 1;
-        fpu_rd = 1;
+        //fpu_rs1 = 1;
+        //fpu_rd = 1;
       end
       5'b00011: begin
         out = quotient;
-        fpu_rd = 1;
-        fpu_rs1 = 1;
+        //fpu_rd = 1;
+        //fpu_rs1 = 1;
       end
       5'b00100: begin
-        out = 64'b0;
-        fpu_rd = 1;
-        fpu_rs1 = 1;
+        out = sqrt;
+        //fpu_rd = 1;
+        //fpu_rs1 = 1;
       end
       5'b00101: begin
         out = fcvt_ld;
-        fpu_rd = 0;
-        fpu_rs1 = 1;
+        //fpu_rd = 0;
+        //fpu_rs1 = 1;
       end
       5'b00110: begin
         out = fcvt_dl;
-        fpu_rd = 1;
-        fpu_rs1 = 0;
+        // fpu_rd = 1;
+        // fpu_rs1 = 0;
       end
       5'b00111: begin
         // fmv.x.d
         out = in1;
-        fpu_rd = 0;
-        fpu_rs1 = 1;
+        // fpu_rd = 0;
+        // fpu_rs1 = 1;
       end
       5'b01000: begin
         out = in1;
-        fpu_rd = 1;
-        fpu_rs1 = 0;
+        // fpu_rd = 1;
+        // fpu_rs1 = 0;
       end
     endcase
   end

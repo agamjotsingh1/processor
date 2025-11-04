@@ -6,6 +6,7 @@ module ex_stage #(
     parameter FPU_OP_WIDTH=3
 )(
     // Control Pins
+    input wire jump_src,
     input wire alu_src,
     input wire alu_fpu,
 

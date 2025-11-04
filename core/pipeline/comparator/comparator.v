@@ -7,7 +7,7 @@ module comparator #(
     // BRANCH Flags
     output wire zero, // if in1 == in2, zero = 1, 0 otherwise
     output wire neg, // if in1 < in2, neg = 1, 0 otherwise
-    output wire negu, // unsigned in1 and in2
+    output wire negu // unsigned in1 and in2
 );
     assign zero = in1 == in2;
     assign neg = $signed(in1) < $signed(in2);

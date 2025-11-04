@@ -1,0 +1,23 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../../../../Xilinx/2025.1/data/rsb/busdef" \
+"../../../../riscv.gen/sources_1/ip/instr_mem_gen/sim/instr_mem_gen.v" \
+"../../../../../core/alu/addsub.v" \
+"../../../../../core/alu/alu_control.v" \
+"../../../../../core/control/branch_control.v" \
+"../../../../../core/pipeline/comparator/comparator.v" \
+"../../../../../core/control/control.v" \
+"../../../../../core/core.v" \
+"../../../../../core/fpu/fpu_cntrl.v" \
+"../../../../../core/pipeline/id_ex_reg.v" \
+"../../../../../core/pipeline/id_stage.v" \
+"../../../../../core/pipeline/if_id_reg.v" \
+"../../../../../core/pipeline/if_stage.v" \
+"../../../../../core/immgen/immgen.v" \
+"../../../../../core/regfile/regfile.v" \
+"../../../../../core/core_tb.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

@@ -1,229 +1,294 @@
-module core (
+module core #(
+    parameter BUS_WIDTH=64,
+    parameter INSTR_WIDTH=32,
+    parameter REGFILE_LEN=6,
+    parameter ALU_CONTROL_WIDTH=2,
+    parameter ALU_SELECT_WIDTH=3,
+    parameter FPU_OP_WIDTH=5,
+    parameter BRANCH_SRC_WIDTH=3,
+
+    // actual instr mem length = pow(2, INSTR_MEM_LEN)
+    parameter INSTR_MEM_LEN=15
+)(
     input wire clk,
     input wire rst,
     output reg [63:0] debug
 );
-    reg [14:0] pc;
+    // GLOBAL interconnects
+    wire imm_pc, wb_reg_write;
+    wire [(BUS_WIDTH - 1):0] next_imm_pc;
+    wire [(REGFILE_LEN - 1):0] wb_rd;
+    wire [(BUS_WIDTH - 1):0] wb_write_data;
+    wire [(BUS_WIDTH - 1):0] mem_out;
 
-    // WILL BE REMOVED IN SYNTHESIS
-    initial begin
-        pc = {~14'b0, 1'b0};
-    end
+    //==============================================
+    // IF STAGE 
+    //==============================================
 
-    wire stall, reg_write_stall, mem_stall;
-    wire [14:0] next_pc;
-    wire [31:0] instr;
+    wire pc_stall;
 
-    // perform fsm for stalling
-    // fyi, memory takes 2 extra cycles to load
-   
-    pcfsm pcfsm_instance (
+    wire [(BUS_WIDTH - 1):0] if_pc;
+    wire [(INSTR_WIDTH - 1):0] if_instr;
+
+    if_stage #(
+        .BUS_WIDTH(BUS_WIDTH),
+        .INSTR_MEM_LEN(INSTR_MEM_LEN),
+        .INSTR_WIDTH(INSTR_WIDTH)
+    ) if_stage_instance (
         .clk(clk),
-        .stall(stall),
         .rst(rst),
-        .reg_write_stall(reg_write_stall),
-        .mem_stall(mem_stall)
+        .stall(pc_stall),
+        .imm_pc(imm_pc),
+        .next_imm_pc(next_imm_pc),
+        .pc(if_pc),
+        .instr(if_instr)
     );
 
-    // stalls for memory read and write
-    always @(posedge clk) begin
-        if(rst) pc <= {~14'b0, 1'b0};
-        else if(~stall) pc <= next_pc;
-        
-        debug <= next_pc;
-    end
-    
-    instr_mem_gen instr_mem (
-        .clka(clk),       // input, clock for Port A
-        .addra(pc),       // input, address for Port A
-        .ena(1'b1),        // enable pin for Port A  
-        .douta(instr)     // output, data output for Port A
+
+    //==============================================
+    // IF ID PIPELINE REGISTER
+    //==============================================
+
+    wire if_id_stall;
+
+    wire [(BUS_WIDTH - 1):0] id_pc;
+    wire [(INSTR_WIDTH - 1):0] id_instr;
+
+    if_id_reg #(
+        .BUS_WIDTH(BUS_WIDTH),
+        .INSTR_WIDTH(INSTR_WIDTH)
+    ) if_id_reg_instance (
+        .clk(clk),
+        .rst(rst),
+        .stall(if_id_stall),
+        .in_pc(if_pc),
+        .in_instr(if_instr),
+        .out_pc(id_pc),
+        .out_instr(id_instr)
     );
+
+
+    //==============================================
+    // ID Stage
+    //==============================================
 
     // Control Pins
-    wire reg_write, 
-        mem_write,
-        mem_read,
-        mem_to_reg,
-        jump_src,
-        jalr_src,
-        u_src,
-        uj_src,
-        alu_src,
-        alu_fpu;
+    wire id_reg_write; 
+    wire id_mem_write;
+    wire id_mem_read;
+    wire id_mem_to_reg;
+    wire id_jump_src;
+    wire id_jalr_src;
+    wire id_u_src;
+    wire id_uj_src;
+    wire id_alu_src;
+    wire id_alu_fpu;
 
-    wire fpu_rs1, fpu_rd;
+    // REGFILE Outputs
+    wire [(BUS_WIDTH - 1):0] id_read_data1;
+    wire [(BUS_WIDTH - 1):0] id_read_data2;
+    wire [(REGFILE_LEN - 1):0] id_rs1;
+    wire [(REGFILE_LEN - 1):0] id_rs2;
+    wire [(REGFILE_LEN - 1):0] id_rd;
 
-    wire [2:0] branch_src;
-    
-    control control_instance (
-        .instr(instr),
-        .reg_write(reg_write), 
-        .mem_write(mem_write),
-        .mem_read(mem_read),
-        .mem_to_reg(mem_to_reg),
-        .jump_src(jump_src),
-        .branch_src(branch_src),
-        .jalr_src(jalr_src),
-        .u_src(u_src),
-        .uj_src(uj_src),
-        .alu_src(alu_src),
-        .alu_fpu(alu_fpu)
-    );
+    // ALU Controls
+    wire [(ALU_CONTROL_WIDTH - 1):0] id_control;
+    wire [(ALU_SELECT_WIDTH - 1):0] id_select;
 
-    wire [5:0] rs1 = {alu_fpu & fpu_rs1, instr[19:15]};
-    wire [5:0] rs2 = {alu_fpu, instr[24:20]};
-    wire [5:0] rd = {alu_fpu & fpu_rd, instr[11:7]};
+    // FPU Controls
+    wire id_fpu_rd;
+    wire [(FPU_OP_WIDTH - 1):0] id_fpu_op;
 
-    wire [63:0] read_data1;
-    wire [63:0] read_data2;
+    // IMMGEN output
+    wire [(BUS_WIDTH - 1):0] id_imm;
 
-    wire [63:0] write_data;
-    
-    regfile regfile_instance (
+    id_stage #(
+        .BUS_WIDTH(BUS_WIDTH),
+        .INSTR_WIDTH(INSTR_WIDTH),
+        .REGFILE_LEN(REGFILE_LEN),
+        .ALU_CONTROL_WIDTH(ALU_CONTROL_WIDTH),
+        .ALU_SELECT_WIDTH(ALU_SELECT_WIDTH),
+        .FPU_OP_WIDTH(FPU_OP_WIDTH),
+        .BRANCH_SRC_WIDTH(BRANCH_SRC_WIDTH)
+    ) id_stage_instance (
         .clk(clk),
-        .write_enable(reg_write & (~reg_write_stall)),
-        .read_addr1(rs1),
-        .read_addr2(rs2),
-        .read_data1(read_data1),
-        .read_data2(read_data2),
-        .write_addr(rd),
-        .write_data(write_data)
+        .pc(id_pc),
+        .instr(id_instr),
+        .wb_rd(wb_rd),
+        .wb_write_data(wb_write_data),
+        .wb_reg_write(wb_reg_write),
+
+        // CONTROL Signals
+        .reg_write(id_reg_write),
+        .mem_write(id_mem_write),
+        .mem_read(id_mem_read),
+        .mem_to_reg(id_mem_to_reg),
+        .jump_src(id_jump_src),
+        .jalr_src(id_jalr_src),
+        .u_src(id_u_src),
+        .uj_src(id_uj_src),
+        .alu_src(id_alu_src),
+        .alu_fpu(id_alu_fpu),
+
+        // REGFILE Outputs
+        .read_data1(id_read_data1),
+        .read_data2(id_read_data2),
+        .rs1(id_rs1),
+        .rs2(id_rs2),
+        .rd(id_rd),
+
+        // ALU Controls
+        .control(id_control),
+        .select(id_select),
+
+        // FPU Controls
+        .fpu_rd(id_fpu_rd),
+        .fpu_op(id_fpu_op),
+
+        // IMMGEN output
+        .imm(id_imm),
+
+        .imm_pc(imm_pc),
+        .next_imm_pc(next_imm_pc)
     );
 
-    wire [63:0] imm;
-    
-    immgen immgen_instance (
-        .instr(instr),
-        .imm(imm)
-    );
+    //==============================================
+    // ID EX PIPELINE REGISTER
+    //==============================================
 
-    // ALUOp
-    wire [1:0] control;
-    wire [2:0] select;
-    
-    alu_control alu_control_instance (
-        .instr(instr),
-        .control(control),
-        .select(select)
-    );
+    wire id_ex_stall;
 
-    wire [63:0] alu_fpu_in1;
-    wire [63:0] alu_fpu_in2;
+    wire [(BUS_WIDTH - 1):0] ex_pc;
 
-    assign alu_fpu_in1 = read_data1;
-    assign alu_fpu_in2 = alu_src ? imm: read_data2;
+    // Control Pins
+    wire ex_reg_write; 
+    wire ex_mem_write;
+    wire ex_mem_read;
+    wire ex_mem_to_reg;
+    wire ex_jump_src;
+    wire ex_jalr_src;
+    wire ex_u_src;
+    wire ex_uj_src;
+    wire ex_alu_src;
+    wire ex_alu_fpu;
 
-    // ALU flags (for branch instruction)
-    wire zero, neg, negu;
+    // REGFILE Outputs
+    wire [(BUS_WIDTH - 1):0] ex_read_data1;
+    wire [(BUS_WIDTH - 1):0] ex_read_data2;
+    wire [(REGFILE_LEN - 1):0] ex_rs1;
+    wire [(REGFILE_LEN - 1):0] ex_rs2;
+    wire [(REGFILE_LEN - 1):0] ex_rd;
 
-    wire [63:0] alu_out;
-    
-    alu alu_instance (
-        .in1(alu_fpu_in1),
-        .in2(alu_fpu_in2),
-        .control(control),
-        .select(select),
-        .zero(zero),
-        .neg(neg),
-        .negu(negu),
-        .out(alu_out)
-    );
+    // ALU Controls
+    wire [(ALU_CONTROL_WIDTH - 1):0] ex_control;
+    wire [(ALU_SELECT_WIDTH - 1):0] ex_select;
 
-    // FPU
-    wire [2:0] fpu_op;
-    wire [63:0] fpu_out;
-    
-    /*fpu_cntrl fpu_cntrl_instance (
-        .instr(instr),
-        .fpu_op(fpu_op)
-    );
-    
-    fpu fpu_instance (
-        .in1(alu_fpu_in1),
-        .in2(alu_fpu_in2),
-        .fpu_rd(fpu_rd),
-        .fpu_rs1(fpu_rs1),
-        .fpu_op(fpu_op),
-        .out(fpu_out)
-    );*/
+    // FPU Controls
+    wire ex_fpu_rd;
+    wire [(FPU_OP_WIDTH - 1):0] ex_fpu_op;
 
-    // for jal instructions
-    // the alu output and PC + 4 is passed through mux
-    wire [63:0] alu_jal_out;
+    // IMMGEN output
+    wire [(BUS_WIDTH - 1):0] ex_imm;
 
-    // add by 1
-    // because the instruction memory is word addressable as opposed to byte addressability
-    wire [14:0] pc_plus_4;
-    assign pc_plus_4 = pc + 1;
-
-    // Multiplyu pc_plus_4 by 4 because right now pc + 4 (byte addressable)
-    // is actually pc + 1 (word addressable)
-    // where the pc itself is in word addressable format
-    assign alu_jal_out = jump_src ? pc_plus_4 << 2 : alu_out;
-
-    wire branch;
-
-    branch_control branch_control_instance (
-        .branch_src(branch_src),
-        .zero(zero),
-        .neg(neg),
-        .negu(negu),
-        .branch(branch)
-    );
-
-    // DATA MEM is split into 8 sepereate interleaved memory units
-    // All of these 8 units will be written/read in parallel
-    // This is to support all store and load variants
-    // W/ Parallel 2 cycle clock delay
-    wire mem_en, mem_wea, mem_sign_extend;
-    wire [1:0] mem_bit_width;
-    wire [63:0] mem_out;
-
-    data_mem_control data_mem_control_instance (
-        .funct3(instr[14:12]),
-        .mem_read(mem_read),
-        .mem_write(mem_write),
-        .mem_stall(mem_stall),
-        .en(mem_en),
-        .wea(mem_wea),
-        .sign_extend(mem_sign_extend),
-        .bit_width(mem_bit_width)
-    );
-
-    data_mem_unit data_mem_instance (
+    id_ex_reg #(
+        .BUS_WIDTH(BUS_WIDTH),
+        .REGFILE_LEN(REGFILE_LEN),
+        .ALU_CONTROL_WIDTH(ALU_CONTROL_WIDTH),
+        .ALU_SELECT_WIDTH(ALU_SELECT_WIDTH),
+        .FPU_OP_WIDTH(FPU_OP_WIDTH)
+    ) id_ex_reg_instance (
         .clk(clk),
-        .en(mem_en),
-        .wea(mem_wea),
-        .addr(alu_jal_out),
-        .din(read_data2),
-        .sign_extend(mem_sign_extend),
-        .bit_width(mem_bit_width),
-        .dout(mem_out)
+        .rst(rst),
+        .stall(id_ex_stall),
+        
+        // In Control Pins
+        .in_reg_write(id_reg_write),
+        .in_mem_write(id_mem_write),
+        .in_mem_read(id_mem_read),
+        .in_mem_to_reg(id_mem_to_reg),
+        .in_jump_src(id_jump_src),
+        .in_jalr_src(id_jalr_src),
+        .in_u_src(id_u_src),
+        .in_uj_src(id_uj_src),
+        .in_alu_src(id_alu_src),
+        .in_alu_fpu(id_alu_fpu),
+        
+        // In REGFILE Pins
+        .in_read_data1(id_read_data1),
+        .in_read_data2(id_read_data2),
+        .in_rs1(id_rs1),
+        .in_rs2(id_rs2),
+        .in_rd(id_rd),
+        
+        // In ALU Pins
+        .in_control(id_control),
+        .in_select(id_select),
+
+        // In FPU Pins
+        .in_fpu_op(id_fpu_op),
+
+        .in_imm(id_imm),
+        .in_pc(id_pc),
+
+        // Out Control Pins
+        .out_reg_write(ex_reg_write),
+        .out_mem_write(ex_mem_write),
+        .out_mem_read(ex_mem_read),
+        .out_mem_to_reg(ex_mem_to_reg),
+        .out_jump_src(ex_jump_src),
+        .out_jalr_src(ex_jalr_src),
+        .out_u_src(ex_u_src),
+        .out_uj_src(ex_uj_src),
+        .out_alu_src(ex_alu_src),
+        .out_alu_fpu(ex_alu_fpu),
+
+        // Out REGFILE Pins
+        .out_read_data1(ex_read_data1),
+        .out_read_data2(ex_read_data2),
+        .out_rs1(ex_rs1),
+        .out_rs2(ex_rs2),
+        .out_rd(ex_rd),
+        
+        // Out ALU Pins
+        .out_control(ex_control),
+        .out_select(ex_select),
+
+        // Out FPU Pins
+        .out_fpu_op(ex_fpu_op),
+
+        .out_imm(ex_imm),
+        .out_pc(ex_pc)
     );
 
-    // auipc, lui, branch, jal support 
-    // note that immgen block already gives out shifted by 12
-    // for branch and jal, imm is shifted by just 1
-    wire [63:0] pc_plus_imm;
-    assign pc_plus_imm = {50'b0, pc} + imm;
+    //==============================================
+    // EX Stage
+    //==============================================
 
-    // NOTE: for the following code
-    // please refer to the report for this
-    // this is not understantable without glancing the datapath
+    wire [(BUS_WIDTH - 1):0] ex_alu_fpu_result;
 
-    // shift by 4 / add by 1
-    // because the instruction memory is word addressable as opposed to byte addressability
-    wire [14:0] next_imm_pc = pc + $signed((imm >> 2));
+    ex_stage #(
+        .BUS_WIDTH(BUS_WIDTH),
+        .ALU_CONTROL_WIDTH(ALU_CONTROL_WIDTH),
+        .ALU_SELECT_WIDTH(ALU_SELECT_WIDTH),
+        .FPU_OP_WIDTH(FPU_OP_WIDTH)
+    ) ex_stage_instance (
+        .alu_src(ex_alu_src),
+        .alu_fpu(ex_alu_fpu),
+        .jump_src(ex_jump_src),
+        
+        .read_data1(ex_read_data1),
+        .read_data2(ex_read_data2),
+        
+        .control(ex_control),
+        .select(ex_select),
+        
+        .fpu_rd(ex_fpu_rd),
+        .fpu_op(ex_fpu_op),
+        
+        .imm(ex_imm),
+        .pc(ex_pc),
+        
+        .alu_fpu_result(ex_alu_fpu_result)
+    );
 
-    // alu_jal_out because the value in rs1 = PC + 4 (byte addressable)
-    // to convert to word addressable we do (PC + 4)/2
-    assign next_pc = jalr_src ? (alu_jal_out >> 2) : ((branch | jump_src) ? (next_imm_pc): pc_plus_4);
-
-    wire [63:0] write_data; // for clarity
-
-    assign write_data = alu_fpu ? fpu_out
-                        :(mem_read ? mem_out
-                        :(uj_src ? (jalr_src ? (pc_plus_4 << 2) :alu_jal_out)
-                        :(u_src ? pc_plus_imm: imm)));
 endmodule

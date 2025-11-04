@@ -1,0 +1,20 @@
+0.7
+2020.2
+May 21 2025
+22:59:56
+/home/agamubuntu/Github/processor/core/alu/addsub.v,1761472612,verilog,,/home/agamubuntu/Github/processor/core/alu/alu_control.v,,addsub,,,../../../../../../../Xilinx/2025.1/data/rsb/busdef,,,,,
+/home/agamubuntu/Github/processor/core/alu/alu_control.v,1761669312,verilog,,/home/agamubuntu/Github/processor/core/control/branch_control.v,,alu_control,,,../../../../../../../Xilinx/2025.1/data/rsb/busdef,,,,,
+/home/agamubuntu/Github/processor/core/control/branch_control.v,1761722338,verilog,,/home/agamubuntu/Github/processor/core/pipeline/comparator/comparator.v,,branch_control,,,../../../../../../../Xilinx/2025.1/data/rsb/busdef,,,,,
+/home/agamubuntu/Github/processor/core/control/control.v,1761753544,verilog,,/home/agamubuntu/Github/processor/core/core.v,,control,,,../../../../../../../Xilinx/2025.1/data/rsb/busdef,,,,,
+/home/agamubuntu/Github/processor/core/core.v,1762247199,verilog,,/home/agamubuntu/Github/processor/core/fpu/fpu_cntrl.v,,core,,,../../../../../../../Xilinx/2025.1/data/rsb/busdef,,,,,
+/home/agamubuntu/Github/processor/core/core_tb.v,1762247693,verilog,,,,core_tb,,,../../../../../../../Xilinx/2025.1/data/rsb/busdef,,,,,
+/home/agamubuntu/Github/processor/core/fpu/fpu_cntrl.v,1762243953,verilog,,/home/agamubuntu/Github/processor/core/pipeline/id_ex_reg.v,,fpu_cntrl,,,../../../../../../../Xilinx/2025.1/data/rsb/busdef,,,,,
+/home/agamubuntu/Github/processor/core/immgen/immgen.v,1761576261,verilog,,/home/agamubuntu/Github/processor/core/regfile/regfile.v,,immgen,,,../../../../../../../Xilinx/2025.1/data/rsb/busdef,,,,,
+/home/agamubuntu/Github/processor/core/pipeline/comparator/comparator.v,1762241098,verilog,,/home/agamubuntu/Github/processor/core/control/control.v,,comparator,,,../../../../../../../Xilinx/2025.1/data/rsb/busdef,,,,,
+/home/agamubuntu/Github/processor/core/pipeline/id_ex_reg.v,1762247556,verilog,,/home/agamubuntu/Github/processor/core/pipeline/id_stage.v,,id_ex_reg,,,../../../../../../../Xilinx/2025.1/data/rsb/busdef,,,,,
+/home/agamubuntu/Github/processor/core/pipeline/id_stage.v,1762243718,verilog,,/home/agamubuntu/Github/processor/core/pipeline/if_id_reg.v,,id_stage,,,../../../../../../../Xilinx/2025.1/data/rsb/busdef,,,,,
+/home/agamubuntu/Github/processor/core/pipeline/if_id_reg.v,1762190103,verilog,,/home/agamubuntu/Github/processor/core/pipeline/if_stage.v,,if_id_reg,,,../../../../../../../Xilinx/2025.1/data/rsb/busdef,,,,,
+/home/agamubuntu/Github/processor/core/pipeline/if_stage.v,1762242225,verilog,,/home/agamubuntu/Github/processor/core/immgen/immgen.v,,if_stage,,,../../../../../../../Xilinx/2025.1/data/rsb/busdef,,,,,
+/home/agamubuntu/Github/processor/core/regfile/regfile.v,1762001379,verilog,,/home/agamubuntu/Github/processor/core/core_tb.v,,regfile,,,../../../../../../../Xilinx/2025.1/data/rsb/busdef,,,,,
+/home/agamubuntu/Github/processor/riscv/riscv.gen/sources_1/ip/instr_mem_gen/sim/instr_mem_gen.v,1762241178,verilog,,/home/agamubuntu/Github/processor/core/alu/addsub.v,,instr_mem_gen,,,../../../../../../../Xilinx/2025.1/data/rsb/busdef,,,,,
+/home/agamubuntu/Github/processor/riscv/riscv.sim/sim_1/behav/xsim/glbl.v,1741209010,verilog,,,,glbl,,,,,,,,

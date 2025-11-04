@@ -1,0 +1,2 @@
+instr_mem_gen.v,verilog,xil_defaultlib,../../../../riscv.gen/sources_1/ip/instr_mem_gen/sim/instr_mem_gen.v,incdir="../../../../../../../Xilinx/2025.1/data/rsb/busdef"
+glbl.v,Verilog,xil_defaultlib,glbl.v

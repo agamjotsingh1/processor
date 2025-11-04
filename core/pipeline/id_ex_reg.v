@@ -3,7 +3,7 @@ module id_ex_reg #(
     parameter REGFILE_LEN=6,
     parameter ALU_CONTROL_WIDTH=2,
     parameter ALU_SELECT_WIDTH=3,
-    parameter FPU_OP_WIDTH=3
+    parameter FPU_OP_WIDTH=5
 )(
     input wire clk,
     input wire rst,
@@ -16,6 +16,7 @@ module id_ex_reg #(
     input wire in_mem_write,
     input wire in_mem_read,
     input wire in_mem_to_reg,
+    input wire in_jump_src,
     input wire in_jalr_src,
     input wire in_u_src,
     input wire in_uj_src,
@@ -48,6 +49,7 @@ module id_ex_reg #(
     output wire out_mem_write,
     output wire out_mem_read,
     output wire out_mem_to_reg,
+    output wire in_jump_src,
     output wire out_jalr_src,
     output wire out_u_src,
     output wire out_uj_src,
@@ -71,13 +73,14 @@ module id_ex_reg #(
     // IMMGEN output
     output wire [(BUS_WIDTH - 1):0] out_imm,
 
-    output wire [(BUS_WIDTH - 1):0] out_pc,
+    output wire [(BUS_WIDTH - 1):0] out_pc
 );
     // Control Pins
     reg reg_write; 
     reg mem_write;
     reg mem_read;
     reg mem_to_reg;
+    reg jump_src;
     reg jalr_src;
     reg u_src;
     reg uj_src;
@@ -99,7 +102,7 @@ module id_ex_reg #(
     reg [(FPU_OP_WIDTH - 1):0] fpu_op;
 
     // IMMGEN output
-    reg [(bus_width - 1):0] imm
+    reg [(BUS_WIDTH - 1):0] imm;
 
     reg [(BUS_WIDTH - 1):0] pc;
 
@@ -110,6 +113,7 @@ module id_ex_reg #(
             mem_write <= 1'b0;
             mem_read <= 1'b0;
             mem_to_reg <= 1'b0;
+            jump_src <= 1'b0;
             jalr_src <= 1'b0;
             u_src <= 1'b0;
             uj_src <= 1'b0;
@@ -142,6 +146,7 @@ module id_ex_reg #(
             mem_write <= in_mem_write;
             mem_read <= in_mem_read;
             mem_to_reg <= in_mem_to_reg;
+            jump_src <= in_jump_src;
             jalr_src <= in_jalr_src;
             u_src <= in_u_src;
             uj_src <= in_uj_src;
@@ -176,6 +181,7 @@ module id_ex_reg #(
     assign out_mem_write = mem_write;
     assign out_mem_read = mem_read;
     assign out_mem_to_reg = mem_to_reg;
+    assign out_jump_src = jump_src;
     assign out_jalr_src = jalr_src;
     assign out_u_src = u_src;
     assign out_uj_src = uj_src;

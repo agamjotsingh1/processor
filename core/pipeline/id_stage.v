@@ -4,23 +4,24 @@ module id_stage #(
     parameter REGFILE_LEN=6,
     parameter ALU_CONTROL_WIDTH=2,
     parameter ALU_SELECT_WIDTH=3,
-    parameter FPU_OP_WIDTH=3,
+    parameter FPU_OP_WIDTH=5,
     parameter BRANCH_SRC_WIDTH=3
 )(
     input wire clk,
-    input wire stall,
     input wire [(BUS_WIDTH - 1):0] pc,
     input wire [(INSTR_WIDTH - 1):0] instr,
 
     // from WB stage
     input wire [(REGFILE_LEN - 1):0] wb_rd,
-    input wire [(BUS_WIDTH - 1):0] write_data,
+    input wire [(BUS_WIDTH - 1):0] wb_write_data,
+    input wire wb_reg_write,
 
     // Control Pins
     output wire reg_write, 
     output wire mem_write,
     output wire mem_read,
     output wire mem_to_reg,
+    output wire jump_src,
     output wire jalr_src,
     output wire u_src,
     output wire uj_src,
@@ -49,8 +50,6 @@ module id_stage #(
     output wire imm_pc,
     output wire [(BUS_WIDTH - 1):0] next_imm_pc
 );
-
-    wire jump_src;
     wire [(BRANCH_SRC_WIDTH -1):0] branch_src;
 
     control control_instance (
@@ -91,13 +90,13 @@ module id_stage #(
 
     regfile regfile_instance (
         .clk(clk),
-        .write_enable(reg_write & (~stall)),
+        .write_enable(wb_reg_write),
         .read_addr1(rs1),
         .read_addr2(rs2),
         .read_data1(read_data1),
         .read_data2(read_data2),
         .write_addr(wb_rd),
-        .write_data(write_data)
+        .write_data(wb_write_data)
     );
     
     immgen immgen_instance (
