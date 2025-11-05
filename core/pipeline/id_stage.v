@@ -11,6 +11,14 @@ module id_stage #(
     input wire [(BUS_WIDTH - 1):0] pc,
     input wire [(INSTR_WIDTH - 1):0] instr,
 
+    // from FORWARDING unit
+    input wire forward_jalr_ID_EX,
+    input wire forward_jalr_EX_MEM,
+    input wire forward_jalr_MEM_WB,
+    input wire [(BUS_WIDTH - 1):0] id_ex_rs1_val,
+    input wire [(BUS_WIDTH - 1):0] ex_mem_rs1_val,
+    input wire [(BUS_WIDTH - 1):0] mem_wb_rs1_val,
+
     // from WB stage
     input wire [(REGFILE_LEN - 1):0] wb_rd,
     input wire [(BUS_WIDTH - 1):0] wb_write_data,
@@ -130,8 +138,15 @@ module id_stage #(
 
     localparam ADD_CNTRL = 2'b00;
 
+    // JALR Forwarding detection
+    wire [(BUS_WIDTH - 1):0] forwarded_read_data1 =
+        forward_jalr_ID_EX ? id_ex_rs1_val:
+        forward_jalr_EX_MEM ? ex_mem_rs1_val:
+        forward_jalr_MEM_WB ? mem_wb_rs1_val:
+        read_data1;
+
     addsub addsub_jal_instance (
-        .in1(jalr_src ? read_data1: pc),
+        .in1(jalr_src ? forwarded_read_data1: pc),
         .in2(imm),
         .control(ADD_CNTRL),
         .out(next_imm_pc)

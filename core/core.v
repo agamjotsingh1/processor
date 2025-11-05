@@ -12,6 +12,9 @@ module core #(
     localparam FPU_OP_WIDTH=5;
     localparam BRANCH_SRC_WIDTH=3;
     localparam MEM_BIT_WIDTH=2;
+    localparam FORWARD_ALU_SELECT_WIDTH=2;
+    localparam OPCODE_WIDTH=7;
+    localparam FUNCT3_WIDTH=3;
 
     // actual instr mem length = pow(2, INSTR_MEM_LEN)
     localparam INSTR_MEM_LEN=15;
@@ -21,6 +24,17 @@ module core #(
     wire [(BUS_WIDTH - 1):0] next_imm_pc;
     wire [(REGFILE_LEN - 1):0] wb_rd;
     wire [(BUS_WIDTH - 1):0] wb_write_data;
+
+    // Forwarding interconnects
+    wire [(FORWARD_ALU_SELECT_WIDTH - 1):0] forward_A;
+    wire [(FORWARD_ALU_SELECT_WIDTH - 1):0] forward_B;
+    wire forward_jalr_ID_EX;
+    wire forward_jalr_EX_MEM;
+    wire forward_jalr_MEM_WB;
+
+    wire [(BUS_WIDTH - 1):0] ex_alu_fpu_result;
+    wire [(BUS_WIDTH - 1):0] mem_alu_fpu_result;
+    wire [(BUS_WIDTH - 1):0] wb_reg_write_data;
 
     //==============================================
     // IF STAGE 
@@ -118,6 +132,14 @@ module core #(
         .wb_rd(wb_rd),
         .wb_write_data(wb_write_data),
         .wb_reg_write(wb_reg_write),
+
+        // from FORWARDING unit
+        .forward_jalr_ID_EX(forward_jalr_ID_EX),
+        .forward_jalr_EX_MEM(forward_jalr_EX_MEM),
+        .forward_jalr_MEM_WB(forward_jalr_MEM_WB),
+        .id_ex_rs1_val(ex_alu_fpu_result),
+        .ex_mem_rs1_val(mem_alu_fpu_result),
+        .mem_wb_rs1_val(wb_reg_write_data),
 
         // CONTROL Signals
         .reg_write(id_reg_write),
@@ -267,7 +289,29 @@ module core #(
     //==============================================
     // EX Stage
     //==============================================
-    wire [(BUS_WIDTH - 1):0] ex_alu_fpu_result;
+
+
+    wire [(BUS_WIDTH - 1):0] ex_forwarded_read_data1;
+    wire [(BUS_WIDTH - 1):0] ex_forwarded_read_data2;
+
+
+    // forward_A =
+    // 10 -> from EX/MEM
+    // 01 -> from MEM/WB
+    // 00 -> Neither
+    assign ex_forwarded_read_data1 =
+        (forward_A == 2'b10) ? mem_alu_fpu_result:
+        (forward_A == 2'b01) ? wb_reg_write_data:
+        ex_read_data1;  
+
+    // forward_B =
+    // 10 -> from EX/MEM
+    // 01 -> from MEM/WB
+    // 00 -> Neither
+    assign ex_forwarded_read_data2 =
+        (forward_B == 2'b10) ? mem_alu_fpu_result:
+        (forward_B == 2'b01) ? wb_reg_write_data:
+        ex_read_data2;
 
     ex_stage #(
         .BUS_WIDTH(BUS_WIDTH),
@@ -279,8 +323,8 @@ module core #(
         .alu_fpu(ex_alu_fpu),
         .jump_src(ex_jump_src),
         
-        .read_data1(ex_read_data1),
-        .read_data2(ex_read_data2),
+        .read_data1(ex_forwarded_read_data1),
+        .read_data2(ex_forwarded_read_data2),
         
         .control(ex_control),
         .select(ex_select),
@@ -318,7 +362,6 @@ module core #(
 
     wire [(BUS_WIDTH - 1):0] mem_pc;
     wire [(INSTR_WIDTH - 1):0] mem_instr;
-    wire [(BUS_WIDTH - 1):0] mem_alu_fpu_result;
 
     // pretty trippy but bare with me
     // first "mem" indicates stage, next "mem_in" is the variable name
@@ -411,7 +454,6 @@ module core #(
 
     wire wb_mem_to_reg;
     wire [(BUS_WIDTH - 1):0] wb_mem_out;
-    wire [(BUS_WIDTH - 1):0] wb_reg_write_data;
 
     mem_wb_reg #(
         .BUS_WIDTH(BUS_WIDTH),
@@ -437,7 +479,11 @@ module core #(
 
     assign wb_write_data = wb_mem_to_reg ? wb_mem_out: wb_reg_write_data;
 
-    // STALLING
+
+    //==============================================
+    // STALLING UNIT
+    //==============================================
+
     wire stall;
 
     stall_unit stall_unit_instance (
@@ -452,4 +498,36 @@ module core #(
     assign id_ex_stall = stall;
     assign ex_mem_stall = stall;
     assign mem_wb_stall = stall;
+
+    //==============================================
+    // FORWARDING UNIT
+    //==============================================
+
+    forwarding_unit #(
+        .REGFILE_LEN(REGFILE_LEN),
+        .INSTR_WIDTH(INSTR_WIDTH),
+        .FORWARD_ALU_SELECT_WIDTH(FORWARD_ALU_SELECT_WIDTH),
+        .OPCODE_WIDTH(OPCODE_WIDTH),
+        .FUNCT3_WIDTH(FUNCT3_WIDTH)
+    ) forwarding_unit_instance (
+        .reg_write_ID_EX(id_reg_write),
+        .reg_write_EX_MEM(ex_reg_write),
+        .reg_write_MEM_WB(mem_reg_write),
+        
+        .instr_IF_ID(id_instr),
+        
+        .rs1_IF_ID(id_rs1),
+        .rs1_ID_EX(ex_rs1),
+        .rs2_ID_EX(ex_rs2),
+        .rd_ID_EX(ex_rd),
+        .rd_EX_MEM(mem_rd),
+        .rd_MEM_WB(wb_rd),
+        
+        .forward_A(forward_A),
+        .forward_B(forward_B),
+        
+        .forward_jalr_ID_EX(forward_jalr_ID_EX),
+        .forward_jalr_EX_MEM(forward_jalr_EX_MEM),
+        .forward_jalr_MEM_WB(forward_jalr_MEM_WB)
+    );
 endmodule
