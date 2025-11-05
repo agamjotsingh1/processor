@@ -24,14 +24,15 @@ module if_stage #(
     assign pc = cur_pc << 2;
 
     always @(posedge clk) begin
-        if(rst) cur_pc <= {INSTR_WIDTH{1'b0}};
+        //if(rst) cur_pc <= {BUS_WIDTH{1'b0}} - 1;
+        if(rst) cur_pc <= {BUS_WIDTH{1'b0}};
         else if(~stall) cur_pc <= next_pc;
     end
 
     instr_mem_gen instr_mem (
         .clka(clk), // input, clock for Port A
         .addra(cur_pc[(INSTR_MEM_LEN - 1):0]), // input, address for Port A
-        .ena(~rst), // enable pin for Port A  
+        .ena(1'b1), // enable pin for Port A  
         .douta(instr) // output, data output for Port A
     );
 endmodule

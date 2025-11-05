@@ -84,5 +84,7 @@ INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/c
 INFO: [VRFC 10-311] analyzing module shift_left
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/alu/shift_right.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module shift_right
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/pipeline/stall_unit/stall_unit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module stall_unit
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/core_tb.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module core_tb

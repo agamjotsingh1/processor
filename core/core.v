@@ -1,20 +1,21 @@
 module core #(
-    parameter BUS_WIDTH=64,
-    parameter INSTR_WIDTH=32,
-    parameter REGFILE_LEN=6,
-    parameter ALU_CONTROL_WIDTH=2,
-    parameter ALU_SELECT_WIDTH=3,
-    parameter FPU_OP_WIDTH=5,
-    parameter BRANCH_SRC_WIDTH=3,
-    parameter MEM_BIT_WIDTH=2,
-
-    // actual instr mem length = pow(2, INSTR_MEM_LEN)
-    parameter INSTR_MEM_LEN=15
+    parameter BUS_WIDTH=64
 )(
     input wire clk,
     input wire rst,
     output reg [63:0] debug
 );
+    localparam INSTR_WIDTH=32;
+    localparam REGFILE_LEN=6;
+    localparam ALU_CONTROL_WIDTH=2;
+    localparam ALU_SELECT_WIDTH=3;
+    localparam FPU_OP_WIDTH=5;
+    localparam BRANCH_SRC_WIDTH=3;
+    localparam MEM_BIT_WIDTH=2;
+
+    // actual instr mem length = pow(2, INSTR_MEM_LEN)
+    localparam INSTR_MEM_LEN=15;
+
     // GLOBAL interconnects
     wire imm_pc, wb_reg_write;
     wire [(BUS_WIDTH - 1):0] next_imm_pc;
@@ -434,5 +435,21 @@ module core #(
         .out_write_data(wb_reg_write_data)
     );
 
-    assign wb_write_data = mem_mem_to_reg ? wb_mem_out: wb_reg_write_data;
+    assign wb_write_data = wb_mem_to_reg ? wb_mem_out: wb_reg_write_data;
+
+    // STALLING
+    wire stall;
+
+    stall_unit stall_unit_instance (
+        .clk(clk),
+        .rst(rst),
+        .stall(1'b0),
+        .out_stall(stall)
+    );
+
+    assign pc_stall = stall;
+    assign if_id_stall = stall;
+    assign id_ex_stall = stall;
+    assign ex_mem_stall = stall;
+    assign mem_wb_stall = stall;
 endmodule

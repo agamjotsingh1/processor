@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="core_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="core_tb" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="210.827 ns"></ZoomStartTime>
+      <ZoomEndTime time="473.828 ns"></ZoomEndTime>
+      <Cursor1Time time="246.827 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="216"></NameColumnWidth>
+      <ValueColumnWidth column_width="161"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="18" />
+   <wvobject type="logic" fp_name="/core_tb/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_tb/rst">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_tb/dut/imm_pc">
+      <obj_property name="ElementShortName">imm_pc</obj_property>
+      <obj_property name="ObjectShortName">imm_pc</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/next_imm_pc">
+      <obj_property name="ElementShortName">next_imm_pc[63:0]</obj_property>
+      <obj_property name="ObjectShortName">next_imm_pc[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/if_pc">
+      <obj_property name="ElementShortName">if_pc[63:0]</obj_property>
+      <obj_property name="ObjectShortName">if_pc[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/id_pc">
+      <obj_property name="ElementShortName">id_pc[63:0]</obj_property>
+      <obj_property name="ObjectShortName">id_pc[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/ex_pc">
+      <obj_property name="ElementShortName">ex_pc[63:0]</obj_property>
+      <obj_property name="ObjectShortName">ex_pc[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/mem_pc">
+      <obj_property name="ElementShortName">mem_pc[63:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_pc[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/if_instr">
+      <obj_property name="ElementShortName">if_instr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">if_instr[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/id_instr">
+      <obj_property name="ElementShortName">id_instr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">id_instr[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/ex_instr">
+      <obj_property name="ElementShortName">ex_instr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ex_instr[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/mem_instr">
+      <obj_property name="ElementShortName">mem_instr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_instr[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/wb_write_data">
+      <obj_property name="ElementShortName">wb_write_data[63:0]</obj_property>
+      <obj_property name="ObjectShortName">wb_write_data[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/id_stage_instance/regfile_instance/reg_array[4]">
+      <obj_property name="ElementShortName">[4][63:0]</obj_property>
+      <obj_property name="ObjectShortName">[4][63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/id_stage_instance/regfile_instance/reg_array[3]">
+      <obj_property name="ElementShortName">[3][63:0]</obj_property>
+      <obj_property name="ObjectShortName">[3][63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/id_stage_instance/regfile_instance/reg_array[2]">
+      <obj_property name="ElementShortName">[2][63:0]</obj_property>
+      <obj_property name="ObjectShortName">[2][63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/id_stage_instance/regfile_instance/reg_array[1]">
+      <obj_property name="ElementShortName">[1][63:0]</obj_property>
+      <obj_property name="ObjectShortName">[1][63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/id_stage_instance/regfile_instance/reg_array[0]">
+      <obj_property name="ElementShortName">[0][63:0]</obj_property>
+      <obj_property name="ObjectShortName">[0][63:0]</obj_property>
+   </wvobject>
+</wave_config>

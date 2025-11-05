@@ -76,7 +76,7 @@ module control (
                 mem_write = 0;
                 mem_read = 0;
                 mem_to_reg = 0;
-                jump_src = 0;
+                jump_src = 1;
                 branch_src = 3'b000;
                 jalr_src = 1;
                 u_src = 0;

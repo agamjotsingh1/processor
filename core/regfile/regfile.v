@@ -18,7 +18,7 @@ module regfile (
 	// next 32 registers are f0, f1, f2 ... f31
 	reg [63:0] reg_array [63:0];
 	
-	always @(posedge clk) begin
+	always @(negedge clk) begin
 		if(write_enable & write_addr != 0) begin
 			reg_array[write_addr] <= write_data;
 		end

@@ -2,13 +2,6 @@
 
 module core_tb;
     localparam BUS_WIDTH = 64;
-    localparam INSTR_WIDTH = 32;
-    localparam REGFILE_LEN = 6;
-    localparam ALU_CONTROL_WIDTH = 2;
-    localparam ALU_SELECT_WIDTH = 3;
-    localparam FPU_OP_WIDTH = 3;
-    localparam BRANCH_SRC_WIDTH = 3;
-    localparam INSTR_MEM_LEN = 15;
     localparam CLK_PERIOD = 10;
     
     reg clk;
@@ -16,26 +9,20 @@ module core_tb;
     wire [63:0] debug;
     
     core #(
-        .BUS_WIDTH(BUS_WIDTH),
-        .INSTR_WIDTH(INSTR_WIDTH),
-        .REGFILE_LEN(REGFILE_LEN),
-        .ALU_CONTROL_WIDTH(ALU_CONTROL_WIDTH),
-        .ALU_SELECT_WIDTH(ALU_SELECT_WIDTH),
-        .FPU_OP_WIDTH(FPU_OP_WIDTH),
-        .BRANCH_SRC_WIDTH(BRANCH_SRC_WIDTH),
-        .INSTR_MEM_LEN(INSTR_MEM_LEN)
+        .BUS_WIDTH(BUS_WIDTH)
     ) dut (
         .clk(clk),
         .rst(rst),
         .debug(debug)
     );
 
-    assign dut.imm_pc = 0;
-    assign dut.pc_stall = 0;
-    assign dut.if_id_stall = 0;
-    assign dut.id_ex_stall = 0;
-    assign dut.ex_mem_stall = 0;
-    assign dut.mem_wb_stall = 0;
+    reg stall;
+
+    assign dut.pc_stall = stall;
+    assign dut.if_id_stall = stall;
+    assign dut.id_ex_stall = stall;
+    assign dut.ex_mem_stall = stall;
+    assign dut.mem_wb_stall = stall;
     
     initial begin
         clk = 0;
@@ -43,9 +30,14 @@ module core_tb;
     end
     
     initial begin
+        stall = 0;
         rst = 1;
         @(posedge clk);
-        #1 rst = 0;
+        #10 rst = 0;
+        //stall = 1;
+        //@(posedge clk);
+        //#10 stall = 0;
+
         $finish;
     end
     

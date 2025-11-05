@@ -42,6 +42,7 @@ verilog xil_defaultlib  --include "../../../../../../../Xilinx/2025.1/data/rsb/b
 "../../../../../core/fpu/shift_amount.v" \
 "../../../../../core/alu/shift_left.v" \
 "../../../../../core/alu/shift_right.v" \
+"../../../../../core/pipeline/stall_unit/stall_unit.v" \
 "../../../../../core/core_tb.v" \
 
 # compile glbl module
