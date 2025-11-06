@@ -65,6 +65,7 @@ Compiling module xil_defaultlib.mem_stage
 Compiling module xil_defaultlib.mem_wb_reg
 Compiling module xil_defaultlib.stall_unit
 Compiling module xil_defaultlib.forwarding_unit
+Compiling module xil_defaultlib.hdu
 Compiling module xil_defaultlib.core
 Compiling module xil_defaultlib.core_tb
 Compiling module xil_defaultlib.glbl

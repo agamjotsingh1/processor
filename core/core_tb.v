@@ -16,21 +16,12 @@ module core_tb;
         .debug(debug)
     );
 
-    reg stall;
-
-    assign dut.pc_stall = stall;
-    assign dut.if_id_stall = stall;
-    assign dut.id_ex_stall = stall;
-    assign dut.ex_mem_stall = stall;
-    assign dut.mem_wb_stall = stall;
-    
     initial begin
         clk = 0;
         forever #(CLK_PERIOD/2) clk = ~clk;
     end
     
     initial begin
-        stall = 0;
         rst = 1;
         @(posedge clk);
         #10 rst = 0;

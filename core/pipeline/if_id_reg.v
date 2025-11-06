@@ -19,7 +19,8 @@ module if_id_reg #(
         if(rst) begin
             pc <= {BUS_WIDTH{1'b0}};
             instr <= {INSTR_WIDTH{1'b0}};
-        end if(~stall) begin 
+        end
+        else if(~stall) begin 
             pc <= in_pc;
             instr <= in_instr;
         end

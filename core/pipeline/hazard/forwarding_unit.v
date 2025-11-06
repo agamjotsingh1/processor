@@ -43,7 +43,7 @@ module forwarding_unit #(
 
     // Checking if forward from EX_MEM/MEM_WB is valid (write enabled & non x0 write)
     wire forward_EX_MEM_valid = write_enabled_EX_MEM & (~write_to_x0_EX_MEM);
-    wire forward_MEM_WB_valid = write_enabled_MEM_WB & (~write_to_x0_MEM_WB) & (~(reg_write_EX_MEM & write_enabled_EX_MEM));
+    wire forward_MEM_WB_valid = write_enabled_MEM_WB & (~write_to_x0_MEM_WB);
 
     // Forward A
 

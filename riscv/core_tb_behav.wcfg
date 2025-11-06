@@ -11,30 +11,18 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="39.915 ns"></ZoomStartTime>
-      <ZoomEndTime time="250.017 ns"></ZoomEndTime>
-      <Cursor1Time time="73.352 ns"></Cursor1Time>
+      <ZoomStartTime time="34.903 ns"></ZoomStartTime>
+      <ZoomEndTime time="163.304 ns"></ZoomEndTime>
+      <Cursor1Time time="76.903 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="216"></NameColumnWidth>
-      <ValueColumnWidth column_width="157"></ValueColumnWidth>
+      <NameColumnWidth column_width="204"></NameColumnWidth>
+      <ValueColumnWidth column_width="153"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="21" />
+   <WVObjectSize size="50" />
    <wvobject type="logic" fp_name="/core_tb/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/core_tb/rst">
-      <obj_property name="ElementShortName">rst</obj_property>
-      <obj_property name="ObjectShortName">rst</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/core_tb/dut/imm_pc">
-      <obj_property name="ElementShortName">imm_pc</obj_property>
-      <obj_property name="ObjectShortName">imm_pc</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/core_tb/dut/next_imm_pc">
-      <obj_property name="ElementShortName">next_imm_pc[63:0]</obj_property>
-      <obj_property name="ObjectShortName">next_imm_pc[63:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/core_tb/dut/if_pc">
       <obj_property name="ElementShortName">if_pc[63:0]</obj_property>
@@ -72,9 +60,37 @@
       <obj_property name="ElementShortName">wb_write_data[63:0]</obj_property>
       <obj_property name="ObjectShortName">wb_write_data[63:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/core_tb/dut/id_stage_instance/regfile_instance/reg_array[4]">
-      <obj_property name="ElementShortName">[4][63:0]</obj_property>
-      <obj_property name="ObjectShortName">[4][63:0]</obj_property>
+   <wvobject type="logic" fp_name="/core_tb/dut/pc_stall">
+      <obj_property name="ElementShortName">pc_stall</obj_property>
+      <obj_property name="ObjectShortName">pc_stall</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_tb/dut/if_id_stall">
+      <obj_property name="ElementShortName">if_id_stall</obj_property>
+      <obj_property name="ObjectShortName">if_id_stall</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_tb/dut/id_ex_rst">
+      <obj_property name="ElementShortName">id_ex_rst</obj_property>
+      <obj_property name="ObjectShortName">id_ex_rst</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_tb/dut/hdu_instance/reg_eq_A">
+      <obj_property name="ElementShortName">reg_eq_A</obj_property>
+      <obj_property name="ObjectShortName">reg_eq_A</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_tb/dut/hdu_instance/reg_eq_B">
+      <obj_property name="ElementShortName">reg_eq_B</obj_property>
+      <obj_property name="ObjectShortName">reg_eq_B</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_tb/dut/hdu_instance/mem_read_ID_EX">
+      <obj_property name="ElementShortName">mem_read_ID_EX</obj_property>
+      <obj_property name="ObjectShortName">mem_read_ID_EX</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_tb/dut/load_stall">
+      <obj_property name="ElementShortName">load_stall</obj_property>
+      <obj_property name="ObjectShortName">load_stall</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_tb/dut/cumpolsory_stall">
+      <obj_property name="ElementShortName">cumpolsory_stall</obj_property>
+      <obj_property name="ObjectShortName">cumpolsory_stall</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/core_tb/dut/id_stage_instance/regfile_instance/reg_array[3]">
       <obj_property name="ElementShortName">[3][63:0]</obj_property>
@@ -88,13 +104,21 @@
       <obj_property name="ElementShortName">[1][63:0]</obj_property>
       <obj_property name="ObjectShortName">[1][63:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/core_tb/dut/id_stage_instance/regfile_instance/reg_array[0]">
-      <obj_property name="ElementShortName">[0][63:0]</obj_property>
-      <obj_property name="ObjectShortName">[0][63:0]</obj_property>
+   <wvobject type="array" fp_name="/core_tb/dut/ex_stage_instance/read_data1">
+      <obj_property name="ElementShortName">read_data1[63:0]</obj_property>
+      <obj_property name="ObjectShortName">read_data1[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/ex_stage_instance/read_data2">
+      <obj_property name="ElementShortName">read_data2[63:0]</obj_property>
+      <obj_property name="ObjectShortName">read_data2[63:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/core_tb/dut/mem_stage_instance/alu_fpu_result">
       <obj_property name="ElementShortName">alu_fpu_result[63:0]</obj_property>
       <obj_property name="ObjectShortName">alu_fpu_result[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/mem_stage_instance/data_mem_instance/addr">
+      <obj_property name="ElementShortName">addr[63:0]</obj_property>
+      <obj_property name="ObjectShortName">addr[63:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/core_tb/dut/mem_stage_instance/mem_out">
       <obj_property name="ElementShortName">mem_out[63:0]</obj_property>
@@ -103,5 +127,97 @@
    <wvobject type="array" fp_name="/core_tb/dut/mem_stage_instance/write_data">
       <obj_property name="ElementShortName">write_data[63:0]</obj_property>
       <obj_property name="ObjectShortName">write_data[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/mem_mem_in">
+      <obj_property name="ElementShortName">mem_mem_in[63:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_mem_in[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/ex_forwarded_read_data1">
+      <obj_property name="ElementShortName">ex_forwarded_read_data1[63:0]</obj_property>
+      <obj_property name="ObjectShortName">ex_forwarded_read_data1[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/ex_forwarded_read_data2">
+      <obj_property name="ElementShortName">ex_forwarded_read_data2[63:0]</obj_property>
+      <obj_property name="ObjectShortName">ex_forwarded_read_data2[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/mem_alu_fpu_result">
+      <obj_property name="ElementShortName">mem_alu_fpu_result[63:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_alu_fpu_result[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/forwarding_unit_instance/forward_A">
+      <obj_property name="ElementShortName">forward_A[1:0]</obj_property>
+      <obj_property name="ObjectShortName">forward_A[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/forwarding_unit_instance/forward_B">
+      <obj_property name="ElementShortName">forward_B[1:0]</obj_property>
+      <obj_property name="ObjectShortName">forward_B[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_tb/dut/forwarding_unit_instance/forward_EX_MEM_valid">
+      <obj_property name="ElementShortName">forward_EX_MEM_valid</obj_property>
+      <obj_property name="ObjectShortName">forward_EX_MEM_valid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_tb/dut/forwarding_unit_instance/forward_MEM_WB_valid">
+      <obj_property name="ElementShortName">forward_MEM_WB_valid</obj_property>
+      <obj_property name="ObjectShortName">forward_MEM_WB_valid</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/forwarding_unit_instance/rs1_ID_EX">
+      <obj_property name="ElementShortName">rs1_ID_EX[5:0]</obj_property>
+      <obj_property name="ObjectShortName">rs1_ID_EX[5:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/forwarding_unit_instance/rs2_ID_EX">
+      <obj_property name="ElementShortName">rs2_ID_EX[5:0]</obj_property>
+      <obj_property name="ObjectShortName">rs2_ID_EX[5:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/forwarding_unit_instance/rd_ID_EX">
+      <obj_property name="ElementShortName">rd_ID_EX[5:0]</obj_property>
+      <obj_property name="ObjectShortName">rd_ID_EX[5:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/forwarding_unit_instance/rd_EX_MEM">
+      <obj_property name="ElementShortName">rd_EX_MEM[5:0]</obj_property>
+      <obj_property name="ObjectShortName">rd_EX_MEM[5:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/forwarding_unit_instance/rd_MEM_WB">
+      <obj_property name="ElementShortName">rd_MEM_WB[5:0]</obj_property>
+      <obj_property name="ObjectShortName">rd_MEM_WB[5:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_tb/dut/forwarding_unit_instance/reg_eq_EX_MEM_A">
+      <obj_property name="ElementShortName">reg_eq_EX_MEM_A</obj_property>
+      <obj_property name="ObjectShortName">reg_eq_EX_MEM_A</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_tb/dut/forwarding_unit_instance/reg_eq_EX_MEM_B">
+      <obj_property name="ElementShortName">reg_eq_EX_MEM_B</obj_property>
+      <obj_property name="ObjectShortName">reg_eq_EX_MEM_B</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_tb/dut/forwarding_unit_instance/reg_eq_MEM_WB_A">
+      <obj_property name="ElementShortName">reg_eq_MEM_WB_A</obj_property>
+      <obj_property name="ObjectShortName">reg_eq_MEM_WB_A</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_tb/dut/forwarding_unit_instance/reg_eq_MEM_WB_B">
+      <obj_property name="ElementShortName">reg_eq_MEM_WB_B</obj_property>
+      <obj_property name="ObjectShortName">reg_eq_MEM_WB_B</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_tb/dut/forwarding_unit_instance/forward_EX_MEM_valid">
+      <obj_property name="ElementShortName">forward_EX_MEM_valid</obj_property>
+      <obj_property name="ObjectShortName">forward_EX_MEM_valid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_tb/dut/forwarding_unit_instance/forward_MEM_WB_valid">
+      <obj_property name="ElementShortName">forward_MEM_WB_valid</obj_property>
+      <obj_property name="ObjectShortName">forward_MEM_WB_valid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_tb/dut/forwarding_unit_instance/write_enabled_EX_MEM">
+      <obj_property name="ElementShortName">write_enabled_EX_MEM</obj_property>
+      <obj_property name="ObjectShortName">write_enabled_EX_MEM</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_tb/dut/forwarding_unit_instance/write_enabled_MEM_WB">
+      <obj_property name="ElementShortName">write_enabled_MEM_WB</obj_property>
+      <obj_property name="ObjectShortName">write_enabled_MEM_WB</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_tb/dut/mem_reg_write">
+      <obj_property name="ElementShortName">mem_reg_write</obj_property>
+      <obj_property name="ObjectShortName">mem_reg_write</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_tb/dut/wb_reg_write">
+      <obj_property name="ElementShortName">wb_reg_write</obj_property>
+      <obj_property name="ObjectShortName">wb_reg_write</obj_property>
    </wvobject>
 </wave_config>

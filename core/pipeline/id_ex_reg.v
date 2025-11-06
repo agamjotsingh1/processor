@@ -145,7 +145,7 @@ module id_ex_reg #(
             pc <= {BUS_WIDTH{1'b0}};
             instr <= {INSTR_WIDTH{1'b0}};
         end
-        if(~stall) begin
+        else if(~stall) begin
             // Control Pins
             reg_write <= in_reg_write;
             mem_write <= in_mem_write;

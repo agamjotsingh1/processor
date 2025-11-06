@@ -92,6 +92,9 @@ module id_stage #(
 
     assign fpu_rs2 = 1'b1; // second register is always fp (if alu_fp == 1)
 
+    // if register is floating point
+    // 32 has to be added (register file design)
+    // this is same as keeping the first bit as 1
     assign rs1 = {alu_fpu & fpu_rs1, instr[19:15]};
     assign rs2 = {alu_fpu & fpu_rs2, instr[24:20]};
     assign rd = {alu_fpu & fpu_rd, instr[11:7]};
@@ -145,6 +148,7 @@ module id_stage #(
         forward_jalr_MEM_WB ? mem_wb_rs1_val:
         read_data1;
 
+    // adding immediate to pc (or forwarded register data in jalr)
     addsub addsub_jal_instance (
         .in1(jalr_src ? forwarded_read_data1: pc),
         .in2(imm),

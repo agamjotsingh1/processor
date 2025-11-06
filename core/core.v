@@ -65,6 +65,7 @@ module core #(
     //==============================================
 
     wire if_id_stall;
+    wire if_id_rst;
 
     wire [(BUS_WIDTH - 1):0] id_pc;
     wire [(INSTR_WIDTH - 1):0] id_instr;
@@ -74,7 +75,7 @@ module core #(
         .INSTR_WIDTH(INSTR_WIDTH)
     ) if_id_reg_instance (
         .clk(clk),
-        .rst(rst),
+        .rst(if_id_rst | rst),
         .stall(if_id_stall),
         .in_pc(if_pc),
         .in_instr(if_instr),
@@ -180,6 +181,7 @@ module core #(
     //==============================================
 
     wire id_ex_stall;
+    wire id_ex_rst;
 
     wire [(BUS_WIDTH - 1):0] ex_pc;
     wire [(INSTR_WIDTH - 1):0] ex_instr;
@@ -222,7 +224,7 @@ module core #(
         .FPU_OP_WIDTH(FPU_OP_WIDTH)
     ) id_ex_reg_instance (
         .clk(clk),
-        .rst(rst),
+        .rst(id_ex_rst | rst),
         .stall(id_ex_stall),
         
         // In Control Pins
@@ -301,7 +303,7 @@ module core #(
     // 00 -> Neither
     assign ex_forwarded_read_data1 =
         (forward_A == 2'b10) ? mem_alu_fpu_result:
-        (forward_A == 2'b01) ? wb_reg_write_data:
+        (forward_A == 2'b01) ? wb_write_data:
         ex_read_data1;  
 
     // forward_B =
@@ -310,7 +312,7 @@ module core #(
     // 00 -> Neither
     assign ex_forwarded_read_data2 =
         (forward_B == 2'b10) ? mem_alu_fpu_result:
-        (forward_B == 2'b01) ? wb_reg_write_data:
+        (forward_B == 2'b01) ? wb_write_data:
         ex_read_data2;
 
     ex_stage #(
@@ -342,6 +344,7 @@ module core #(
     //==============================================
 
     wire ex_mem_stall;
+    wire ex_mem_rst;
 
     // Control Pins
     wire mem_reg_write;
@@ -373,7 +376,7 @@ module core #(
         .REGFILE_LEN(REGFILE_LEN)
     ) ex_mem_reg_instance (
         .clk(clk),
-        .rst(rst),
+        .rst(ex_mem_rst | rst),
         .stall(ex_mem_stall),
         
         .in_reg_write(ex_reg_write),
@@ -392,7 +395,7 @@ module core #(
         .in_pc(ex_pc),
         .in_instr(ex_instr),
         .in_alu_fpu_result(ex_alu_fpu_result),
-        .in_mem_in(ex_read_data2),
+        .in_mem_in(ex_forwarded_read_data2),
         
         .out_reg_write(mem_reg_write),
         .out_mem_write(mem_mem_write),
@@ -451,6 +454,7 @@ module core #(
     //==============================================
 
     wire mem_wb_stall;
+    wire mem_wb_rst;
 
     wire wb_mem_to_reg;
     wire [(BUS_WIDTH - 1):0] wb_mem_out;
@@ -462,7 +466,7 @@ module core #(
     ) mem_wb_reg_instance (
         .clk(clk),
         .rst(rst),
-        .stall(mem_wb_stall),
+        .stall(mem_wb_rst | mem_wb_stall),
         
         .in_reg_write(mem_reg_write),
         .in_mem_to_reg(mem_mem_to_reg),
@@ -484,20 +488,34 @@ module core #(
     // STALLING UNIT
     //==============================================
 
-    wire stall;
+    // to add a stall because of instruction memory
+    // having 1 cycle latency
+    wire cumpolsory_stall;
+
+    // Load Hazard Stalling
+    wire load_stall;
+
+    // Branch Hazard Stalling
+    wire branch_stall;
 
     stall_unit stall_unit_instance (
         .clk(clk),
         .rst(rst),
         .stall(1'b0),
-        .out_stall(stall)
+        .out_stall(cumpolsory_stall)
     );
 
-    assign pc_stall = stall;
-    assign if_id_stall = stall;
-    assign id_ex_stall = stall;
-    assign ex_mem_stall = stall;
-    assign mem_wb_stall = stall;
+    assign pc_stall = cumpolsory_stall | load_stall;
+    assign if_id_stall = cumpolsory_stall | load_stall;
+    assign id_ex_stall = cumpolsory_stall;
+    assign ex_mem_stall = cumpolsory_stall;
+    assign mem_wb_stall = cumpolsory_stall;
+
+    assign if_id_rst = (~cumpolsory_stall) & branch_stall;
+    assign id_ex_rst = (~cumpolsory_stall) & load_stall;
+    assign ex_mem_rst = 1'b0;
+    assign mem_wb_rst = 1'b0;
+
 
     //==============================================
     // FORWARDING UNIT
@@ -510,9 +528,9 @@ module core #(
         .OPCODE_WIDTH(OPCODE_WIDTH),
         .FUNCT3_WIDTH(FUNCT3_WIDTH)
     ) forwarding_unit_instance (
-        .reg_write_ID_EX(id_reg_write),
-        .reg_write_EX_MEM(ex_reg_write),
-        .reg_write_MEM_WB(mem_reg_write),
+        .reg_write_ID_EX(ex_reg_write),
+        .reg_write_EX_MEM(mem_reg_write),
+        .reg_write_MEM_WB(wb_reg_write),
         
         .instr_IF_ID(id_instr),
         
@@ -530,4 +548,23 @@ module core #(
         .forward_jalr_EX_MEM(forward_jalr_EX_MEM),
         .forward_jalr_MEM_WB(forward_jalr_MEM_WB)
     );
+
+
+    //==============================================
+    // HAZARD DETECTION UNIT
+    //==============================================
+
+    hdu #(
+        .REGFILE_LEN(REGFILE_LEN)
+    ) hdu_instance (
+        .clk(clk),
+        .rst(rst),
+        .rs1_IF_ID(id_rs1),
+        .rs2_IF_ID(id_rs2),
+        .rd_ID_EX(ex_rd),
+        .mem_read_ID_EX(ex_mem_read),
+        .load_stall(load_stall),
+        .branch_stall(branch_stall)
+    );
+
 endmodule

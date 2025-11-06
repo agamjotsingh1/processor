@@ -52,5 +52,7 @@ module ex_stage #(
     wire [(BUS_WIDTH - 1):0] pc_plus_4 = pc + 4;
     wire [(BUS_WIDTH - 1):0] alu_fpu_out = alu_fpu ? fpu_out: alu_out;
 
+    // handling jal and jalr instructions
+    // rd = PC + 4
     assign alu_fpu_result = jump_src ? pc_plus_4: alu_fpu_out;
 endmodule

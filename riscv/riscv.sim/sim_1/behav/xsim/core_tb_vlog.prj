@@ -27,6 +27,7 @@ verilog xil_defaultlib  --include "../../../../../../../Xilinx/2025.1/data/rsb/b
 "../../../../../core/pipeline/hazard/forwarding_unit.v" \
 "../../../../../core/fpu/fpu.v" \
 "../../../../../core/fpu/fpu_cntrl.v" \
+"../../../../../core/pipeline/hazard/hdu.v" \
 "../../../../../core/pipeline/id_ex_reg.v" \
 "../../../../../core/pipeline/id_stage.v" \
 "../../../../../core/pipeline/if_id_reg.v" \

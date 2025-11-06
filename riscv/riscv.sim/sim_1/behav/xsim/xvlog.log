@@ -54,6 +54,8 @@ INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/c
 INFO: [VRFC 10-311] analyzing module fpu
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/fpu/fpu_cntrl.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module fpu_cntrl
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/pipeline/hazard/hdu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module hdu
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/pipeline/id_ex_reg.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module id_ex_reg
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/pipeline/id_stage.v" into library xil_defaultlib
