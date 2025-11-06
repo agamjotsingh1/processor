@@ -10,6 +10,7 @@ WARNING: [VRFC 10-9543] actual bit length 1 differs from formal bit length 4 for
 WARNING: [VRFC 10-9543] actual bit length 17 differs from formal bit length 12 for port 'addra' [/home/agamubuntu/Github/processor/core/data_mem_unit/data_mem_unit.v:67]
 WARNING: [VRFC 10-9543] actual bit length 8 differs from formal bit length 32 for port 'dina' [/home/agamubuntu/Github/processor/core/data_mem_unit/data_mem_unit.v:68]
 WARNING: [VRFC 10-9543] actual bit length 8 differs from formal bit length 32 for port 'douta' [/home/agamubuntu/Github/processor/core/data_mem_unit/data_mem_unit.v:69]
+WARNING: [VRFC 10-9543] actual bit length 3 differs from formal bit length 1 for port 'branch_src_IF_ID' [/home/agamubuntu/Github/processor/core/core.v:574]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis

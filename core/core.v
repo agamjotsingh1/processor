@@ -3,7 +3,7 @@ module core #(
 )(
     input wire clk,
     input wire rst,
-    output reg [63:0] debug
+    output wire [63:0] debug
 );
     localparam INSTR_WIDTH=32;
     localparam REGFILE_LEN=6;
@@ -58,6 +58,7 @@ module core #(
         .pc(if_pc),
         .instr(if_instr)
     );
+
 
 
     //==============================================
@@ -118,6 +119,9 @@ module core #(
     // IMMGEN output
     wire [(BUS_WIDTH - 1):0] id_imm;
 
+    // Branch prediction outputs
+    wire [(BRANCH_SRC_WIDTH -1):0] id_branch_src;
+
     id_stage #(
         .BUS_WIDTH(BUS_WIDTH),
         .INSTR_WIDTH(INSTR_WIDTH),
@@ -171,6 +175,9 @@ module core #(
 
         // IMMGEN output
         .imm(id_imm),
+
+        // Branch prediction outputs
+        .branch_src(id_branch_src),
 
         .imm_pc(imm_pc),
         .next_imm_pc(next_imm_pc)
@@ -563,8 +570,12 @@ module core #(
         .rs2_IF_ID(id_rs2),
         .rd_ID_EX(ex_rd),
         .mem_read_ID_EX(ex_mem_read),
+        .branch_src_IF_ID(id_branch_src),
         .load_stall(load_stall),
         .branch_stall(branch_stall)
     );
+
+
+    assign debug = wb_write_data;
 
 endmodule

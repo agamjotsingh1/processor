@@ -54,12 +54,13 @@ module id_stage #(
     // IMMGEN output
     output wire [(BUS_WIDTH - 1):0] imm,
 
+    // Branch prediction outputs
+    output wire [(BRANCH_SRC_WIDTH -1):0] branch_src,
+
     // NEXT IMM PC (wont go to next stage)
     output wire imm_pc,
     output wire [(BUS_WIDTH - 1):0] next_imm_pc
 );
-    wire [(BRANCH_SRC_WIDTH -1):0] branch_src;
-
     control control_instance (
         .instr(instr),
         .reg_write(reg_write), 

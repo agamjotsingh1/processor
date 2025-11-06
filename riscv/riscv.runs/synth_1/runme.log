@@ -1,0 +1,1103 @@
+
+*** Running vivado
+    with args -log core.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source core.tcl
+
+
+****** Vivado v2025.1 (64-bit)
+  **** SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
+  **** IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+  **** SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+  **** Start of session at: Thu Nov  6 22:11:54 2025
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source core.tcl -notrace
+Command: read_checkpoint -auto_incremental -incremental /home/agamubuntu/Github/processor/riscv/riscv.srcs/utils_1/imports/synth_1/core.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from /home/agamubuntu/Github/processor/riscv/riscv.srcs/utils_1/imports/synth_1/core.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top core -part xc7z020clg400-1 -flatten_hierarchy full
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 7 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 51040
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2127.559 ; gain = 440.742 ; free physical = 5314 ; free virtual = 7336
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-6901] identifier 'is_NaN' is used before its declaration [/home/agamubuntu/Github/processor/core/fpu/FPMul.v:73]
+WARNING: [Synth 8-7129] Port clk in module hdu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port rst in module hdu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[31] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[30] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[29] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[28] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[27] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[26] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[25] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[24] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[23] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[22] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[21] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[20] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[19] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[18] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[17] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[16] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[15] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[11] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[10] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[9] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[8] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[7] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLKB in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[31] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[30] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[29] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[28] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[27] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[26] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[25] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[24] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[23] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[22] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[21] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[20] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[19] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[18] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[17] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[16] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[15] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[14] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[13] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[12] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[11] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[10] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[9] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[8] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[7] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[6] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[5] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[4] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[3] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[2] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[1] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[0] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SBITERR_I in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DBITERR_I in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[11] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[10] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[9] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[8] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[7] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[6] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[5] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[4] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[3] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[2] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[1] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[0] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB[8] in module blk_mem_gen_prim_wrapper__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB[7] in module blk_mem_gen_prim_wrapper__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB[6] in module blk_mem_gen_prim_wrapper__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB[5] in module blk_mem_gen_prim_wrapper__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB[4] in module blk_mem_gen_prim_wrapper__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB[3] in module blk_mem_gen_prim_wrapper__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB[2] in module blk_mem_gen_prim_wrapper__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB[1] in module blk_mem_gen_prim_wrapper__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB[0] in module blk_mem_gen_prim_wrapper__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SBITERR in module blk_mem_gen_prim_wrapper__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DBITERR in module blk_mem_gen_prim_wrapper__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSRA in module blk_mem_gen_prim_wrapper__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLKB in module blk_mem_gen_prim_wrapper__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSRB in module blk_mem_gen_prim_wrapper__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ENB in module blk_mem_gen_prim_wrapper__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port REGCEB in module blk_mem_gen_prim_wrapper__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WEB[0] in module blk_mem_gen_prim_wrapper__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDRB[11] in module blk_mem_gen_prim_wrapper__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDRB[10] in module blk_mem_gen_prim_wrapper__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDRB[9] in module blk_mem_gen_prim_wrapper__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDRB[8] in module blk_mem_gen_prim_wrapper__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDRB[7] in module blk_mem_gen_prim_wrapper__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDRB[6] in module blk_mem_gen_prim_wrapper__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDRB[5] in module blk_mem_gen_prim_wrapper__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDRB[4] in module blk_mem_gen_prim_wrapper__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDRB[3] in module blk_mem_gen_prim_wrapper__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDRB[2] in module blk_mem_gen_prim_wrapper__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDRB[1] in module blk_mem_gen_prim_wrapper__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDRB[0] in module blk_mem_gen_prim_wrapper__parameterized2 is either unconnected or has no load
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:26 . Memory (MB): peak = 2598.047 ; gain = 911.230 ; free physical = 217 ; free virtual = 2087
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:26 . Memory (MB): peak = 2598.047 ; gain = 911.230 ; free physical = 217 ; free virtual = 2087
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:26 . Memory (MB): peak = 2598.047 ; gain = 911.230 ; free physical = 217 ; free virtual = 2087
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.12 ; elapsed = 00:00:00.12 . Memory (MB): peak = 2598.047 ; gain = 0.000 ; free physical = 218 ; free virtual = 2088
+INFO: [Netlist 29-17] Analyzing 61 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/agamubuntu/Github/processor/core/pynq/constraints.xdc]
+Finished Parsing XDC File [/home/agamubuntu/Github/processor/core/pynq/constraints.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/agamubuntu/Github/processor/core/pynq/constraints.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/core_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/core_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Parsing XDC File [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2650.156 ; gain = 0.000 ; free physical = 218 ; free virtual = 2088
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 2650.191 ; gain = 0.000 ; free physical = 218 ; free virtual = 2088
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:32 . Memory (MB): peak = 2650.191 ; gain = 963.375 ; free physical = 218 ; free virtual = 2055
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:32 . Memory (MB): peak = 2658.160 ; gain = 971.344 ; free physical = 218 ; free virtual = 2055
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:32 . Memory (MB): peak = 2658.160 ; gain = 971.344 ; free physical = 218 ; free virtual = 2055
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Preparing Guide Design
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-6702] IncrSynth : Design change found in an area of the design that prevents previous synthesis information being used, Reverting to default synthesis
+---------------------------------------------------------------------------------
+Finished Doing Graph Differ : Time (s): cpu = 00:00:16 ; elapsed = 00:00:32 . Memory (MB): peak = 2658.160 ; gain = 971.344 ; free physical = 224 ; free virtual = 2063
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Preparing Guide Design : Time (s): cpu = 00:00:16 ; elapsed = 00:00:32 . Memory (MB): peak = 2658.160 ; gain = 971.344 ; free physical = 224 ; free virtual = 2063
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-327] inferring latch for variable 'out_reg' [/home/agamubuntu/Github/processor/core/fpu/fpu.v:65]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:18 ; elapsed = 00:00:34 . Memory (MB): peak = 2658.160 ; gain = 971.344 ; free physical = 222 ; free virtual = 2061
+---------------------------------------------------------------------------------
+
+
+Incremental Synthesis Report Summary:
+
+1. Incremental synthesis run: no
+
+   Reason for not running incremental synthesis : Design change found in an area of the design that prevents previous synthesis information being used
+
+
+INFO: [Synth 8-7130] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   4 Input  128 Bit       Adders := 1     
+	   4 Input  106 Bit       Adders := 9     
+	   3 Input   65 Bit       Adders := 2     
+	   2 Input   65 Bit       Adders := 2     
+	   3 Input   64 Bit       Adders := 2     
+	   2 Input   64 Bit       Adders := 10    
+	   5 Input   64 Bit       Adders := 9     
+	   2 Input   54 Bit       Adders := 15    
+	   3 Input   54 Bit       Adders := 4     
+	   2 Input   13 Bit       Adders := 7     
+	   2 Input   12 Bit       Adders := 7     
+	   3 Input   12 Bit       Adders := 8     
+	   4 Input   12 Bit       Adders := 4     
+	   2 Input   11 Bit       Adders := 2     
+	   2 Input    6 Bit       Adders := 2     
+	   2 Input    4 Bit       Adders := 1     
++---XORs : 
+	   2 Input     64 Bit         XORs := 4     
+	   2 Input      1 Bit         XORs := 15    
++---Registers : 
+	               64 Bit    Registers := 76    
+	               32 Bit    Registers := 3     
+	                6 Bit    Registers := 7     
+	                5 Bit    Registers := 1     
+	                3 Bit    Registers := 3     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 38    
++---Multipliers : 
+	              64x64  Multipliers := 2     
++---Muxes : 
+	   3 Input   65 Bit        Muxes := 2     
+	   4 Input   64 Bit        Muxes := 4     
+	   2 Input   64 Bit        Muxes := 58    
+	   3 Input   64 Bit        Muxes := 4     
+	   2 Input   56 Bit        Muxes := 1     
+	   2 Input   54 Bit        Muxes := 4     
+	   2 Input   53 Bit        Muxes := 13    
+	   2 Input   52 Bit        Muxes := 24    
+	   2 Input   48 Bit        Muxes := 1     
+	   2 Input   32 Bit        Muxes := 17    
+	   2 Input   12 Bit        Muxes := 16    
+	   2 Input   11 Bit        Muxes := 5     
+	   4 Input    8 Bit        Muxes := 1     
+	   7 Input    3 Bit        Muxes := 1     
+	  14 Input    2 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 2     
+	   4 Input    1 Bit        Muxes := 2     
+	   2 Input    1 Bit        Muxes := 173   
+	  10 Input    1 Bit        Muxes := 3     
+	   9 Input    1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+DSP Report: Generating DSP p_1_out, operation Mode is: A*B.
+DSP Report: operator p_1_out is absorbed into DSP p_1_out.
+DSP Report: operator p_0_out is absorbed into DSP p_1_out.
+DSP Report: Generating DSP p_1_out, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator p_1_out is absorbed into DSP p_1_out.
+DSP Report: operator p_0_out is absorbed into DSP p_1_out.
+DSP Report: Generating DSP p_1_out, operation Mode is: PCIN+A*B.
+DSP Report: operator p_1_out is absorbed into DSP p_1_out.
+DSP Report: operator p_0_out is absorbed into DSP p_1_out.
+DSP Report: Generating DSP p_1_out, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator p_1_out is absorbed into DSP p_1_out.
+DSP Report: operator p_0_out is absorbed into DSP p_1_out.
+DSP Report: Generating DSP p_1_out, operation Mode is: A*B.
+DSP Report: operator p_1_out is absorbed into DSP p_1_out.
+DSP Report: operator p_0_out is absorbed into DSP p_1_out.
+DSP Report: Generating DSP p_1_out, operation Mode is: PCIN+A*B.
+DSP Report: operator p_1_out is absorbed into DSP p_1_out.
+DSP Report: operator p_0_out is absorbed into DSP p_1_out.
+DSP Report: Generating DSP p_1_out, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator p_1_out is absorbed into DSP p_1_out.
+DSP Report: operator p_0_out is absorbed into DSP p_1_out.
+DSP Report: Generating DSP p_1_out, operation Mode is: PCIN+A*B.
+DSP Report: operator p_1_out is absorbed into DSP p_1_out.
+DSP Report: operator p_0_out is absorbed into DSP p_1_out.
+DSP Report: Generating DSP p_1_out, operation Mode is: A*B.
+DSP Report: operator p_1_out is absorbed into DSP p_1_out.
+DSP Report: operator p_0_out is absorbed into DSP p_1_out.
+DSP Report: Generating DSP p_1_out, operation Mode is: PCIN+A*B.
+DSP Report: operator p_1_out is absorbed into DSP p_1_out.
+DSP Report: operator p_0_out is absorbed into DSP p_1_out.
+DSP Report: Generating DSP p_1_out, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator p_1_out is absorbed into DSP p_1_out.
+DSP Report: operator p_0_out is absorbed into DSP p_1_out.
+DSP Report: Generating DSP p_1_out, operation Mode is: PCIN+A*B.
+DSP Report: operator p_1_out is absorbed into DSP p_1_out.
+DSP Report: operator p_0_out is absorbed into DSP p_1_out.
+DSP Report: Generating DSP p_1_out, operation Mode is: A*B.
+DSP Report: operator p_1_out is absorbed into DSP p_1_out.
+DSP Report: operator p_0_out is absorbed into DSP p_1_out.
+DSP Report: Generating DSP p_1_out, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator p_1_out is absorbed into DSP p_1_out.
+DSP Report: operator p_0_out is absorbed into DSP p_1_out.
+DSP Report: Generating DSP p_1_out, operation Mode is: PCIN+A*B.
+DSP Report: operator p_1_out is absorbed into DSP p_1_out.
+DSP Report: operator p_0_out is absorbed into DSP p_1_out.
+DSP Report: Generating DSP p_1_out, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator p_1_out is absorbed into DSP p_1_out.
+DSP Report: operator p_0_out is absorbed into DSP p_1_out.
+DSP Report: Generating DSP mantissa_product, operation Mode is: A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: PCIN+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: PCIN+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: PCIN+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: PCIN+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: PCIN+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: PCIN+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: PCIN+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: PCIN+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: PCIN+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: PCIN+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: PCIN+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: PCIN+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: PCIN+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: PCIN+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: PCIN+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: PCIN+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+INFO: [Synth 8-12192] Not enough pipeline registers after wide multiplier. Pipeline registers present is 0. Recommended levels of pipeline registers is 16. [/home/agamubuntu/Github/processor/core/alu/div.v:22]
+INFO: [Synth 8-12192] Not enough pipeline registers after wide multiplier. Pipeline registers present is 0. Recommended levels of pipeline registers is 16. [/home/agamubuntu/Github/processor/core/alu/div.v:21]
+DSP Report: Generating DSP remainder_unsigned0, operation Mode is: A*B.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: Generating DSP remainder_unsigned0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: Generating DSP remainder_unsigned0, operation Mode is: PCIN+A*B.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: Generating DSP remainder_unsigned0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: Generating DSP remainder_unsigned0, operation Mode is: A*B.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: Generating DSP remainder_unsigned0, operation Mode is: PCIN+A*B.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: Generating DSP remainder_unsigned0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: Generating DSP remainder_unsigned0, operation Mode is: PCIN+A*B.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: Generating DSP remainder_unsigned0, operation Mode is: A*B.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: Generating DSP remainder_unsigned0, operation Mode is: PCIN+A*B.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: Generating DSP remainder_unsigned0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: Generating DSP remainder_unsigned0, operation Mode is: PCIN+A*B.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: Generating DSP remainder_unsigned0, operation Mode is: A*B.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: Generating DSP remainder_unsigned0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: Generating DSP remainder_unsigned0, operation Mode is: PCIN+A*B.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: Generating DSP remainder_unsigned0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: operator remainder_unsigned0 is absorbed into DSP remainder_unsigned0.
+DSP Report: Generating DSP remainder_signed0, operation Mode is: A*B.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: Generating DSP remainder_signed0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: Generating DSP remainder_signed0, operation Mode is: PCIN+A*B.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: Generating DSP remainder_signed0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: Generating DSP remainder_signed0, operation Mode is: A*B.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: Generating DSP remainder_signed0, operation Mode is: PCIN+A*B.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: Generating DSP remainder_signed0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: Generating DSP remainder_signed0, operation Mode is: PCIN+A*B.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: Generating DSP remainder_signed0, operation Mode is: A*B.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: Generating DSP remainder_signed0, operation Mode is: PCIN+A*B.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: Generating DSP remainder_signed0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: Generating DSP remainder_signed0, operation Mode is: PCIN+A*B.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: Generating DSP remainder_signed0, operation Mode is: A*B.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: Generating DSP remainder_signed0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: Generating DSP remainder_signed0, operation Mode is: PCIN+A*B.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: Generating DSP remainder_signed0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: operator remainder_signed0 is absorbed into DSP remainder_signed0.
+DSP Report: Generating DSP mantissa_product, operation Mode is: A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: PCIN+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: PCIN+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: PCIN+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: Generating DSP mantissa_product, operation Mode is: PCIN+A*B.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+DSP Report: operator mantissa_product is absorbed into DSP mantissa_product.
+INFO: [Synth 8-5587] ROM size for "reg_write" is below threshold of ROM address width. It will be mapped to LUTs
+INFO: [Synth 8-5546] ROM "mem_write" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "mem_read" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "jump_src" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "jalr_src" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "u_src" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5587] ROM size for "uj_src" is below threshold of ROM address width. It will be mapped to LUTs
+INFO: [Synth 8-5587] ROM size for "alu_src" is below threshold of ROM address width. It will be mapped to LUTs
+INFO: [Synth 8-5546] ROM "alu_fpu" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5587] ROM size for "reg_write" is below threshold of ROM address width. It will be mapped to LUTs
+INFO: [Synth 8-5546] ROM "mem_write" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "mem_read" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "jump_src" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "jalr_src" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "u_src" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5587] ROM size for "uj_src" is below threshold of ROM address width. It will be mapped to LUTs
+INFO: [Synth 8-5587] ROM size for "alu_src" is below threshold of ROM address width. It will be mapped to LUTs
+INFO: [Synth 8-5546] ROM "alu_fpu" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "fpu_op" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "fpu_op" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5544] ROM "weas_unrotated" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/mem_to_reg_reg' (FDRE) to 'id_ex_reg_instance/mem_read_reg'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/mem_to_reg_reg' (FDRE) to 'ex_mem_reg_instance/mem_read_reg'
+INFO: [Synth 8-3886] merging instance 'if_id_reg_instance/pc_reg[0]' (FDRE) to 'if_id_reg_instance/pc_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/pc_reg[0]' (FDRE) to 'id_ex_reg_instance/pc_reg[1]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/pc_reg[0]' (FDRE) to 'ex_mem_reg_instance/pc_reg[1]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\if_id_reg_instance/pc_reg[1] )
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/instr_reg[8]' (FDRE) to 'id_ex_reg_instance/rd_reg[1]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/instr_reg[8]' (FDRE) to 'ex_mem_reg_instance/rd_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/instr_reg[9]' (FDRE) to 'id_ex_reg_instance/rd_reg[2]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/instr_reg[9]' (FDRE) to 'ex_mem_reg_instance/rd_reg[2]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/instr_reg[10]' (FDRE) to 'id_ex_reg_instance/rd_reg[3]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/instr_reg[10]' (FDRE) to 'ex_mem_reg_instance/rd_reg[3]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/instr_reg[11]' (FDRE) to 'id_ex_reg_instance/rd_reg[4]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/instr_reg[11]' (FDRE) to 'ex_mem_reg_instance/rd_reg[4]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/instr_reg[7]' (FDRE) to 'id_ex_reg_instance/rd_reg[0]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/instr_reg[7]' (FDRE) to 'ex_mem_reg_instance/rd_reg[0]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/instr_reg[15]' (FDRE) to 'id_ex_reg_instance/rs1_reg[0]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/instr_reg[16]' (FDRE) to 'id_ex_reg_instance/rs1_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/instr_reg[17]' (FDRE) to 'id_ex_reg_instance/rs1_reg[2]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/instr_reg[18]' (FDRE) to 'id_ex_reg_instance/rs1_reg[3]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/instr_reg[19]' (FDRE) to 'id_ex_reg_instance/rs1_reg[4]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/instr_reg[20]' (FDRE) to 'id_ex_reg_instance/rs2_reg[0]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/instr_reg[21]' (FDRE) to 'id_ex_reg_instance/rs2_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/instr_reg[22]' (FDRE) to 'id_ex_reg_instance/rs2_reg[2]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/instr_reg[23]' (FDRE) to 'id_ex_reg_instance/rs2_reg[3]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/instr_reg[24]' (FDRE) to 'id_ex_reg_instance/rs2_reg[4]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/rs2_reg[5]' (FDRE) to 'id_ex_reg_instance/alu_fpu_reg'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[31]' (FDRE) to 'id_ex_reg_instance/imm_reg[32]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[31]' (FDRE) to 'ex_mem_reg_instance/imm_reg[32]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[32]' (FDRE) to 'id_ex_reg_instance/imm_reg[33]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[32]' (FDRE) to 'ex_mem_reg_instance/imm_reg[33]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[33]' (FDRE) to 'id_ex_reg_instance/imm_reg[34]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[33]' (FDRE) to 'ex_mem_reg_instance/imm_reg[34]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[34]' (FDRE) to 'id_ex_reg_instance/imm_reg[35]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[34]' (FDRE) to 'ex_mem_reg_instance/imm_reg[35]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[35]' (FDRE) to 'id_ex_reg_instance/imm_reg[36]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[35]' (FDRE) to 'ex_mem_reg_instance/imm_reg[36]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[36]' (FDRE) to 'id_ex_reg_instance/imm_reg[37]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[36]' (FDRE) to 'ex_mem_reg_instance/imm_reg[37]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[37]' (FDRE) to 'id_ex_reg_instance/imm_reg[38]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[37]' (FDRE) to 'ex_mem_reg_instance/imm_reg[38]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[38]' (FDRE) to 'id_ex_reg_instance/imm_reg[39]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[38]' (FDRE) to 'ex_mem_reg_instance/imm_reg[39]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[39]' (FDRE) to 'id_ex_reg_instance/imm_reg[40]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[39]' (FDRE) to 'ex_mem_reg_instance/imm_reg[40]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[40]' (FDRE) to 'id_ex_reg_instance/imm_reg[41]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[40]' (FDRE) to 'ex_mem_reg_instance/imm_reg[41]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[41]' (FDRE) to 'id_ex_reg_instance/imm_reg[42]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[41]' (FDRE) to 'ex_mem_reg_instance/imm_reg[42]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[42]' (FDRE) to 'id_ex_reg_instance/imm_reg[43]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[42]' (FDRE) to 'ex_mem_reg_instance/imm_reg[43]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[43]' (FDRE) to 'id_ex_reg_instance/imm_reg[44]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[43]' (FDRE) to 'ex_mem_reg_instance/imm_reg[44]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[44]' (FDRE) to 'id_ex_reg_instance/imm_reg[45]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[44]' (FDRE) to 'ex_mem_reg_instance/imm_reg[45]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[45]' (FDRE) to 'id_ex_reg_instance/imm_reg[46]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[45]' (FDRE) to 'ex_mem_reg_instance/imm_reg[46]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[46]' (FDRE) to 'id_ex_reg_instance/imm_reg[47]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[46]' (FDRE) to 'ex_mem_reg_instance/imm_reg[47]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[47]' (FDRE) to 'id_ex_reg_instance/imm_reg[48]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[47]' (FDRE) to 'ex_mem_reg_instance/imm_reg[48]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[48]' (FDRE) to 'id_ex_reg_instance/imm_reg[49]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[48]' (FDRE) to 'ex_mem_reg_instance/imm_reg[49]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[49]' (FDRE) to 'id_ex_reg_instance/imm_reg[50]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[49]' (FDRE) to 'ex_mem_reg_instance/imm_reg[50]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[50]' (FDRE) to 'id_ex_reg_instance/imm_reg[51]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[50]' (FDRE) to 'ex_mem_reg_instance/imm_reg[51]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[51]' (FDRE) to 'id_ex_reg_instance/imm_reg[52]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[51]' (FDRE) to 'ex_mem_reg_instance/imm_reg[52]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[52]' (FDRE) to 'id_ex_reg_instance/imm_reg[53]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[52]' (FDRE) to 'ex_mem_reg_instance/imm_reg[53]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[53]' (FDRE) to 'id_ex_reg_instance/imm_reg[54]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[53]' (FDRE) to 'ex_mem_reg_instance/imm_reg[54]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[54]' (FDRE) to 'id_ex_reg_instance/imm_reg[55]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[54]' (FDRE) to 'ex_mem_reg_instance/imm_reg[55]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[55]' (FDRE) to 'id_ex_reg_instance/imm_reg[56]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[55]' (FDRE) to 'ex_mem_reg_instance/imm_reg[56]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[56]' (FDRE) to 'id_ex_reg_instance/imm_reg[57]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[56]' (FDRE) to 'ex_mem_reg_instance/imm_reg[57]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[57]' (FDRE) to 'id_ex_reg_instance/imm_reg[58]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[57]' (FDRE) to 'ex_mem_reg_instance/imm_reg[58]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[58]' (FDRE) to 'id_ex_reg_instance/imm_reg[59]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[58]' (FDRE) to 'ex_mem_reg_instance/imm_reg[59]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[59]' (FDRE) to 'id_ex_reg_instance/imm_reg[60]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[59]' (FDRE) to 'ex_mem_reg_instance/imm_reg[60]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[60]' (FDRE) to 'id_ex_reg_instance/imm_reg[61]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[60]' (FDRE) to 'ex_mem_reg_instance/imm_reg[61]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[61]' (FDRE) to 'id_ex_reg_instance/imm_reg[62]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[61]' (FDRE) to 'ex_mem_reg_instance/imm_reg[62]'
+INFO: [Synth 8-3886] merging instance 'id_ex_reg_instance/imm_reg[62]' (FDRE) to 'id_ex_reg_instance/imm_reg[63]'
+INFO: [Synth 8-3886] merging instance 'ex_mem_reg_instance/imm_reg[62]' (FDRE) to 'ex_mem_reg_instance/imm_reg[63]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\id_ex_reg_instance/pc_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\ex_mem_reg_instance/pc_reg[1] )
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:48 ; elapsed = 00:01:04 . Memory (MB): peak = 2702.094 ; gain = 1015.277 ; free physical = 198 ; free virtual = 1485
+---------------------------------------------------------------------------------
+ Sort Area is div__GB1 remainder_signed0_0 : 0 0 : 3101 12442 : Used 1 time 0
+ Sort Area is div__GB1 remainder_signed0_0 : 0 1 : 3120 12442 : Used 1 time 0
+ Sort Area is div__GB1 remainder_signed0_0 : 0 2 : 3101 12442 : Used 1 time 0
+ Sort Area is div__GB1 remainder_signed0_0 : 0 3 : 3120 12442 : Used 1 time 0
+ Sort Area is div__GB1 remainder_unsigned0_b : 0 0 : 3101 12442 : Used 1 time 0
+ Sort Area is div__GB1 remainder_unsigned0_b : 0 1 : 3120 12442 : Used 1 time 0
+ Sort Area is div__GB1 remainder_unsigned0_b : 0 2 : 3101 12442 : Used 1 time 0
+ Sort Area is div__GB1 remainder_unsigned0_b : 0 3 : 3120 12442 : Used 1 time 0
+ Sort Area is div__GB1 remainder_signed0_4 : 0 0 : 3101 11782 : Used 1 time 0
+ Sort Area is div__GB1 remainder_signed0_4 : 0 1 : 3101 11782 : Used 1 time 0
+ Sort Area is div__GB1 remainder_signed0_4 : 0 2 : 2479 11782 : Used 1 time 0
+ Sort Area is div__GB1 remainder_signed0_4 : 0 3 : 3101 11782 : Used 1 time 0
+ Sort Area is div__GB1 remainder_unsigned0_c : 0 0 : 3101 11782 : Used 1 time 0
+ Sort Area is div__GB1 remainder_unsigned0_c : 0 1 : 3101 11782 : Used 1 time 0
+ Sort Area is div__GB1 remainder_unsigned0_c : 0 2 : 2479 11782 : Used 1 time 0
+ Sort Area is div__GB1 remainder_unsigned0_c : 0 3 : 3101 11782 : Used 1 time 0
+ Sort Area is div__GB1 remainder_signed0_6 : 0 0 : 3101 11141 : Used 1 time 0
+ Sort Area is div__GB1 remainder_signed0_6 : 0 1 : 2460 11141 : Used 1 time 0
+ Sort Area is div__GB1 remainder_signed0_6 : 0 2 : 2479 11141 : Used 1 time 0
+ Sort Area is div__GB1 remainder_signed0_6 : 0 3 : 3101 11141 : Used 1 time 0
+ Sort Area is div__GB1 remainder_unsigned0_d : 0 0 : 3101 11141 : Used 1 time 0
+ Sort Area is div__GB1 remainder_unsigned0_d : 0 1 : 2460 11141 : Used 1 time 0
+ Sort Area is div__GB1 remainder_unsigned0_d : 0 2 : 2479 11141 : Used 1 time 0
+ Sort Area is div__GB1 remainder_unsigned0_d : 0 3 : 3101 11141 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_0 : 0 0 : 2701 10833 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_0 : 0 1 : 2710 10833 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_0 : 0 2 : 2712 10833 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_0 : 0 3 : 2710 10833 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_4 : 0 0 : 2701 10124 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_4 : 0 1 : 2712 10124 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_4 : 0 2 : 1999 10124 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_4 : 0 3 : 2712 10124 : Used 1 time 0
+ Sort Area is div__GB1 remainder_signed0_8 : 0 0 : 2460 9675 : Used 1 time 0
+ Sort Area is div__GB1 remainder_signed0_8 : 0 1 : 2479 9675 : Used 1 time 0
+ Sort Area is div__GB1 remainder_signed0_8 : 0 2 : 2460 9675 : Used 1 time 0
+ Sort Area is div__GB1 remainder_signed0_8 : 0 3 : 2276 9675 : Used 1 time 0
+ Sort Area is div__GB1 remainder_unsigned0_e : 0 0 : 2460 9675 : Used 1 time 0
+ Sort Area is div__GB1 remainder_unsigned0_e : 0 1 : 2479 9675 : Used 1 time 0
+ Sort Area is div__GB1 remainder_unsigned0_e : 0 2 : 2460 9675 : Used 1 time 0
+ Sort Area is div__GB1 remainder_unsigned0_e : 0 3 : 2276 9675 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_6 : 0 0 : 2701 9423 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_6 : 0 1 : 2011 9423 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_6 : 0 2 : 1999 9423 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_6 : 0 3 : 2712 9423 : Used 1 time 0
+ Sort Area is newton_ralphson mantissa_product_13 : 0 0 : 3022 8973 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_13 : 0 1 : 3030 8973 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_13 : 0 2 : 2921 8973 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_16 : 0 0 : 3022 8973 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_16 : 0 1 : 3030 8973 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_16 : 0 2 : 2921 8973 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_19 : 0 0 : 3022 8973 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_19 : 0 1 : 3030 8973 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_19 : 0 2 : 2921 8973 : Used 2 time 0
+ Sort Area is fpu__GC0 mantissa_product_7 : 0 0 : 3022 8973 : Used 1 time 0
+ Sort Area is fpu__GC0 mantissa_product_7 : 0 1 : 3030 8973 : Used 1 time 0
+ Sort Area is fpu__GC0 mantissa_product_7 : 0 2 : 2921 8973 : Used 1 time 0
+ Sort Area is newton_ralphson mantissa_product_f : 0 0 : 3022 8973 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_f : 0 1 : 3030 8973 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_f : 0 2 : 2921 8973 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_12 : 0 0 : 3022 8764 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_12 : 0 1 : 2712 8764 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_12 : 0 2 : 3030 8764 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_15 : 0 0 : 3022 8764 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_15 : 0 1 : 2712 8764 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_15 : 0 2 : 3030 8764 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_18 : 0 0 : 3022 8764 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_18 : 0 1 : 2712 8764 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_18 : 0 2 : 3030 8764 : Used 2 time 0
+ Sort Area is fpu__GC0 mantissa_product_4 : 0 0 : 3022 8764 : Used 1 time 0
+ Sort Area is fpu__GC0 mantissa_product_4 : 0 1 : 2712 8764 : Used 1 time 0
+ Sort Area is fpu__GC0 mantissa_product_4 : 0 2 : 3030 8764 : Used 1 time 0
+ Sort Area is newton_ralphson mantissa_product_c : 0 0 : 3022 8764 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_c : 0 1 : 2712 8764 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_c : 0 2 : 3030 8764 : Used 2 time 0
+ Sort Area is fpu__GC0 mantissa_product_0 : 0 0 : 2701 8123 : Used 1 time 0
+ Sort Area is fpu__GC0 mantissa_product_0 : 0 1 : 2710 8123 : Used 1 time 0
+ Sort Area is fpu__GC0 mantissa_product_0 : 0 2 : 2712 8123 : Used 1 time 0
+ Sort Area is newton_ralphson mantissa_product_11 : 0 0 : 2701 8123 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_11 : 0 1 : 2710 8123 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_11 : 0 2 : 2712 8123 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_14 : 0 0 : 2701 8123 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_14 : 0 1 : 2710 8123 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_14 : 0 2 : 2712 8123 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_17 : 0 0 : 2701 8123 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_17 : 0 1 : 2710 8123 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_17 : 0 2 : 2712 8123 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_b : 0 0 : 2701 8123 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_b : 0 1 : 2710 8123 : Used 2 time 0
+ Sort Area is newton_ralphson mantissa_product_b : 0 2 : 2712 8123 : Used 2 time 0
+ Sort Area is alu__GC0 p_1_out_8 : 0 0 : 1995 7576 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_8 : 0 1 : 1999 7576 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_8 : 0 2 : 2011 7576 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_8 : 0 3 : 1571 7576 : Used 1 time 0
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name | DSP Mapping    | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|mul         | A*B            | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | (PCIN>>17)+A*B | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN+A*B       | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | (PCIN>>17)+A*B | 14     | 14     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN+A*B       | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | (PCIN>>17)+A*B | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | (PCIN>>17)+A*B | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | (PCIN>>17)+A*B | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | (PCIN>>17)+A*B | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B            | 21     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B       | 21     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | (PCIN>>17)+A*B | 21     | 18     | -      | -      | 38     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B            | 21     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B       | 21     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | (PCIN>>17)+A*B | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B            | 21     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B       | 21     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | (PCIN>>17)+A*B | 21     | 18     | -      | -      | 38     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B            | 21     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B       | 21     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | (PCIN>>17)+A*B | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B            | 21     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B       | 21     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | (PCIN>>17)+A*B | 21     | 18     | -      | -      | 38     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B            | 21     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B       | 21     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | (PCIN>>17)+A*B | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B            | 21     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B       | 21     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | (PCIN>>17)+A*B | 21     | 18     | -      | -      | 38     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B            | 21     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B       | 21     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | (PCIN>>17)+A*B | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | A*B            | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | (PCIN>>17)+A*B | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | PCIN+A*B       | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | (PCIN>>17)+A*B | 14     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | PCIN+A*B       | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | (PCIN>>17)+A*B | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | (PCIN>>17)+A*B | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | (PCIN>>17)+A*B | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | (PCIN>>17)+A*B | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | A*B            | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | (PCIN>>17)+A*B | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | PCIN+A*B       | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | (PCIN>>17)+A*B | 14     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | PCIN+A*B       | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | (PCIN>>17)+A*B | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | (PCIN>>17)+A*B | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | (PCIN>>17)+A*B | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | (PCIN>>17)+A*B | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B            | 21     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B       | 21     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | (PCIN>>17)+A*B | 21     | 18     | -      | -      | 38     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B            | 21     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B       | 21     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | (PCIN>>17)+A*B | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:26 ; elapsed = 00:01:10 . Memory (MB): peak = 2702.098 ; gain = 1015.281 ; free physical = 831 ; free virtual = 2211
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:02:41 ; elapsed = 00:02:27 . Memory (MB): peak = 3052.250 ; gain = 1365.434 ; free physical = 428 ; free virtual = 1832
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:03:04 ; elapsed = 00:02:50 . Memory (MB): peak = 3072.176 ; gain = 1385.359 ; free physical = 219 ; free virtual = 811
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:03:09 ; elapsed = 00:02:55 . Memory (MB): peak = 3082.629 ; gain = 1395.812 ; free physical = 172 ; free virtual = 775
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:03:09 ; elapsed = 00:02:55 . Memory (MB): peak = 3082.629 ; gain = 1395.812 ; free physical = 172 ; free virtual = 775
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:03:13 ; elapsed = 00:02:59 . Memory (MB): peak = 3082.629 ; gain = 1395.812 ; free physical = 174 ; free virtual = 773
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+DSP Final Report (the ' indicates corresponding REG is set)
++------------+--------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name | DSP Mapping  | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------+--------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|FPMul       | A*B          | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN>>17+A*B | 19     | 17     | -      | -      | 38     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B          | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN>>17+A*B | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B          | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 19     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN>>17+A*B | 19     | 17     | -      | -      | 38     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B          | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 19     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B          | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN>>17+A*B | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B          | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN>>17+A*B | 19     | 17     | -      | -      | 38     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B          | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN>>17+A*B | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B          | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN>>17+A*B | 19     | 17     | -      | -      | 38     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B          | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN>>17+A*B | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B          | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN>>17+A*B | 19     | 17     | -      | -      | 38     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B          | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN>>17+A*B | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B          | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 19     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN>>17+A*B | 19     | 17     | -      | -      | 38     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B          | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 19     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B          | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN>>17+A*B | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B          | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN>>17+A*B | 19     | 17     | -      | -      | 38     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B          | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN>>17+A*B | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B          | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN>>17+A*B | 19     | 17     | -      | -      | 38     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B          | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN>>17+A*B | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B          | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN>>17+A*B | 19     | 17     | -      | -      | 38     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B          | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 19     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN>>17+A*B | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|FPMul       | PCIN+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | A*B          | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN>>17+A*B | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN+A*B     | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN>>17+A*B | 30     | 18     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN+A*B     | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN>>17+A*B | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN>>17+A*B | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN>>17+A*B | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN>>17+A*B | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | PCIN+A*B     | 17     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | PCIN+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | PCIN>>17+A*B | 17     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | PCIN+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | PCIN>>17+A*B | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | PCIN+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | PCIN>>17+A*B | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | PCIN+A*B     | 17     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | PCIN+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | PCIN>>17+A*B | 17     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | PCIN+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | PCIN>>17+A*B | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | PCIN+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|div__GB1    | PCIN>>17+A*B | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
++------------+--------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |BUFG     |     2|
+|2     |CARRY4   |  6972|
+|3     |DSP48E1  |   117|
+|4     |LUT1     |   663|
+|5     |LUT2     |  4663|
+|6     |LUT3     | 18490|
+|7     |LUT4     |  2281|
+|8     |LUT5     |  6510|
+|9     |LUT6     |  6571|
+|10    |MUXF7    |  1146|
+|11    |MUXF8    |   512|
+|12    |RAMB36E1 |    37|
+|18    |FDRE     |  4832|
+|19    |LD       |    64|
+|20    |IBUF     |     2|
+|21    |OBUF     |    64|
++------+---------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:03:13 ; elapsed = 00:02:59 . Memory (MB): peak = 3082.629 ; gain = 1395.812 ; free physical = 174 ; free virtual = 773
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 102 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:03:10 ; elapsed = 00:02:57 . Memory (MB): peak = 3086.543 ; gain = 1347.582 ; free physical = 6129 ; free virtual = 6769
+Synthesis Optimization Complete : Time (s): cpu = 00:03:13 ; elapsed = 00:03:00 . Memory (MB): peak = 3086.543 ; gain = 1399.727 ; free physical = 6127 ; free virtual = 6769
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.32 ; elapsed = 00:00:00.32 . Memory (MB): peak = 3086.543 ; gain = 0.000 ; free physical = 6104 ; free virtual = 6758
+INFO: [Netlist 29-17] Analyzing 8848 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+WARNING: [Netlist 29-101] Netlist 'core' is not ideal for floorplanning, since the cellview 'core' contains a large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3130.652 ; gain = 0.000 ; free physical = 6088 ; free virtual = 6778
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 64 instances were transformed.
+  LD => LDCE: 64 instances
+
+Synth Design complete | Checksum: f297a087
+INFO: [Common 17-83] Releasing license: Synthesis
+236 Infos, 146 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:03:21 ; elapsed = 00:03:08 . Memory (MB): peak = 3130.688 ; gain = 1577.762 ; free physical = 6084 ; free virtual = 6776
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 7800.669; main = 2048.708; forked = 6135.271
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 16502.539; main = 3130.656; forked = 13804.355
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.2 ; elapsed = 00:00:00.06 . Memory (MB): peak = 3154.664 ; gain = 0.000 ; free physical = 6080 ; free virtual = 6780
+INFO: [Common 17-1381] The checkpoint '/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/core.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file core_utilization_synth.rpt -pb core_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Thu Nov  6 22:15:09 2025...
