@@ -1,10 +1,8 @@
 module alu (
+    input wire clk, // for multicycle division
+
     input wire [63:0] in1,
     input wire [63:0] in2,
-
-    // DEBUG
-    // input wire clk,
-    // input wire div_en,
 
     // ALUOp
     input wire [1:0] control,
@@ -41,13 +39,9 @@ module alu (
     );
 
     div div_instance (
+        .clk(clk),
         .in1(in1),
         .in2(in2),
-
-        // DEBUG
-        //.clk(clk),
-        //.div_en(div_en),
-
         .control(control),
         .out(div_out)
     );

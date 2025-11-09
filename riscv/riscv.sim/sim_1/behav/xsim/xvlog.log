@@ -8,11 +8,16 @@ INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/c
 INFO: [VRFC 10-311] analyzing module FCVT_int
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/fpu/FPAdder.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module FPAdder
+WARNING: [VRFC 10-3380] identifier 'temp3' is used before its declaration [/home/agamubuntu/Github/processor/core/fpu/FPAdder.v:73]
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/fpu/FPDiv.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module FPDiv
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/fpu/FPMax.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module FPMax
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/fpu/FPMin.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module FPMin
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/fpu/FPMul.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module FPMul
-WARNING: [VRFC 10-3380] identifier 'is_NaN' is used before its declaration [/home/agamubuntu/Github/processor/core/fpu/FPMul.v:73]
+WARNING: [VRFC 10-3380] identifier 'is_NaN' is used before its declaration [/home/agamubuntu/Github/processor/core/fpu/FPMul.v:96]
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/fpu/FPSub.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module FPSub
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/fpu/FSQRT.v" into library xil_defaultlib
@@ -37,29 +42,44 @@ INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/c
 INFO: [VRFC 10-311] analyzing module control
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/core.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module core
+WARNING: [VRFC 10-3380] identifier 'mem_write_data' is used before its declaration [/home/agamubuntu/Github/processor/core/core.v:310]
+WARNING: [VRFC 10-3380] identifier 'mem_write_data' is used before its declaration [/home/agamubuntu/Github/processor/core/core.v:319]
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/data_mem_unit/data_mem_control.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module data_mem_control
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/data_mem_unit/data_mem_unit.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module data_mem_unit
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/alu/div.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module div
 INFO: [VRFC 10-311] analyzing module div_legacy
+INFO: [VRFC 10-311] analyzing module div
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/pipeline/stall_unit/div_stall_unit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module div_stall_unit
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/pipeline/ex_mem_reg.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module ex_mem_reg
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/pipeline/ex_stage.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module ex_stage
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/fpu/feq.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module FEQ
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/fpu/fge.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module FLE
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/fpu/flt.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module FLT
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/pipeline/hazard/forwarding_unit.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module forwarding_unit
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/fpu/fpu.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module fpu
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/fpu/fpu_cntrl.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module fpu_cntrl
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/fpu/fsgnj.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module FSGNJ
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/fpu/fsgnjx.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module FSGNJX
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/pipeline/hazard/hdu.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module hdu
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/pipeline/id_ex_reg.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module id_ex_reg
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/pipeline/id_stage.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module id_stage
+WARNING: [VRFC 10-2938] 'branch_src' is already implicitly declared on line 68 [/home/agamubuntu/Github/processor/core/pipeline/id_stage.v:128]
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/pipeline/if_id_reg.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module if_id_reg
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/pipeline/if_stage.v" into library xil_defaultlib
@@ -74,8 +94,6 @@ INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/c
 INFO: [VRFC 10-311] analyzing module mem_wb_reg
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/alu/mul.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module mul
-INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/fpu/newton_ralphson.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module newton_ralphson
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/fpu/normalize.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module mantissa_normalize
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/fpu/quake3.v" into library xil_defaultlib

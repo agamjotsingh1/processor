@@ -3,8 +3,11 @@ module ex_stage #(
     parameter BUS_WIDTH=64,
     parameter ALU_CONTROL_WIDTH=2,
     parameter ALU_SELECT_WIDTH=3,
-    parameter FPU_OP_WIDTH=3
+    parameter FPU_OP_WIDTH=6
 )(
+    input wire clk, // for multicycle division
+    input wire rst,
+
     // Control Pins
     input wire jump_src,
     input wire alu_src,
@@ -26,6 +29,7 @@ module ex_stage #(
 
     input wire [(BUS_WIDTH - 1):0] pc,
 
+    output wire div_stall, // stall for multicycle division
     output wire [(BUS_WIDTH - 1):0] alu_fpu_result
 );
     wire [(BUS_WIDTH - 1):0] alu_fpu_in1 = read_data1;
@@ -35,11 +39,21 @@ module ex_stage #(
     wire [(BUS_WIDTH - 1):0] fpu_out;
 
     alu alu_instance (
+        .clk(clk),
         .in1(alu_fpu_in1),
         .in2(alu_fpu_in2),
         .control(control),
         .select(select),
         .out(alu_out)
+    );
+
+    wire is_div_instr = (select == 3'b010);
+
+    div_stall_unit div_stall_unit_instance (
+        .clk(clk),
+        .rst(rst),
+        .is_div_instr(is_div_instr),
+        .div_stall(div_stall)
     );
 
     fpu fpu_instance (

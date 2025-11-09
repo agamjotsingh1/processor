@@ -4,7 +4,7 @@ module id_stage #(
     parameter REGFILE_LEN=6,
     parameter ALU_CONTROL_WIDTH=2,
     parameter ALU_SELECT_WIDTH=3,
-    parameter FPU_OP_WIDTH=5,
+    parameter FPU_OP_WIDTH=6,
     parameter BRANCH_SRC_WIDTH=3
 )(
     input wire clk,
@@ -53,9 +53,6 @@ module id_stage #(
 
     // IMMGEN output
     output wire [(BUS_WIDTH - 1):0] imm,
-
-    // Branch prediction outputs
-    output wire [(BRANCH_SRC_WIDTH -1):0] branch_src,
 
     // NEXT IMM PC (wont go to next stage)
     output wire imm_pc,
@@ -128,17 +125,18 @@ module id_stage #(
     );
 
     // To branch or not to branch, that is the question
-    wire branch;
+    wire [(BRANCH_SRC_WIDTH -1):0] branch_src;
+    wire branch_taken;
 
     branch_control branch_control_instance (
         .branch_src(branch_src),
         .zero(zero),
         .neg(neg),
         .negu(negu),
-        .branch(branch)
+        .branch(branch_taken)
     );
 
-    assign imm_pc = branch | jump_src;
+    assign imm_pc = branch_taken | jump_src;
 
     localparam ADD_CNTRL = 2'b00;
 
@@ -156,5 +154,4 @@ module id_stage #(
         .control(ADD_CNTRL),
         .out(next_imm_pc)
     );
-
 endmodule

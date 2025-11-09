@@ -4,7 +4,7 @@ module id_ex_reg #(
     parameter REGFILE_LEN=6,
     parameter ALU_CONTROL_WIDTH=2,
     parameter ALU_SELECT_WIDTH=3,
-    parameter FPU_OP_WIDTH=5
+    parameter FPU_OP_WIDTH=6
 )(
     input wire clk,
     input wire rst,

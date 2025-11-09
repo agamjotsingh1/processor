@@ -81,6 +81,8 @@ read_verilog -library xil_defaultlib {
   /home/agamubuntu/Github/processor/core/fpu/FCVT_int.v
   /home/agamubuntu/Github/processor/core/fpu/FPAdder.v
   /home/agamubuntu/Github/processor/core/fpu/FPDiv.v
+  /home/agamubuntu/Github/processor/core/fpu/FPMax.v
+  /home/agamubuntu/Github/processor/core/fpu/FPMin.v
   /home/agamubuntu/Github/processor/core/fpu/FPMul.v
   /home/agamubuntu/Github/processor/core/fpu/FPSub.v
   /home/agamubuntu/Github/processor/core/fpu/FSQRT.v
@@ -96,11 +98,17 @@ read_verilog -library xil_defaultlib {
   /home/agamubuntu/Github/processor/core/data_mem_unit/data_mem_control.v
   /home/agamubuntu/Github/processor/core/data_mem_unit/data_mem_unit.v
   /home/agamubuntu/Github/processor/core/alu/div.v
+  /home/agamubuntu/Github/processor/core/pipeline/stall_unit/div_stall_unit.v
   /home/agamubuntu/Github/processor/core/pipeline/ex_mem_reg.v
   /home/agamubuntu/Github/processor/core/pipeline/ex_stage.v
+  /home/agamubuntu/Github/processor/core/fpu/feq.v
+  /home/agamubuntu/Github/processor/core/fpu/fge.v
+  /home/agamubuntu/Github/processor/core/fpu/flt.v
   /home/agamubuntu/Github/processor/core/pipeline/hazard/forwarding_unit.v
   /home/agamubuntu/Github/processor/core/fpu/fpu.v
   /home/agamubuntu/Github/processor/core/fpu/fpu_cntrl.v
+  /home/agamubuntu/Github/processor/core/fpu/fsgnj.v
+  /home/agamubuntu/Github/processor/core/fpu/fsgnjx.v
   /home/agamubuntu/Github/processor/core/pipeline/hazard/hdu.v
   /home/agamubuntu/Github/processor/core/pipeline/id_ex_reg.v
   /home/agamubuntu/Github/processor/core/pipeline/id_stage.v
@@ -111,7 +119,6 @@ read_verilog -library xil_defaultlib {
   /home/agamubuntu/Github/processor/core/pipeline/mem_stage.v
   /home/agamubuntu/Github/processor/core/pipeline/mem_wb_reg.v
   /home/agamubuntu/Github/processor/core/alu/mul.v
-  /home/agamubuntu/Github/processor/core/fpu/newton_ralphson.v
   /home/agamubuntu/Github/processor/core/fpu/normalize.v
   /home/agamubuntu/Github/processor/core/fpu/quake3.v
   /home/agamubuntu/Github/processor/core/regfile/regfile.v
@@ -123,6 +130,10 @@ read_verilog -library xil_defaultlib {
 }
 read_ip -quiet /home/agamubuntu/Github/processor/riscv/riscv.srcs/sources_1/ip/data_mem/data_mem.xci
 set_property used_in_implementation false [get_files -all /home/agamubuntu/Github/processor/riscv/riscv.gen/sources_1/ip/data_mem/data_mem_ooc.xdc]
+
+read_ip -quiet /home/agamubuntu/Github/processor/riscv/riscv.srcs/sources_1/ip/div_unsigned_gen/div_unsigned_gen.xci
+
+read_ip -quiet /home/agamubuntu/Github/processor/riscv/riscv.srcs/sources_1/ip/div_signed_gen/div_signed_gen.xci
 
 read_ip -quiet /home/agamubuntu/Github/processor/riscv/riscv.srcs/sources_1/ip/instr_mem_gen/instr_mem_gen.xci
 set_property used_in_implementation false [get_files -all /home/agamubuntu/Github/processor/riscv/riscv.gen/sources_1/ip/instr_mem_gen/instr_mem_gen_ooc.xdc]

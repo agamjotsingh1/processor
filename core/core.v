@@ -9,7 +9,7 @@ module core #(
     localparam REGFILE_LEN=6;
     localparam ALU_CONTROL_WIDTH=2;
     localparam ALU_SELECT_WIDTH=3;
-    localparam FPU_OP_WIDTH=5;
+    localparam FPU_OP_WIDTH=6;
     localparam BRANCH_SRC_WIDTH=3;
     localparam MEM_BIT_WIDTH=2;
     localparam FORWARD_ALU_SELECT_WIDTH=2;
@@ -45,6 +45,7 @@ module core #(
     wire [(BUS_WIDTH - 1):0] if_pc;
     wire [(INSTR_WIDTH - 1):0] if_instr;
 
+    (* dont_touch = "yes" *)
     if_stage #(
         .BUS_WIDTH(BUS_WIDTH),
         .INSTR_MEM_LEN(INSTR_MEM_LEN),
@@ -71,6 +72,7 @@ module core #(
     wire [(BUS_WIDTH - 1):0] id_pc;
     wire [(INSTR_WIDTH - 1):0] id_instr;
 
+    (* dont_touch = "yes" *)
     if_id_reg #(
         .BUS_WIDTH(BUS_WIDTH),
         .INSTR_WIDTH(INSTR_WIDTH)
@@ -119,9 +121,7 @@ module core #(
     // IMMGEN output
     wire [(BUS_WIDTH - 1):0] id_imm;
 
-    // Branch prediction outputs
-    wire [(BRANCH_SRC_WIDTH -1):0] id_branch_src;
-
+    (* dont_touch = "yes" *)
     id_stage #(
         .BUS_WIDTH(BUS_WIDTH),
         .INSTR_WIDTH(INSTR_WIDTH),
@@ -176,9 +176,6 @@ module core #(
         // IMMGEN output
         .imm(id_imm),
 
-        // Branch prediction outputs
-        .branch_src(id_branch_src),
-
         .imm_pc(imm_pc),
         .next_imm_pc(next_imm_pc)
     );
@@ -222,6 +219,7 @@ module core #(
     // IMMGEN output
     wire [(BUS_WIDTH - 1):0] ex_imm;
 
+    (* dont_touch = "yes" *)
     id_ex_reg #(
         .BUS_WIDTH(BUS_WIDTH),
         .INSTR_WIDTH(INSTR_WIDTH),
@@ -309,7 +307,7 @@ module core #(
     // 01 -> from MEM/WB
     // 00 -> Neither
     assign ex_forwarded_read_data1 =
-        (forward_A == 2'b10) ? mem_alu_fpu_result:
+        (forward_A == 2'b10) ? mem_write_data:
         (forward_A == 2'b01) ? wb_write_data:
         ex_read_data1;  
 
@@ -318,16 +316,21 @@ module core #(
     // 01 -> from MEM/WB
     // 00 -> Neither
     assign ex_forwarded_read_data2 =
-        (forward_B == 2'b10) ? mem_alu_fpu_result:
+        (forward_B == 2'b10) ? mem_write_data:
         (forward_B == 2'b01) ? wb_write_data:
         ex_read_data2;
 
+    wire div_stall;
+
+    (* dont_touch = "yes" *)
     ex_stage #(
         .BUS_WIDTH(BUS_WIDTH),
         .ALU_CONTROL_WIDTH(ALU_CONTROL_WIDTH),
         .ALU_SELECT_WIDTH(ALU_SELECT_WIDTH),
         .FPU_OP_WIDTH(FPU_OP_WIDTH)
     ) ex_stage_instance (
+        .clk(clk),
+        .rst(rst),
         .alu_src(ex_alu_src),
         .alu_fpu(ex_alu_fpu),
         .jump_src(ex_jump_src),
@@ -343,6 +346,7 @@ module core #(
         .imm(ex_imm),
         .pc(ex_pc),
         
+        .div_stall(div_stall),
         .alu_fpu_result(ex_alu_fpu_result)
     );
 
@@ -377,6 +381,7 @@ module core #(
     // first "mem" indicates stage, next "mem_in" is the variable name
     wire [(BUS_WIDTH - 1):0] mem_mem_in;
 
+    (* dont_touch = "yes" *)
     ex_mem_reg #(
         .BUS_WIDTH(BUS_WIDTH),
         .INSTR_WIDTH(INSTR_WIDTH),
@@ -430,6 +435,7 @@ module core #(
     wire [(BUS_WIDTH - 1):0] mem_mem_out;
     wire [(BUS_WIDTH - 1):0] mem_write_data;
 
+    (* dont_touch = "yes" *)
     mem_stage #(
         .BUS_WIDTH(BUS_WIDTH),
         .INSTR_WIDTH(INSTR_WIDTH),
@@ -466,6 +472,7 @@ module core #(
     wire wb_mem_to_reg;
     wire [(BUS_WIDTH - 1):0] wb_mem_out;
 
+    (* dont_touch = "yes" *)
     mem_wb_reg #(
         .BUS_WIDTH(BUS_WIDTH),
         .INSTR_WIDTH(INSTR_WIDTH),
@@ -503,8 +510,9 @@ module core #(
     wire load_stall;
 
     // Branch Hazard Stalling
-    wire branch_stall;
+    wire jump_stall;
 
+    (* dont_touch = "yes" *)
     stall_unit stall_unit_instance (
         .clk(clk),
         .rst(rst),
@@ -512,13 +520,13 @@ module core #(
         .out_stall(cumpolsory_stall)
     );
 
-    assign pc_stall = cumpolsory_stall | load_stall;
-    assign if_id_stall = cumpolsory_stall | load_stall;
-    assign id_ex_stall = cumpolsory_stall;
-    assign ex_mem_stall = cumpolsory_stall;
-    assign mem_wb_stall = cumpolsory_stall;
+    assign pc_stall = cumpolsory_stall | load_stall | div_stall;
+    assign if_id_stall = cumpolsory_stall | load_stall | div_stall;
+    assign id_ex_stall = cumpolsory_stall | div_stall;
+    assign ex_mem_stall = cumpolsory_stall | div_stall;
+    assign mem_wb_stall = cumpolsory_stall | div_stall;
 
-    assign if_id_rst = (~cumpolsory_stall) & branch_stall;
+    assign if_id_rst = (~cumpolsory_stall) & jump_stall;
     assign id_ex_rst = (~cumpolsory_stall) & load_stall;
     assign ex_mem_rst = 1'b0;
     assign mem_wb_rst = 1'b0;
@@ -528,6 +536,7 @@ module core #(
     // FORWARDING UNIT
     //==============================================
 
+    (* dont_touch = "yes" *)
     forwarding_unit #(
         .REGFILE_LEN(REGFILE_LEN),
         .INSTR_WIDTH(INSTR_WIDTH),
@@ -556,11 +565,11 @@ module core #(
         .forward_jalr_MEM_WB(forward_jalr_MEM_WB)
     );
 
-
     //==============================================
     // HAZARD DETECTION UNIT
     //==============================================
 
+    (* dont_touch = "yes" *)
     hdu #(
         .REGFILE_LEN(REGFILE_LEN)
     ) hdu_instance (
@@ -570,12 +579,10 @@ module core #(
         .rs2_IF_ID(id_rs2),
         .rd_ID_EX(ex_rd),
         .mem_read_ID_EX(ex_mem_read),
-        .branch_src_IF_ID(id_branch_src),
+        .jump_taken_IF_ID(imm_pc),
         .load_stall(load_stall),
-        .branch_stall(branch_stall)
+        .jump_stall(jump_stall)
     );
 
-
     assign debug = wb_write_data;
-
 endmodule

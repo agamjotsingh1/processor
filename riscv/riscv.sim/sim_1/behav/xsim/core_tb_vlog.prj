@@ -6,6 +6,8 @@ verilog xil_defaultlib  --include "../../../../../../../Xilinx/2025.1/data/rsb/b
 "../../../../../core/fpu/FCVT_int.v" \
 "../../../../../core/fpu/FPAdder.v" \
 "../../../../../core/fpu/FPDiv.v" \
+"../../../../../core/fpu/FPMax.v" \
+"../../../../../core/fpu/FPMin.v" \
 "../../../../../core/fpu/FPMul.v" \
 "../../../../../core/fpu/FPSub.v" \
 "../../../../../core/fpu/FSQRT.v" \
@@ -22,11 +24,17 @@ verilog xil_defaultlib  --include "../../../../../../../Xilinx/2025.1/data/rsb/b
 "../../../../../core/data_mem_unit/data_mem_control.v" \
 "../../../../../core/data_mem_unit/data_mem_unit.v" \
 "../../../../../core/alu/div.v" \
+"../../../../../core/pipeline/stall_unit/div_stall_unit.v" \
 "../../../../../core/pipeline/ex_mem_reg.v" \
 "../../../../../core/pipeline/ex_stage.v" \
+"../../../../../core/fpu/feq.v" \
+"../../../../../core/fpu/fge.v" \
+"../../../../../core/fpu/flt.v" \
 "../../../../../core/pipeline/hazard/forwarding_unit.v" \
 "../../../../../core/fpu/fpu.v" \
 "../../../../../core/fpu/fpu_cntrl.v" \
+"../../../../../core/fpu/fsgnj.v" \
+"../../../../../core/fpu/fsgnjx.v" \
 "../../../../../core/pipeline/hazard/hdu.v" \
 "../../../../../core/pipeline/id_ex_reg.v" \
 "../../../../../core/pipeline/id_stage.v" \
@@ -37,7 +45,6 @@ verilog xil_defaultlib  --include "../../../../../../../Xilinx/2025.1/data/rsb/b
 "../../../../../core/pipeline/mem_stage.v" \
 "../../../../../core/pipeline/mem_wb_reg.v" \
 "../../../../../core/alu/mul.v" \
-"../../../../../core/fpu/newton_ralphson.v" \
 "../../../../../core/fpu/normalize.v" \
 "../../../../../core/fpu/quake3.v" \
 "../../../../../core/regfile/regfile.v" \

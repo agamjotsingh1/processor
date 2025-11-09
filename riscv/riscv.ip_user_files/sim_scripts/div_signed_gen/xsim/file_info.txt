@@ -1,0 +1,1 @@
+div_signed_gen.vhd,vhdl,xil_defaultlib,../../../../riscv.gen/sources_1/ip/div_signed_gen/sim/div_signed_gen.vhd,incdir="../../../../../../../Xilinx/2025.1/data/rsb/busdef"
