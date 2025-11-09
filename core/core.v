@@ -24,6 +24,7 @@ module core #(
     wire [(BUS_WIDTH - 1):0] next_imm_pc;
     wire [(REGFILE_LEN - 1):0] wb_rd;
     wire [(BUS_WIDTH - 1):0] wb_write_data;
+    wire id_branch_taken;
 
     // Forwarding interconnects
     wire [(FORWARD_ALU_SELECT_WIDTH - 1):0] forward_A;
@@ -31,6 +32,13 @@ module core #(
     wire forward_jalr_ID_EX;
     wire forward_jalr_EX_MEM;
     wire forward_jalr_MEM_WB;
+    wire forward_branch_ID_EX_A;
+    wire forward_branch_ID_EX_B;
+    wire forward_branch_EX_MEM_A;
+    wire forward_branch_EX_MEM_B;
+    wire forward_branch_MEM_WB_A;
+    wire forward_branch_MEM_WB_;
+
 
     wire [(BUS_WIDTH - 1):0] ex_alu_fpu_result;
     wire [(BUS_WIDTH - 1):0] mem_alu_fpu_result;
@@ -44,6 +52,7 @@ module core #(
 
     wire [(BUS_WIDTH - 1):0] if_pc;
     wire [(INSTR_WIDTH - 1):0] if_instr;
+    wire branch_prediction_failed;
 
     (* dont_touch = "yes" *)
     if_stage #(
@@ -57,10 +66,10 @@ module core #(
         .imm_pc(imm_pc),
         .next_imm_pc(next_imm_pc),
         .pc(if_pc),
-        .instr(if_instr)
+        .instr(if_instr),
+        .branch_prediction_failed(branch_prediction_failed),
+        .id_branch_taken(id_branch_taken)
     );
-
-
 
     //==============================================
     // IF ID PIPELINE REGISTER
@@ -121,6 +130,8 @@ module core #(
     // IMMGEN output
     wire [(BUS_WIDTH - 1):0] id_imm;
 
+    wire id_jump_taken;
+
     (* dont_touch = "yes" *)
     id_stage #(
         .BUS_WIDTH(BUS_WIDTH),
@@ -142,9 +153,17 @@ module core #(
         .forward_jalr_ID_EX(forward_jalr_ID_EX),
         .forward_jalr_EX_MEM(forward_jalr_EX_MEM),
         .forward_jalr_MEM_WB(forward_jalr_MEM_WB),
-        .id_ex_rs1_val(ex_alu_fpu_result),
-        .ex_mem_rs1_val(mem_alu_fpu_result),
-        .mem_wb_rs1_val(wb_reg_write_data),
+
+        .forward_branch_ID_EX_A(forward_branch_ID_EX_A),
+        .forward_branch_ID_EX_B(forward_branch_ID_EX_B),
+        .forward_branch_EX_MEM_A(forward_branch_EX_MEM_A),
+        .forward_branch_EX_MEM_B(forward_branch_EX_MEM_B),
+        .forward_branch_MEM_WB_A(forward_branch_MEM_WB_A),
+        .forward_branch_MEM_WB_B(forward_branch_MEM_WB_B),
+
+        .id_ex_reg_val(ex_alu_fpu_result),
+        .ex_mem_reg_val(mem_alu_fpu_result),
+        .mem_wb_reg_val(wb_reg_write_data),
 
         // CONTROL Signals
         .reg_write(id_reg_write),
@@ -175,6 +194,9 @@ module core #(
 
         // IMMGEN output
         .imm(id_imm),
+
+        .jump_taken(id_jump_taken),
+        .branch_taken(id_branch_taken),
 
         .imm_pc(imm_pc),
         .next_imm_pc(next_imm_pc)
@@ -551,6 +573,7 @@ module core #(
         .instr_IF_ID(id_instr),
         
         .rs1_IF_ID(id_rs1),
+        .rs2_IF_ID(id_rs2),
         .rs1_ID_EX(ex_rs1),
         .rs2_ID_EX(ex_rs2),
         .rd_ID_EX(ex_rd),
@@ -562,9 +585,16 @@ module core #(
         
         .forward_jalr_ID_EX(forward_jalr_ID_EX),
         .forward_jalr_EX_MEM(forward_jalr_EX_MEM),
-        .forward_jalr_MEM_WB(forward_jalr_MEM_WB)
-    );
+        .forward_jalr_MEM_WB(forward_jalr_MEM_WB),
 
+        .forward_branch_ID_EX_A(forward_branch_ID_EX_A),
+        .forward_branch_ID_EX_B(forward_branch_ID_EX_B),
+        .forward_branch_EX_MEM_A(forward_branch_EX_MEM_A),
+        .forward_branch_EX_MEM_B(forward_branch_EX_MEM_B),
+        .forward_branch_MEM_WB_A(forward_branch_MEM_WB_A),
+        .forward_branch_MEM_WB_B(forward_branch_MEM_WB_B)
+    );
+    
     //==============================================
     // HAZARD DETECTION UNIT
     //==============================================
@@ -579,7 +609,8 @@ module core #(
         .rs2_IF_ID(id_rs2),
         .rd_ID_EX(ex_rd),
         .mem_read_ID_EX(ex_mem_read),
-        .jump_taken_IF_ID(imm_pc),
+        .branch_prediction_failed(branch_prediction_failed),
+        .jump_taken_IF_ID(id_jump_taken),
         .load_stall(load_stall),
         .jump_stall(jump_stall)
     );

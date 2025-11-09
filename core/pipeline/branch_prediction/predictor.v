@@ -10,13 +10,13 @@ reg [4:0] incoming_sequence;
 reg [15:0] matching_sequence;
 
 wire enable;
-assign enable = (instruction[6:0] == 7'b1100011) ? 1'b1 : 1'b0;
+assign enable = (instruction[6:0] == 7'b1100011);
 
 always @(posedge clk) begin
     if(reset) begin
-            incoming_sequence <= 5'b00000;
-            matching_sequence <= {16{1'b1}};
-        end
+        incoming_sequence <= 5'b00000;
+        matching_sequence <= {16'b0};
+    end
 
     else begin
         case (enable)

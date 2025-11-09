@@ -15,9 +15,16 @@ module id_stage #(
     input wire forward_jalr_ID_EX,
     input wire forward_jalr_EX_MEM,
     input wire forward_jalr_MEM_WB,
-    input wire [(BUS_WIDTH - 1):0] id_ex_rs1_val,
-    input wire [(BUS_WIDTH - 1):0] ex_mem_rs1_val,
-    input wire [(BUS_WIDTH - 1):0] mem_wb_rs1_val,
+    input wire forward_branch_ID_EX_A,
+    input wire forward_branch_ID_EX_B,
+    input wire forward_branch_EX_MEM_A,
+    input wire forward_branch_EX_MEM_B,
+    input wire forward_branch_MEM_WB_A,
+    input wire forward_branch_MEM_WB_B,
+
+    input wire [(BUS_WIDTH - 1):0] id_ex_reg_val,
+    input wire [(BUS_WIDTH - 1):0] ex_mem_reg_val,
+    input wire [(BUS_WIDTH - 1):0] mem_wb_reg_val,
 
     // from WB stage
     input wire [(REGFILE_LEN - 1):0] wb_rd,
@@ -53,6 +60,9 @@ module id_stage #(
 
     // IMMGEN output
     output wire [(BUS_WIDTH - 1):0] imm,
+
+    output wire jump_taken,
+    output wire branch_taken,
 
     // NEXT IMM PC (wont go to next stage)
     output wire imm_pc,
@@ -116,9 +126,22 @@ module id_stage #(
     // BRANCH Flags
     wire zero, neg, negu;
 
+    // BRANCH Forwarding detection
+    wire [(BUS_WIDTH - 1):0] comparator_forwarded_read_data1 =
+        forward_branch_ID_EX_A ? id_ex_reg_val:
+        forward_branch_EX_MEM_A ? ex_mem_reg_val:
+        forward_branch_MEM_WB_A ? mem_wb_reg_val:
+        read_data1;
+
+    wire [(BUS_WIDTH - 1):0] comparator_forwarded_read_data2 =
+        forward_branch_ID_EX_B ? id_ex_reg_val:
+        forward_branch_EX_MEM_B ? ex_mem_reg_val:
+        forward_branch_MEM_WB_B ? mem_wb_reg_val:
+        read_data2;
+
     comparator comparator_instance (
-        .in1(read_data1),
-        .in2(read_data2),
+        .in1(comparator_forwarded_read_data1),
+        .in2(comparator_forwarded_read_data2),
         .zero(zero),
         .neg(neg),
         .negu(negu)
@@ -126,7 +149,6 @@ module id_stage #(
 
     // To branch or not to branch, that is the question
     wire [(BRANCH_SRC_WIDTH -1):0] branch_src;
-    wire branch_taken;
 
     branch_control branch_control_instance (
         .branch_src(branch_src),
@@ -137,14 +159,15 @@ module id_stage #(
     );
 
     assign imm_pc = branch_taken | jump_src;
+    assign jump_taken = jump_src;
 
     localparam ADD_CNTRL = 2'b00;
 
     // JALR Forwarding detection
     wire [(BUS_WIDTH - 1):0] forwarded_read_data1 =
-        forward_jalr_ID_EX ? id_ex_rs1_val:
-        forward_jalr_EX_MEM ? ex_mem_rs1_val:
-        forward_jalr_MEM_WB ? mem_wb_rs1_val:
+        forward_jalr_ID_EX ? id_ex_reg_val:
+        forward_jalr_EX_MEM ? ex_mem_reg_val:
+        forward_jalr_MEM_WB ? mem_wb_reg_val:
         read_data1;
 
     // adding immediate to pc (or forwarded register data in jalr)

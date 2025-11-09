@@ -36,14 +36,16 @@ INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/c
 INFO: [VRFC 10-311] analyzing module alu_control
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/control/branch_control.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module branch_control
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/pipeline/branch_prediction/branch_predictor.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module branch_predictor
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/pipeline/comparator/comparator.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module comparator
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/control/control.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module control
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/core.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module core
-WARNING: [VRFC 10-3380] identifier 'mem_write_data' is used before its declaration [/home/agamubuntu/Github/processor/core/core.v:310]
-WARNING: [VRFC 10-3380] identifier 'mem_write_data' is used before its declaration [/home/agamubuntu/Github/processor/core/core.v:319]
+WARNING: [VRFC 10-3380] identifier 'mem_write_data' is used before its declaration [/home/agamubuntu/Github/processor/core/core.v:332]
+WARNING: [VRFC 10-3380] identifier 'mem_write_data' is used before its declaration [/home/agamubuntu/Github/processor/core/core.v:341]
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/data_mem_unit/data_mem_control.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module data_mem_control
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/data_mem_unit/data_mem_unit.v" into library xil_defaultlib
@@ -79,7 +81,7 @@ INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/c
 INFO: [VRFC 10-311] analyzing module id_ex_reg
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/pipeline/id_stage.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module id_stage
-WARNING: [VRFC 10-2938] 'branch_src' is already implicitly declared on line 68 [/home/agamubuntu/Github/processor/core/pipeline/id_stage.v:128]
+WARNING: [VRFC 10-2938] 'branch_src' is already implicitly declared on line 78 [/home/agamubuntu/Github/processor/core/pipeline/id_stage.v:151]
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/pipeline/if_id_reg.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module if_id_reg
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/pipeline/if_stage.v" into library xil_defaultlib

@@ -18,6 +18,7 @@ verilog xil_defaultlib  --include "../../../../../../../Xilinx/2025.1/data/rsb/b
 "../../../../../core/alu/alu.v" \
 "../../../../../core/alu/alu_control.v" \
 "../../../../../core/control/branch_control.v" \
+"../../../../../core/pipeline/branch_prediction/branch_predictor.v" \
 "../../../../../core/pipeline/comparator/comparator.v" \
 "../../../../../core/control/control.v" \
 "../../../../../core/core.v" \

@@ -12,6 +12,7 @@ module forwarding_unit #(
     input wire [(INSTR_WIDTH - 1):0] instr_IF_ID,
 
     input wire [(REGFILE_LEN - 1):0] rs1_IF_ID,
+    input wire [(REGFILE_LEN - 1):0] rs2_IF_ID,
     input wire [(REGFILE_LEN - 1):0] rs1_ID_EX,
     input wire [(REGFILE_LEN - 1):0] rs2_ID_EX,
     input wire [(REGFILE_LEN - 1):0] rd_ID_EX,
@@ -23,7 +24,13 @@ module forwarding_unit #(
 
     output wire forward_jalr_ID_EX,
     output wire forward_jalr_EX_MEM,
-    output wire forward_jalr_MEM_WB
+    output wire forward_jalr_MEM_WB,
+    output wire forward_branch_ID_EX_A,
+    output wire forward_branch_ID_EX_B,
+    output wire forward_branch_EX_MEM_A,
+    output wire forward_branch_EX_MEM_B,
+    output wire forward_branch_MEM_WB_A,
+    output wire forward_branch_MEM_WB_B
 );
     // Checking write enabled
     wire write_enabled_EX_MEM = reg_write_EX_MEM;
@@ -89,4 +96,18 @@ module forwarding_unit #(
 
     // Checking JALR forwarding from MEM/WB to IF/ID
     assign forward_jalr_MEM_WB = (is_jalr & reg_write_MEM_WB & (rs1_IF_ID == rd_MEM_WB));
+
+    wire is_branch = opcode_IF_ID == 7'b1100011;
+
+    // Checking JALR forwarding from ID/EX to IF/ID
+    assign forward_branch_ID_EX_A = (is_branch & reg_write_ID_EX & (rs1_IF_ID == rd_ID_EX));
+    assign forward_branch_ID_EX_B = (is_branch & reg_write_ID_EX & (rs2_IF_ID == rd_ID_EX));
+
+    // Checking JALR forwarding from EX/MEM to IF/ID
+    assign forward_branch_EX_MEM_A = (is_branch & reg_write_EX_MEM & (rs1_IF_ID == rd_EX_MEM));
+    assign forward_branch_EX_MEM_B = (is_branch & reg_write_EX_MEM & (rs2_IF_ID == rd_EX_MEM));
+
+    // Checking JALR forwarding from MEM/WB to IF/ID
+    assign forward_branch_MEM_WB_A = (is_branch & reg_write_MEM_WB & (rs1_IF_ID == rd_MEM_WB));
+    assign forward_branch_MEM_WB_B = (is_branch & reg_write_MEM_WB & (rs2_IF_ID == rd_MEM_WB));
 endmodule
