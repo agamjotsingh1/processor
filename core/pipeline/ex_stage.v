@@ -56,12 +56,12 @@ module ex_stage #(
         .div_stall(div_stall)
     );
 
-    fpu fpu_instance (
+    /*fpu fpu_instance (
         .in1(alu_fpu_in1),
         .in2(alu_fpu_in2),
         .fpu_op(fpu_op),
         .out(fpu_out)
-    );
+    );*/
 
     wire [(BUS_WIDTH - 1):0] pc_plus_4 = pc + 4;
     wire [(BUS_WIDTH - 1):0] alu_fpu_out = alu_fpu ? fpu_out: alu_out;

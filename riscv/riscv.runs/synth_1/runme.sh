@@ -37,4 +37,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log core.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source core.tcl
+EAStep vivado -log design_1_wrapper.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_wrapper.tcl

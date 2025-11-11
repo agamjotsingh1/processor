@@ -1,0 +1,93 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (lin64) Build 6140274 Wed May 21 22:58:25 MDT 2025
+| Date         : Tue Nov 11 16:32:14 2025
+| Host         : agam running 64-bit Ubuntu 22.04.5 LTS
+| Command      : report_methodology -file design_1_wrapper_methodology_drc_routed.rpt -pb design_1_wrapper_methodology_drc_routed.pb -rpx design_1_wrapper_methodology_drc_routed.rpx
+| Design       : design_1_wrapper
+| Device       : xc7z020clg400-1
+| Speed File   : -1
+| Design State : Fully Routed
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Report Methodology
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+             Max checks: <unlimited>
+             Checks found: 11
++-----------+------------------+---------------------------------------------+--------+
+| Rule      | Severity         | Description                                 | Checks |
++-----------+------------------+---------------------------------------------+--------+
+| TIMING-14 | Critical Warning | LUT on the clock tree                       | 1      |
+| TIMING-20 | Warning          | Non-clocked latch                           | 8      |
+| ULMTCS-1  | Warning          | Control Sets use limits recommend reduction | 1      |
+| LATCH-1   | Advisory         | Existing latches in the design              | 1      |
++-----------+------------------+---------------------------------------------+--------+
+
+2. REPORT DETAILS
+-----------------
+TIMING-14#1 Critical Warning
+LUT on the clock tree  
+The LUT design_1_i/core_0/inst/if_stage_instance_i_1 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-20#1 Warning
+Non-clocked latch  
+The latch design_1_i/core_0/inst/id_stage_instance/fpu_cntrl_instance/fpu_op_reg[0] cannot be properly analyzed as its control pin design_1_i/core_0/inst/id_stage_instance/fpu_cntrl_instance/fpu_op_reg[0]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#2 Warning
+Non-clocked latch  
+The latch design_1_i/core_0/inst/id_stage_instance/fpu_cntrl_instance/fpu_op_reg[1] cannot be properly analyzed as its control pin design_1_i/core_0/inst/id_stage_instance/fpu_cntrl_instance/fpu_op_reg[1]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#3 Warning
+Non-clocked latch  
+The latch design_1_i/core_0/inst/id_stage_instance/fpu_cntrl_instance/fpu_op_reg[2] cannot be properly analyzed as its control pin design_1_i/core_0/inst/id_stage_instance/fpu_cntrl_instance/fpu_op_reg[2]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#4 Warning
+Non-clocked latch  
+The latch design_1_i/core_0/inst/id_stage_instance/fpu_cntrl_instance/fpu_op_reg[3] cannot be properly analyzed as its control pin design_1_i/core_0/inst/id_stage_instance/fpu_cntrl_instance/fpu_op_reg[3]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#5 Warning
+Non-clocked latch  
+The latch design_1_i/core_0/inst/id_stage_instance/fpu_cntrl_instance/fpu_op_reg[4] cannot be properly analyzed as its control pin design_1_i/core_0/inst/id_stage_instance/fpu_cntrl_instance/fpu_op_reg[4]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#6 Warning
+Non-clocked latch  
+The latch design_1_i/core_0/inst/id_stage_instance/fpu_cntrl_instance/fpu_op_reg[5] cannot be properly analyzed as its control pin design_1_i/core_0/inst/id_stage_instance/fpu_cntrl_instance/fpu_op_reg[5]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#7 Warning
+Non-clocked latch  
+The latch design_1_i/core_0/inst/id_stage_instance/fpu_cntrl_instance/fpu_rd_reg cannot be properly analyzed as its control pin design_1_i/core_0/inst/id_stage_instance/fpu_cntrl_instance/fpu_rd_reg/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#8 Warning
+Non-clocked latch  
+The latch design_1_i/core_0/inst/id_stage_instance/fpu_cntrl_instance/fpu_rs1_reg cannot be properly analyzed as its control pin design_1_i/core_0/inst/id_stage_instance/fpu_cntrl_instance/fpu_rs1_reg/G is not reached by a timing clock
+Related violations: <none>
+
+ULMTCS-1#1 Warning
+Control Sets use limits recommend reduction  
+This design uses 1057 control sets (vs. available limit of 13300, determined by 1 control set per CLB). This exceeds the control set use guideline of 7.5 percent. This is at a level where reduction is RECOMMENDED (see UG949). Use report_control_sets to get more details.
+Related violations: <none>
+
+LATCH-1#1 Advisory
+Existing latches in the design  
+There are 8 latches found in the design. Inferred latches are often the result of HDL coding mistakes, such as incomplete if or case statements.
+Related violations: <none>
+
+

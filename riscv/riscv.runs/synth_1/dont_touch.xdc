@@ -15,6 +15,72 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==div_signed_
 # IP: ip/instr_mem_gen/instr_mem_gen.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==instr_mem_gen || ORIG_REF_NAME==instr_mem_gen} -quiet] -quiet
 
+# Block Designs: bd/design_1/design_1.bd
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1 || ORIG_REF_NAME==design_1} -quiet] -quiet
+
+# IP: bd/design_1/ip/design_1_processing_system7_0_0/design_1_processing_system7_0_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_processing_system7_0_0 || ORIG_REF_NAME==design_1_processing_system7_0_0} -quiet] -quiet
+
+# IP: bd/design_1/ip/design_1_axi_bram_ctrl_0_0/design_1_axi_bram_ctrl_0_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_axi_bram_ctrl_0_0 || ORIG_REF_NAME==design_1_axi_bram_ctrl_0_0} -quiet] -quiet
+
+# IP: bd/design_1/ip/design_1_core_0_0/design_1_core_0_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_core_0_0 || ORIG_REF_NAME==design_1_core_0_0} -quiet] -quiet
+
+# IP: ip/data_mem/data_mem.xci
+#dup# set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==data_mem || ORIG_REF_NAME==data_mem} -quiet] -quiet
+
+# IP: ip/div_unsigned_gen/div_unsigned_gen.xci
+#dup# set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==div_unsigned_gen || ORIG_REF_NAME==div_unsigned_gen} -quiet] -quiet
+
+# IP: ip/div_signed_gen/div_signed_gen.xci
+#dup# set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==div_signed_gen || ORIG_REF_NAME==div_signed_gen} -quiet] -quiet
+
+# IP: ip/instr_mem_gen/instr_mem_gen.xci
+#dup# set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==instr_mem_gen || ORIG_REF_NAME==instr_mem_gen} -quiet] -quiet
+
+# IP: bd/design_1/ip/design_1_axi_smc_0/design_1_axi_smc_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_axi_smc_0 || ORIG_REF_NAME==design_1_axi_smc_0} -quiet] -quiet
+
+# IP: bd/design_1/ip/design_1_rst_ps7_0_50M_0/design_1_rst_ps7_0_50M_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_rst_ps7_0_50M_0 || ORIG_REF_NAME==design_1_rst_ps7_0_50M_0} -quiet] -quiet
+
+# IP: bd/design_1/ip/design_1_axi_gpio_0_0/design_1_axi_gpio_0_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_axi_gpio_0_0 || ORIG_REF_NAME==design_1_axi_gpio_0_0} -quiet] -quiet
+
+# IP: bd/design_1/ip/design_1_axi_gpio_0_1/design_1_axi_gpio_0_1.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_axi_gpio_0_1 || ORIG_REF_NAME==design_1_axi_gpio_0_1} -quiet] -quiet
+
+# IP: bd/design_1/ip/design_1_axi_gpio_0_2/design_1_axi_gpio_0_2.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_axi_gpio_0_2 || ORIG_REF_NAME==design_1_axi_gpio_0_2} -quiet] -quiet
+
+# IP: bd/design_1/ip/design_1_axi_gpio_0_3/design_1_axi_gpio_0_3.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_axi_gpio_0_3 || ORIG_REF_NAME==design_1_axi_gpio_0_3} -quiet] -quiet
+
+# IP: bd/design_1/ip/design_1_axi_bram_ctrl_0_1/design_1_axi_bram_ctrl_0_1.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_axi_bram_ctrl_0_1 || ORIG_REF_NAME==design_1_axi_bram_ctrl_0_1} -quiet] -quiet
+
+# IP: bd/design_1/ip/design_1_axi_gpio_0_4/design_1_axi_gpio_0_4.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_axi_gpio_0_4 || ORIG_REF_NAME==design_1_axi_gpio_0_4} -quiet] -quiet
+
+# IP: bd/design_1/ip/design_1_axi_gpio_0_5/design_1_axi_gpio_0_5.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_axi_gpio_0_5 || ORIG_REF_NAME==design_1_axi_gpio_0_5} -quiet] -quiet
+
+# IP: bd/design_1/ip/design_1_axi_gpio_0_6/design_1_axi_gpio_0_6.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_axi_gpio_0_6 || ORIG_REF_NAME==design_1_axi_gpio_0_6} -quiet] -quiet
+
+# IP: bd/design_1/ip/design_1_axi_debug_col_0/design_1_axi_debug_col_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_axi_debug_col_0 || ORIG_REF_NAME==design_1_axi_debug_col_0} -quiet] -quiet
+
+# IP: bd/design_1/ip/design_1_axi_debug_row_0/design_1_axi_debug_row_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_axi_debug_row_0 || ORIG_REF_NAME==design_1_axi_debug_row_0} -quiet] -quiet
+
 # XDC: /home/agamubuntu/Github/processor/riscv/riscv.gen/sources_1/ip/data_mem/data_mem_ooc.xdc
 
 # XDC: /home/agamubuntu/Github/processor/riscv/riscv.gen/sources_1/ip/instr_mem_gen/instr_mem_gen_ooc.xdc
+
+# XDC: /home/agamubuntu/Github/processor/riscv/riscv.gen/sources_1/ip/data_mem/data_mem_ooc.xdc
+
+# XDC: /home/agamubuntu/Github/processor/riscv/riscv.gen/sources_1/ip/instr_mem_gen/instr_mem_gen_ooc.xdc
+
+# XDC: /home/agamubuntu/Github/processor/riscv/riscv.gen/sources_1/bd/design_1/design_1_ooc.xdc

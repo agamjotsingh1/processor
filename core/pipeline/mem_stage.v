@@ -3,6 +3,7 @@ module mem_stage #(
     parameter INSTR_WIDTH=32,
     parameter MEM_BIT_WIDTH=2
 )(
+    input wire sys_clk,
     input wire clk,
 
     // Control Pins
@@ -22,7 +23,18 @@ module mem_stage #(
     input wire [(INSTR_WIDTH - 1):0] instr,
 
     output wire [(BUS_WIDTH - 1):0] mem_out,
-    output wire [(BUS_WIDTH - 1):0] write_data
+    output wire [(BUS_WIDTH - 1):0] write_data,
+
+    // DEBUG
+    output wire [63:0] axi_col_dout,
+
+    // AXI controller
+    input wire axi_clk,
+    input wire axi_en,
+    input wire axi_we,
+    input wire [63:0] axi_addr,
+    input wire [7:0] axi_din,
+    output wire [7:0] axi_dout
 );
     // NOTE: for the following code
     // please refer to the report for this
@@ -51,7 +63,6 @@ module mem_stage #(
         .funct3(instr[14:12]),
         .mem_read(mem_read),
         .mem_write(mem_write),
-        //.mem_stall(mem_stall),
         .mem_stall(1'b0),
         .en(mem_en),
         .wea(mem_wea),
@@ -67,6 +78,14 @@ module mem_stage #(
         .din(mem_in),
         .sign_extend(mem_sign_extend),
         .bit_width(mem_bit_width),
-        .dout(mem_out)
+        .dout(mem_out),
+        //DEBUG
+        .axi_col_dout(axi_col_dout),
+        .axi_clk(axi_clk),
+        .axi_en(axi_en),
+        .axi_we(axi_we),
+        .axi_addr(axi_addr),
+        .axi_din(axi_din),
+        .axi_dout(axi_dout)
     );
 endmodule

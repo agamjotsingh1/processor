@@ -1,0 +1,39 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../../../../../Xilinx/2025.1/data/rsb/busdef" --include "../../../../../riscv.gen/sources_1/bd/design_1/ipshared/ec67/hdl" --include "../../../../../riscv.gen/sources_1/bd/design_1/ipshared/6cfa/hdl" --include "../../../../../riscv.gen/sources_1/bd/design_1/ipshared/f0b6/hdl/verilog" --include "../../../../../riscv.gen/sources_1/bd/design_1/ipshared/a8e4/hdl/verilog" --include "/home/agamubuntu/Xilinx/2025.1/Vivado/data/xilinx_vip/include" \
+"core_tb_time_impl.v" \
+"../../../../../../core/alu/_and.v" \
+"../../../../../../core/alu/_or.v" \
+"../../../../../../core/alu/_xor.v" \
+"../../../../../../core/alu/addsub.v" \
+"../../../../../../core/alu/alu.v" \
+"../../../../../../core/alu/alu_control.v" \
+"../../../../../../core/control/branch_control.v" \
+"../../../../../../core/pipeline/branch_prediction/branch_predictor.v" \
+"../../../../../../core/pipeline/comparator/comparator.v" \
+"../../../../../../core/control/control.v" \
+"../../../../../../core/core.v" \
+"../../../../../../core/data_mem_unit/data_mem_control.v" \
+"../../../../../../core/data_mem_unit/data_mem_unit.v" \
+"../../../../../../core/alu/div.v" \
+"../../../../../../core/pipeline/stall_unit/div_stall_unit.v" \
+"../../../../../../core/pipeline/ex_mem_reg.v" \
+"../../../../../../core/pipeline/ex_stage.v" \
+"../../../../../../core/pipeline/hazard/forwarding_unit.v" \
+"../../../../../../core/fpu/fpu_cntrl.v" \
+"../../../../../../core/pipeline/hazard/hdu.v" \
+"../../../../../../core/pipeline/id_ex_reg.v" \
+"../../../../../../core/pipeline/id_stage.v" \
+"../../../../../../core/pipeline/if_id_reg.v" \
+"../../../../../../core/pipeline/if_stage.v" \
+"../../../../../../core/immgen/immgen.v" \
+"../../../../../../core/pipeline/mem_stage.v" \
+"../../../../../../core/pipeline/mem_wb_reg.v" \
+"../../../../../../core/alu/mul.v" \
+"../../../../../../core/regfile/regfile.v" \
+"../../../../../../core/alu/shift_left.v" \
+"../../../../../../core/alu/shift_right.v" \
+"../../../../../../core/pipeline/stall_unit/stall_unit.v" \
+"../../../../../../core/core_tb.v" \
+
+# Do not sort compile order
+nosort

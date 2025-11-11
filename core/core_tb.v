@@ -6,14 +6,19 @@ module core_tb;
     
     reg clk;
     reg rst;
-    wire [63:0] debug;
     
     core #(
         .BUS_WIDTH(BUS_WIDTH)
     ) dut (
-        .clk(clk),
+        .sys_clk(clk),
+        .running(1'b1),
         .rst(rst),
-        .debug(debug)
+        .axi_data_clk(1'b0),
+        .axi_data_en(1'b0),
+        .axi_data_we(1'b0),
+        .axi_data_addr(64'h0),
+        .axi_data_din(8'h0),
+        .axi_data_dout()  // Leave output unconnected
     );
 
     initial begin

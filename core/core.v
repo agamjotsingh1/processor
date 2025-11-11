@@ -1,11 +1,45 @@
 module core #(
-    parameter BUS_WIDTH=64
+    parameter BUS_WIDTH=64,
+    parameter INSTR_MEM_LEN=15, // actual instr mem length = pow(2, INSTR_MEM_LEN)
+    parameter INSTR_WIDTH=32,
+    parameter DATA_MEM_LEN=12, // actual data mem length = pow(2, DATA_MEM_LEN)
+    parameter DATA_MEM_SUB_WIDTH=8
 )(
-    input wire clk,
+    input wire sys_clk,
+    input wire running,
     input wire rst,
-    output wire [63:0] debug
+
+    // Exposed pins to instruction memory
+    output wire [31:0] axi_if_pc,
+    output wire [31:0] axi_if_instr,
+
+    // INSTR MEM AXI controller
+    input wire axi_instr_clk,
+    input wire axi_instr_en,
+    input wire [3:0] axi_instr_we,
+    input wire [(INSTR_MEM_LEN - 1):0] axi_instr_addr,
+    input wire [(INSTR_WIDTH - 1):0] axi_instr_din,
+    output wire [(INSTR_WIDTH - 1):0] axi_instr_dout,
+
+    // DEBUG
+    output wire [2:0] axi_debug_col,
+    output wire [60:0] axi_debug_row,
+    output wire [63:0] axi_debug_col_dout,
+
+    // DATA MEM AXI controller
+    input wire axi_data_clk,
+    input wire axi_data_en,
+    input wire axi_data_we,
+    input wire [63:0] axi_data_addr,
+    input wire [7:0] axi_data_din,
+    output wire [7:0] axi_data_dout
 );
-    localparam INSTR_WIDTH=32;
+    // DEBUG
+    wire [63:0] axi_data_addr_shifted = axi_data_addr >> 2;
+
+    assign axi_debug_col = axi_data_addr_shifted[2:0];
+    assign axi_debug_row = axi_data_addr_shifted[63:3];
+
     localparam REGFILE_LEN=6;
     localparam ALU_CONTROL_WIDTH=2;
     localparam ALU_SELECT_WIDTH=3;
@@ -16,8 +50,7 @@ module core #(
     localparam OPCODE_WIDTH=7;
     localparam FUNCT3_WIDTH=3;
 
-    // actual instr mem length = pow(2, INSTR_MEM_LEN)
-    localparam INSTR_MEM_LEN=15;
+    wire clk = sys_clk & running;
 
     // GLOBAL interconnects
     wire imm_pc, wb_reg_write;
@@ -37,7 +70,7 @@ module core #(
     wire forward_branch_EX_MEM_A;
     wire forward_branch_EX_MEM_B;
     wire forward_branch_MEM_WB_A;
-    wire forward_branch_MEM_WB_;
+    wire forward_branch_MEM_WB_B;
 
 
     wire [(BUS_WIDTH - 1):0] ex_alu_fpu_result;
@@ -68,8 +101,19 @@ module core #(
         .pc(if_pc),
         .instr(if_instr),
         .branch_prediction_failed(branch_prediction_failed),
-        .id_branch_taken(id_branch_taken)
+        .id_branch_taken(id_branch_taken),
+
+        // INSTR MEM AXI controller
+        .axi_instr_clk(axi_instr_clk),
+        .axi_instr_en(axi_instr_en),
+        .axi_instr_we(axi_instr_we),
+        .axi_instr_addr(axi_instr_addr),
+        .axi_instr_din(axi_instr_din),
+        .axi_instr_dout(axi_instr_dout)
     );
+
+    assign axi_if_pc = if_pc;
+    assign axi_if_instr = if_instr;
 
     //==============================================
     // IF ID PIPELINE REGISTER
@@ -481,7 +525,18 @@ module core #(
         
         // Data Outputs
         .mem_out(mem_mem_out),
-        .write_data(mem_write_data)
+        .write_data(mem_write_data),
+
+        // DEBUG
+        .axi_col_dout(axi_debug_col_dout),
+
+        // DATA MEM AXI Control
+        .axi_clk(axi_data_clk),
+        .axi_en(axi_data_en),
+        .axi_we(axi_data_we),
+        .axi_addr(axi_data_addr),
+        .axi_din(axi_data_din),
+        .axi_dout(axi_data_dout)
     );
 
     //==============================================
@@ -614,6 +669,4 @@ module core #(
         .load_stall(load_stall),
         .jump_stall(jump_stall)
     );
-
-    assign debug = wb_write_data;
 endmodule

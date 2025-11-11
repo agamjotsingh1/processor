@@ -1,5 +1,7 @@
 // each data mem sub unit is 64 x (2^17) dimensions long
-module data_mem_unit (
+module data_mem_unit #(
+    parameter DATA_MEM_LEN = 12
+)(
     input wire clk,
     input wire en,
     input wire wea, // write enable
@@ -14,9 +16,20 @@ module data_mem_unit (
        11 -> 64 bits (double word)
     */
     input wire [1:0] bit_width,
+    output wire [63:0] dout,
 
-    output wire [63:0] dout
+    // DEBUG
+    output wire [63:0] axi_col_dout,
+
+    // AXI controller
+    input wire axi_clk,
+    input wire axi_en,
+    input wire axi_we,
+    input wire [63:0] axi_addr,
+    input wire [7:0] axi_din,
+    output wire [7:0] axi_dout
 );
+
     wire [2:0] col;
     assign col = addr[2:0];
 
@@ -57,6 +70,12 @@ module data_mem_unit (
 
     wire [63:0] dout_raw_unrotated_z;  // May contain z instead of zero
 
+    wire [63:0] axi_addr_shifted = axi_addr >> 2;
+
+    wire [2:0] axi_col = axi_addr_shifted[2:0];
+
+    wire [60:0] axi_row = axi_addr_shifted[63:3];
+
     genvar i;
     generate
         for(i = 0; i < 8; i = i + 1) begin
@@ -66,12 +85,22 @@ module data_mem_unit (
                 .wea(weas[i] & wea),
                 .addra(row[11:0] + (i < col ? 17'b1: 17'b0)),
                 .dina(din_rotated[(i << 3) +: 8]),
-                .douta(dout_raw_unrotated_z[(i << 3) +: 8])
+                .douta(dout_raw_unrotated_z[(i << 3) +: 8]),
+                .clkb(axi_clk),
+                .enb(axi_en),
+                .web(axi_we & (i == axi_col)),
+                .addrb(axi_row[11:0]),
+                .dinb(axi_din),
+                .doutb(axi_col_dout[(i << 3) +: 8])
             );
         end
     endgenerate
 
+    wire [5:0] axi_shifted_col = (axi_col) << 3;
+    assign axi_dout = axi_col_dout[axi_shifted_col +: 8];
+
     wire [63:0] dout_raw_unrotated;
+    wire [63:0] axi_dout_raw_unrotated;
 
     // Convert z to 0 using or with 0
     assign dout_raw_unrotated = dout_raw_unrotated_z | 64'b0;

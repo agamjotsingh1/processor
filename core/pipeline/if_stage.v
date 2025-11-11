@@ -14,7 +14,15 @@ module if_stage #(
 
     output wire [(BUS_WIDTH - 1):0] pc,
     output wire [(INSTR_WIDTH - 1):0] instr,
-    output wire branch_prediction_failed
+    output wire branch_prediction_failed,
+
+    // INSTR MEM AXI controller
+    input wire axi_instr_clk,
+    input wire axi_instr_en,
+    input wire [3:0] axi_instr_we,
+    input wire [(INSTR_MEM_LEN - 1):0] axi_instr_addr,
+    input wire [(INSTR_WIDTH - 1):0] axi_instr_din,
+    output wire [(INSTR_WIDTH - 1):0] axi_instr_dout
 );
     reg [(BUS_WIDTH - 1):0] cur_pc;
     wire [(BUS_WIDTH - 1):0] next_pc;
@@ -58,6 +66,14 @@ module if_stage #(
         .clka(clk), // input, clock for Port A
         .addra(cur_pc[(INSTR_MEM_LEN - 1):0]), // input, address for Port A
         .ena(1'b1), // enable pin for Port A  
-        .douta(instr) // output, data output for Port A
+        .wea(4'b0), // enable pin for Port A  
+        .dina({INSTR_WIDTH{1'b0}}),
+        .douta(instr), // output, data output for Port A
+        .clkb(axi_instr_clk), // input, clock for Port B
+        .addrb(axi_instr_addr), // input, address for Port B
+        .enb(axi_instr_en), // enable pin for Port B
+        .web(axi_instr_we), // enable pin for Port B  
+        .dinb(axi_instr_din), // data input for port B
+        .doutb(axi_instr_dout) // output, data output for Port B
     );
 endmodule
