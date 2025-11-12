@@ -1,6 +1,7 @@
 module mem_stage #(
     parameter BUS_WIDTH=64,
     parameter INSTR_WIDTH=32,
+    parameter DATA_MEM_LEN=12,
     parameter MEM_BIT_WIDTH=2
 )(
     input wire sys_clk,
@@ -59,7 +60,9 @@ module mem_stage #(
     wire mem_en, mem_wea, mem_sign_extend;
     wire [(MEM_BIT_WIDTH - 1):0] mem_bit_width;
 
-    data_mem_control data_mem_control_instance (
+    data_mem_control #(
+        .MEM_BIT_WIDTH(MEM_BIT_WIDTH)
+    ) data_mem_control_instance (
         .funct3(instr[14:12]),
         .mem_read(mem_read),
         .mem_write(mem_write),
@@ -70,7 +73,11 @@ module mem_stage #(
         .bit_width(mem_bit_width)
     );
 
-    data_mem_unit data_mem_instance (
+    data_mem_unit #(
+        .BUS_WIDTH(BUS_WIDTH),
+        .DATA_MEM_LEN(DATA_MEM_LEN),
+        .MEM_BIT_WIDTH(MEM_BIT_WIDTH)
+    ) data_mem_instance (
         .clk(clk),
         .en(mem_en),
         .wea(mem_wea),

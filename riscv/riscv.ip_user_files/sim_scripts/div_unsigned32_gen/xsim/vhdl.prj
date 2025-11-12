@@ -1,0 +1,5 @@
+vhdl xil_defaultlib  \
+"../../../../riscv.gen/sources_1/ip/div_unsigned32_gen/sim/div_unsigned32_gen.vhd" \
+
+# Do not sort compile order
+nosort

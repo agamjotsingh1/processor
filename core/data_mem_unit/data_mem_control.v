@@ -1,4 +1,6 @@
-module data_mem_control (
+module data_mem_control #(
+    parameter MEM_BIT_WIDTH=2
+)(
     input wire [2:0] funct3,
     input wire mem_read,
     input wire mem_write,
@@ -7,7 +9,7 @@ module data_mem_control (
     output reg en, // data memory enable flag (for both read and write)
     output reg wea, // data memory write enable flag
     output reg sign_extend,
-    output reg [1:0] bit_width
+    output reg [(MEM_BIT_WIDTH - 1):0] bit_width
 );
     always @(*) begin
         if(mem_read) begin // load instructions

@@ -1,12 +1,15 @@
-module control (
-    input wire [31:0] instr,
+module control #(
+    parameter INSTR_WIDTH=32,
+    parameter BRANCH_SRC_WIDTH=3
+)(
+    input wire [(INSTR_WIDTH - 1):0] instr,
 
     output reg reg_write,
     output reg mem_write,
     output reg mem_read,
     output reg mem_to_reg,
     output reg jump_src,
-    output reg [2:0] branch_src,
+    output reg [(BRANCH_SRC_WIDTH - 1):0] branch_src,
     output reg jalr_src,
     output reg u_src,
     output reg uj_src,

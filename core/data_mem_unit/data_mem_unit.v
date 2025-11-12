@@ -1,12 +1,14 @@
 // each data mem sub unit is 64 x (2^17) dimensions long
 module data_mem_unit #(
-    parameter DATA_MEM_LEN = 12
+    parameter BUS_WIDTH=64,
+    parameter DATA_MEM_LEN=12,
+    parameter MEM_BIT_WIDTH=2
 )(
     input wire clk,
     input wire en,
     input wire wea, // write enable
-    input wire [63:0] addr, // only last 11 bits will be used
-    input wire [63:0] din,
+    input wire [(BUS_WIDTH - 1):0] addr, // only last 11 bits will be used
+    input wire [(BUS_WIDTH - 1):0] din,
     input wire sign_extend, // 1 if sign has to be extended (signed)
 
     /* bit_width
@@ -15,8 +17,8 @@ module data_mem_unit #(
        10 -> 32 bits (word)
        11 -> 64 bits (double word)
     */
-    input wire [1:0] bit_width,
-    output wire [63:0] dout,
+    input wire [(MEM_BIT_WIDTH - 1):0] bit_width,
+    output wire [(BUS_WIDTH - 1):0] dout,
 
     // DEBUG
     output wire [63:0] axi_col_dout,
@@ -25,56 +27,57 @@ module data_mem_unit #(
     input wire axi_clk,
     input wire axi_en,
     input wire axi_we,
-    input wire [63:0] axi_addr,
-    input wire [7:0] axi_din,
-    output wire [7:0] axi_dout
+    input wire [(BUS_WIDTH - 1):0] axi_addr,
+    input wire [7:0] axi_din, // 1 byte
+    output wire [7:0] axi_dout // 1 byte
 );
 
-    wire [2:0] col;
-    assign col = addr[2:0];
+    localparam COL_WIDTH = 3;
+    localparam ROW_WIDTH = (BUS_WIDTH - COL_WIDTH);
+    localparam BYTE = 8;
 
-    wire [60:0] row;
-    assign row = addr[63:3];
+    wire [(COL_WIDTH - 1):0] col = addr[(COL_WIDTH - 1):0];
+    wire [(ROW_WIDTH - 1):0] row = addr[(BUS_WIDTH - 1):COL_WIDTH];
 
     // short for "write enables"
-    wire [7:0] weas;  // enables for all 8 seperate data memory instances
-    reg [7:0] weas_unrotated;  // unrotated weas
+    wire [(BYTE - 1):0] weas;  // enables for all 8 seperate data memory instances
+    reg [(BYTE - 1):0] weas_unrotated;  // unrotated weas
 
     always @(*) begin
         case (bit_width)
             2'b00: weas_unrotated = 8'b00000001; // 8 bits
             2'b01: weas_unrotated = 8'b00000011; // 16 bits
             2'b10: weas_unrotated = 8'b00001111; // 32 bits
-            2'b11: weas_unrotated = 8'b11111111; // 64 bits
+            2'b11: weas_unrotated = (BUS_WIDTH == 64) ? 8'b11111111: 8'b0; // 64 bits
             default: weas_unrotated = 8'b00000000;
         endcase
     end
 
     // circular left shift by 'col' to find actual write enables
-    assign weas = (weas_unrotated << col) | (weas_unrotated >> (8 - col));
+    assign weas = (weas_unrotated << col) | (weas_unrotated >> (BYTE - col));
 
-    wire [5:0] col_shift;
-    assign col_shift = {3'b0, col} << 3;
+    // multiply by 8 (shift by 3)
+    wire [(2*COL_WIDTH - 1):0] col_shift = {{COL_WIDTH{1'b0}}, col} << COL_WIDTH;
 
-    wire [5:0] reverse_col_shift;
-    assign reverse_col_shift = 64 - col_shift;
+    wire [(2*COL_WIDTH - 1):0] reverse_col_shift = 64 - col_shift;
 
-    wire [63:0] din_rotated;
+    localparam MEM_DEPTH_WIDTH = 64; // number of bits in one row of a sub unit
+
     // same thing for din, but with shift amount = col * 8
-    assign din_rotated = (din << col_shift) | (din >> reverse_col_shift);
+    wire [(MEM_DEPTH_WIDTH - 1):0] din_rotated =
+                    ({{(MEM_DEPTH_WIDTH-BUS_WIDTH){1'b0}}, din} << col_shift) | 
+                    ({{(MEM_DEPTH_WIDTH-BUS_WIDTH){1'b0}}, din} >> reverse_col_shift); 
 
     // memory addresses is arranged in a matrix-ish grid
     // [0, 1, 2, 3, 4, 5, 6, 7
     //  9,10,11,12,13,14,15,16
     // .......................]
 
-    wire [63:0] dout_raw_unrotated_z;  // May contain z instead of zero
+    wire [(MEM_DEPTH_WIDTH - 1):0] dout_raw_unrotated_z;  // May contain z instead of zero
 
-    wire [63:0] axi_addr_shifted = axi_addr >> 2;
-
-    wire [2:0] axi_col = axi_addr_shifted[2:0];
-
-    wire [60:0] axi_row = axi_addr_shifted[63:3];
+    wire [(BUS_WIDTH - 1):0] axi_addr_shifted = axi_addr >> 2;
+    wire [(COL_WIDTH - 1):0] axi_col = axi_addr_shifted[(COL_WIDTH - 1):0];
+    wire [(ROW_WIDTH - 1):0] axi_row = axi_addr_shifted[(BUS_WIDTH - 1):COL_WIDTH];
 
     genvar i;
     generate
@@ -83,29 +86,25 @@ module data_mem_unit #(
                 .clka(clk),
                 .ena(en),
                 .wea(weas[i] & wea),
-                .addra(row[11:0] + (i < col ? 17'b1: 17'b0)),
+                .addra(row[(DATA_MEM_LEN - 1):0] + (i < col ? {{(DATA_MEM_LEN - 1){1'b0}}, 1'b1}: {DATA_MEM_LEN{1'b0}})),
                 .dina(din_rotated[(i << 3) +: 8]),
                 .douta(dout_raw_unrotated_z[(i << 3) +: 8]),
                 .clkb(axi_clk),
                 .enb(axi_en),
                 .web(axi_we & (i == axi_col)),
-                .addrb(axi_row[11:0]),
+                .addrb(axi_row[(DATA_MEM_LEN - 1):0]),
                 .dinb(axi_din),
                 .doutb(axi_col_dout[(i << 3) +: 8])
             );
         end
     endgenerate
 
-    wire [5:0] axi_shifted_col = (axi_col) << 3;
+    wire [(2*COL_WIDTH - 1):0] axi_shifted_col = (axi_col) << 3;
     assign axi_dout = axi_col_dout[axi_shifted_col +: 8];
 
-    wire [63:0] dout_raw_unrotated;
-    wire [63:0] axi_dout_raw_unrotated;
-
     // Convert z to 0 using or with 0
-    assign dout_raw_unrotated = dout_raw_unrotated_z | 64'b0;
-
-    reg [63:0] dout_raw_rotated;
+    wire [(MEM_DEPTH_WIDTH - 1):0] dout_raw_unrotated = dout_raw_unrotated_z | {MEM_DEPTH_WIDTH{1'b0}};
+    reg [(MEM_DEPTH_WIDTH - 1):0] dout_raw_rotated;
 
     // right circular shift for dout to get what was actually put in
     always @(*) begin
@@ -119,5 +118,5 @@ module data_mem_unit #(
         endcase
     end
 
-    assign dout = dout_raw_rotated;
+    assign dout = dout_raw_rotated[(BUS_WIDTH - 1):0];
 endmodule

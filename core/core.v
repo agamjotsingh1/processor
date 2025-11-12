@@ -2,8 +2,7 @@ module core #(
     parameter BUS_WIDTH=64,
     parameter INSTR_MEM_LEN=15, // actual instr mem length = pow(2, INSTR_MEM_LEN)
     parameter INSTR_WIDTH=32,
-    parameter DATA_MEM_LEN=12, // actual data mem length = pow(2, DATA_MEM_LEN)
-    parameter DATA_MEM_SUB_WIDTH=8
+    parameter DATA_MEM_LEN=12 // actual data mem length = pow(2, DATA_MEM_LEN)
 )(
     input wire sys_clk,
     input wire running,
@@ -30,9 +29,9 @@ module core #(
     input wire axi_data_clk,
     input wire axi_data_en,
     input wire axi_data_we,
-    input wire [63:0] axi_data_addr,
-    input wire [7:0] axi_data_din,
-    output wire [7:0] axi_data_dout
+    input wire [(BUS_WIDTH - 1):0] axi_data_addr,
+    input wire [7:0] axi_data_din,  // byte addressable axi debugging
+    output wire [7:0] axi_data_dout // byte addressable axi debugging
 );
     // DEBUG
     wire [63:0] axi_data_addr_shifted = axi_data_addr >> 2;
@@ -505,6 +504,7 @@ module core #(
     mem_stage #(
         .BUS_WIDTH(BUS_WIDTH),
         .INSTR_WIDTH(INSTR_WIDTH),
+        .DATA_MEM_LEN(DATA_MEM_LEN),
         .MEM_BIT_WIDTH(MEM_BIT_WIDTH)
     ) mem_stage_instance (
         .clk(clk),

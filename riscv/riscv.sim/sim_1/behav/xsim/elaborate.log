@@ -6,11 +6,10 @@ Using 8 slave threads.
 WARNING: [XSIM 43-3431] One or more environment variables have been detected which affect the operation of the C compiler. These are typically not set in standard installations and are not tested by AMD, however they may be appropriate for your system, so the flow will attempt to continue.  If errors occur, try running xelab with the "-mt off -v 1" switches to see more information from the C compiler. The following environment variables have been detected:
 Starting static elaboration
 Pass Through NonSizing Optimizer
-WARNING: [VRFC 10-9543] actual bit length 17 differs from formal bit length 12 for port 'addra' [/home/agamubuntu/Github/processor/core/data_mem_unit/data_mem_unit.v:86]
 WARNING: [VRFC 10-5021] port 'axi_instr_clk' is not connected on this instance [/home/agamubuntu/Github/processor/core/core_tb.v:11]
-WARNING: [VRFC 10-5021] port 'sys_clk' is not connected on this instance [/home/agamubuntu/Github/processor/core/core.v:504]
-WARNING: [VRFC 10-5021] port 'm_axis_dout_tvalid' is not connected on this instance [/home/agamubuntu/Github/processor/core/alu/div.v:77]
-WARNING: [VRFC 10-5021] port 'm_axis_dout_tvalid' is not connected on this instance [/home/agamubuntu/Github/processor/core/alu/div.v:89]
+WARNING: [VRFC 10-5021] port 'sys_clk' is not connected on this instance [/home/agamubuntu/Github/processor/core/core.v:503]
+WARNING: [VRFC 10-5021] port 'm_axis_dout_tvalid' is not connected on this instance [/home/agamubuntu/Github/processor/core/alu/div.v:27]
+WARNING: [VRFC 10-5021] port 'm_axis_dout_tvalid' is not connected on this instance [/home/agamubuntu/Github/processor/core/alu/div.v:37]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
@@ -32,6 +31,7 @@ Compiling package div_gen_v5_1_24.div_gen_pkg
 Compiling package ieee.std_logic_signed
 Compiling package unisim.vcomponents
 Compiling package div_gen_v5_1_24.pkg_addsub
+Compiling module xil_defaultlib.predictor
 Compiling module xil_defaultlib.branch_predictor
 Compiling module blk_mem_gen_v8_4_11.blk_mem_gen_v8_4_11_output_stage...
 Compiling module blk_mem_gen_v8_4_11.blk_mem_gen_v8_4_11_softecc_outp...
@@ -243,7 +243,7 @@ Compiling architecture synth of entity div_gen_v5_1_24.div_gen_synth [\div_gen_s
 Compiling architecture synth of entity div_gen_v5_1_24.div_gen_v5_1_24_viv [\div_gen_v5_1_24_viv(c_xdevicefa...]
 Compiling architecture xilinx of entity div_gen_v5_1_24.div_gen_v5_1_24 [\div_gen_v5_1_24(c_xdevicefamily...]
 Compiling architecture div_unsigned_gen_arch of entity xil_defaultlib.div_unsigned_gen [div_unsigned_gen_default]
-Compiling module xil_defaultlib.div
+Compiling module xil_defaultlib.div_default
 Compiling module xil_defaultlib.shift_left
 Compiling module xil_defaultlib.shift_right
 Compiling module xil_defaultlib._xor

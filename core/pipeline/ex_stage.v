@@ -38,7 +38,11 @@ module ex_stage #(
     wire [(BUS_WIDTH - 1):0] alu_out;
     wire [(BUS_WIDTH - 1):0] fpu_out;
 
-    alu alu_instance (
+    alu #(
+        .BUS_WIDTH(BUS_WIDTH),
+        .ALU_CONTROL_WIDTH(ALU_CONTROL_WIDTH),
+        .ALU_SELECT_WIDTH(ALU_SELECT_WIDTH)
+    ) alu_instance (
         .clk(clk),
         .in1(alu_fpu_in1),
         .in2(alu_fpu_in2),

@@ -19,7 +19,7 @@ module if_stage #(
     // INSTR MEM AXI controller
     input wire axi_instr_clk,
     input wire axi_instr_en,
-    input wire [3:0] axi_instr_we,
+    input wire [3:0] axi_instr_we, // 4 bits, axi interface critieria
     input wire [(INSTR_MEM_LEN - 1):0] axi_instr_addr,
     input wire [(INSTR_WIDTH - 1):0] axi_instr_din,
     output wire [(INSTR_WIDTH - 1):0] axi_instr_dout
@@ -44,7 +44,10 @@ module if_stage #(
     // BRANCH PREDICTION UNIT 
     //==============================================
 
-    branch_predictor branch_predictor_instance (
+    branch_predictor #(
+        .BUS_WIDTH(BUS_WIDTH),
+        .INSTR_WIDTH(INSTR_WIDTH)
+    ) branch_predictor_instance (
         .clk(clk),
         .stall(1'b0),
         .rst(rst),

@@ -1,9 +1,13 @@
-module alu_control (
-    input wire [31:0] instr,
+module alu_control #(
+    parameter INSTR_WIDTH=32,
+    parameter ALU_CONTROL_WIDTH=2,
+    parameter ALU_SELECT_WIDTH=3
+)(
+    input wire [(INSTR_WIDTH - 1):0] instr,
 
     // ALUOp
-    output reg [1:0] control,
-    output reg [2:0] select
+    output reg [(ALU_CONTROL_WIDTH - 1):0] control,
+    output reg [(ALU_SELECT_WIDTH - 1):0] select
 );
     wire [6:0] opcode;
     assign opcode = instr[6:0];
@@ -115,7 +119,7 @@ module alu_control (
                 control = 2'b00; // only first bit used
             end
 
-            17'b10110011_01_0100000, // sra
+            17'b10110011_101_0100000, // sra
             17'b0010011_101_zzzzzzz // srai
             : begin
                 select = 3'b100;

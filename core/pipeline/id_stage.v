@@ -68,7 +68,10 @@ module id_stage #(
     output wire imm_pc,
     output wire [(BUS_WIDTH - 1):0] next_imm_pc
 );
-    control control_instance (
+    control #(
+        .INSTR_WIDTH(INSTR_WIDTH),
+        .BRANCH_SRC_WIDTH(BRANCH_SRC_WIDTH)
+    ) control_instance (
         .instr(instr),
         .reg_write(reg_write), 
         .mem_write(mem_write),
@@ -83,7 +86,11 @@ module id_stage #(
         .alu_fpu(alu_fpu)
     );
 
-    alu_control alu_control_instance (
+    alu_control #(
+        .INSTR_WIDTH(INSTR_WIDTH),
+        .ALU_CONTROL_WIDTH(ALU_CONTROL_WIDTH),
+        .ALU_SELECT_WIDTH(ALU_SELECT_WIDTH)
+    ) alu_control_instance (
         .instr(instr),
         .control(control),
         .select(select)
@@ -107,7 +114,10 @@ module id_stage #(
     assign rs2 = {alu_fpu & fpu_rs2, instr[24:20]};
     assign rd = {alu_fpu & fpu_rd, instr[11:7]};
 
-    regfile regfile_instance (
+    regfile #(
+        .BUS_WIDTH(BUS_WIDTH),
+        .REGFILE_LEN(REGFILE_LEN)
+    ) regfile_instance (
         .clk(clk),
         .write_enable(wb_reg_write),
         .read_addr1(rs1),
@@ -118,7 +128,10 @@ module id_stage #(
         .write_data(wb_write_data)
     );
     
-    immgen immgen_instance (
+    immgen #(
+        .BUS_WIDTH(BUS_WIDTH),
+        .INSTR_WIDTH(INSTR_WIDTH)
+    ) immgen_instance (
         .instr(instr),
         .imm(imm)
     );
@@ -139,7 +152,9 @@ module id_stage #(
         forward_branch_MEM_WB_B ? mem_wb_reg_val:
         read_data2;
 
-    comparator comparator_instance (
+    comparator #(
+        .BUS_WIDTH(BUS_WIDTH)
+    ) comparator_instance (
         .in1(comparator_forwarded_read_data1),
         .in2(comparator_forwarded_read_data2),
         .zero(zero),
@@ -150,7 +165,9 @@ module id_stage #(
     // To branch or not to branch, that is the question
     wire [(BRANCH_SRC_WIDTH -1):0] branch_src;
 
-    branch_control branch_control_instance (
+    branch_control #(
+        .BRANCH_SRC_WIDTH(BRANCH_SRC_WIDTH)
+    ) branch_control_instance (
         .branch_src(branch_src),
         .zero(zero),
         .neg(neg),
@@ -171,7 +188,9 @@ module id_stage #(
         read_data1;
 
     // adding immediate to pc (or forwarded register data in jalr)
-    addsub addsub_jal_instance (
+    addsub #(
+        .BUS_WIDTH(BUS_WIDTH)
+    ) addsub_jump_instance (
         .in1(jalr_src ? forwarded_read_data1: pc),
         .in2(imm),
         .control(ADD_CNTRL),

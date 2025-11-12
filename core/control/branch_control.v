@@ -1,5 +1,7 @@
-module branch_control (
-    input wire [2:0] branch_src,
+module branch_control #(
+    parameter BRANCH_SRC_WIDTH=3
+)(
+    input wire [(BRANCH_SRC_WIDTH - 1):0] branch_src,
 
     // ALU Flags
     input wire zero,

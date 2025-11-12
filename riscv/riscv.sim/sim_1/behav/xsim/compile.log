@@ -14,6 +14,7 @@ INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/c
 INFO: [VRFC 10-311] analyzing module alu
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/alu/alu_control.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module alu_control
+WARNING: [VRFC 10-8497] literal value 'b10110011_101_0100000 truncated to fit in 17 bits [/home/agamubuntu/Github/processor/core/alu/alu_control.v:122]
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/control/branch_control.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module branch_control
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/pipeline/branch_prediction/branch_predictor.v" into library xil_defaultlib
@@ -24,14 +25,13 @@ INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/c
 INFO: [VRFC 10-311] analyzing module control
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/core.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module core
-WARNING: [VRFC 10-3380] identifier 'mem_mem_read' is used before its declaration [/home/agamubuntu/Github/processor/core/core.v:376]
-WARNING: [VRFC 10-3380] identifier 'mem_mem_read' is used before its declaration [/home/agamubuntu/Github/processor/core/core.v:385]
+WARNING: [VRFC 10-3380] identifier 'mem_mem_read' is used before its declaration [/home/agamubuntu/Github/processor/core/core.v:375]
+WARNING: [VRFC 10-3380] identifier 'mem_mem_read' is used before its declaration [/home/agamubuntu/Github/processor/core/core.v:384]
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/data_mem_unit/data_mem_control.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module data_mem_control
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/data_mem_unit/data_mem_unit.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module data_mem_unit
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/alu/div.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module div_legacy
 INFO: [VRFC 10-311] analyzing module div
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/pipeline/stall_unit/div_stall_unit.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module div_stall_unit
@@ -49,7 +49,7 @@ INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/c
 INFO: [VRFC 10-311] analyzing module id_ex_reg
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/pipeline/id_stage.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module id_stage
-WARNING: [VRFC 10-2938] 'branch_src' is already implicitly declared on line 78 [/home/agamubuntu/Github/processor/core/pipeline/id_stage.v:151]
+WARNING: [VRFC 10-2938] 'branch_src' is already implicitly declared on line 81 [/home/agamubuntu/Github/processor/core/pipeline/id_stage.v:166]
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/pipeline/if_id_reg.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module if_id_reg
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/pipeline/if_stage.v" into library xil_defaultlib

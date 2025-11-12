@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="724.190 ns"></ZoomStartTime>
-      <ZoomEndTime time="778.991 ns"></ZoomEndTime>
-      <Cursor1Time time="735.590 ns"></Cursor1Time>
+      <ZoomStartTime time="153.367 ns"></ZoomStartTime>
+      <ZoomEndTime time="223.168 ns"></ZoomEndTime>
+      <Cursor1Time time="161.167 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="312"></NameColumnWidth>
-      <ValueColumnWidth column_width="139"></ValueColumnWidth>
+      <NameColumnWidth column_width="339"></NameColumnWidth>
+      <ValueColumnWidth column_width="143"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="46" />
+   <WVObjectSize size="54" />
    <wvobject type="logic" fp_name="/core_tb/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -64,13 +64,41 @@
       <obj_property name="ElementShortName">is_branch_state</obj_property>
       <obj_property name="ObjectShortName">is_branch_state</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/core_tb/dut/if_stage_instance/branch_predictor_instance/opcode">
+   <wvobject type="array" fp_name="/core_tb/dut/id_stage_instance/alu_control_instance/opcode">
       <obj_property name="ElementShortName">opcode[6:0]</obj_property>
       <obj_property name="ObjectShortName">opcode[6:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/id_stage_instance/alu_control_instance/control">
+      <obj_property name="ElementShortName">control[1:0]</obj_property>
+      <obj_property name="ObjectShortName">control[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/id_stage_instance/alu_control_instance/select">
+      <obj_property name="ElementShortName">select[2:0]</obj_property>
+      <obj_property name="ObjectShortName">select[2:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/core_tb/dut/if_stage_instance/branch_predictor_instance/imm">
       <obj_property name="ElementShortName">imm[63:0]</obj_property>
       <obj_property name="ObjectShortName">imm[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/ex_stage_instance/alu_instance/in1">
+      <obj_property name="ElementShortName">in1[63:0]</obj_property>
+      <obj_property name="ObjectShortName">in1[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/ex_stage_instance/alu_instance/in2">
+      <obj_property name="ElementShortName">in2[63:0]</obj_property>
+      <obj_property name="ObjectShortName">in2[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/ex_stage_instance/alu_instance/control">
+      <obj_property name="ElementShortName">control[1:0]</obj_property>
+      <obj_property name="ObjectShortName">control[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/ex_stage_instance/alu_instance/select">
+      <obj_property name="ElementShortName">select[2:0]</obj_property>
+      <obj_property name="ObjectShortName">select[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/ex_stage_instance/alu_instance/out">
+      <obj_property name="ElementShortName">out[63:0]</obj_property>
+      <obj_property name="ObjectShortName">out[63:0]</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/core_tb/dut/if_stage_instance/branch_predictor_instance/prediction">
       <obj_property name="ElementShortName">prediction</obj_property>
@@ -135,6 +163,10 @@
    <wvobject type="array" fp_name="/core_tb/dut/mem_stage_instance/data_mem_instance/addr">
       <obj_property name="ElementShortName">addr[63:0]</obj_property>
       <obj_property name="ObjectShortName">addr[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_tb/dut/ex_stage_instance/alu_fpu">
+      <obj_property name="ElementShortName">alu_fpu</obj_property>
+      <obj_property name="ObjectShortName">alu_fpu</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/core_tb/dut/mem_stage_instance/data_mem_instance/din">
       <obj_property name="ElementShortName">din[63:0]</obj_property>

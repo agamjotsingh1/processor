@@ -1,3 +1,6 @@
+// To stall for 10 cycles for division to work
+// Division IP is manually configured to have 10 cycle delay
+// Done to reduce clock timing
 module div_stall_unit (
     input wire clk,
     input wire rst,
