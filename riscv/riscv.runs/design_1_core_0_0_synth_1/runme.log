@@ -1,0 +1,375 @@
+
+*** Running vivado
+    with args -log design_1_core_0_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_core_0_0.tcl
+
+
+****** Vivado v2025.1 (64-bit)
+  **** SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
+  **** IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+  **** SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+  **** Start of session at: Wed Nov 12 16:46:11 2025
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source design_1_core_0_0.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/agamubuntu/Xilinx/2025.1/Vivado/data/ip'.
+Command: synth_design -top design_1_core_0_0 -part xc7z020clg400-1 -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 7 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 401216
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2128.328 ; gain = 441.711 ; free physical = 5394 ; free virtual = 8947
+---------------------------------------------------------------------------------
+INFO: [Synth 8-11241] undeclared symbol 'branch_src', assumed default net type 'wire' [/home/agamubuntu/Github/processor/core/pipeline/id_stage.v:78]
+WARNING: [Synth 8-8895] 'branch_src' is already implicitly declared on line 78 [/home/agamubuntu/Github/processor/core/pipeline/id_stage.v:151]
+WARNING: [Synth 8-6901] identifier 'mem_write_data' is used before its declaration [/home/agamubuntu/Github/processor/core/core.v:376]
+WARNING: [Synth 8-6901] identifier 'mem_write_data' is used before its declaration [/home/agamubuntu/Github/processor/core/core.v:385]
+WARNING: [Synth 8-3848] Net fpu_out in module/entity ex_stage does not have driver. [/home/agamubuntu/Github/processor/core/pipeline/ex_stage.v:39]
+WARNING: [Synth 8-7129] Port clk in module hdu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port rst in module hdu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[31] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[30] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[29] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[28] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[27] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[26] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[25] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[24] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[23] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[22] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[21] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[20] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[19] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[18] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[17] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[16] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[15] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[11] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[10] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[9] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[8] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr_IF_ID[7] in module forwarding_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLKB in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SBITERR_I in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DBITERR_I in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[11] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[10] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[9] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[8] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[7] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[6] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[5] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[4] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[3] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[2] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[1] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[0] in module blk_mem_output_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SBITERR in module blk_mem_gen_prim_wrapper_init__parameterized31 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DBITERR in module blk_mem_gen_prim_wrapper_init__parameterized31 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSRA in module blk_mem_gen_prim_wrapper_init__parameterized31 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSRB in module blk_mem_gen_prim_wrapper_init__parameterized31 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SLEEP in module blk_mem_gen_prim_wrapper_init__parameterized31 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port INJECTSBITERR in module blk_mem_gen_prim_wrapper_init__parameterized31 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port INJECTDBITERR in module blk_mem_gen_prim_wrapper_init__parameterized31 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ECCPIPECE in module blk_mem_gen_prim_wrapper_init__parameterized31 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port MUX_RST[0] in module blk_mem_gen_mux__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port MEM_LAT_RST in module blk_mem_gen_mux__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port MEM_REG_RST in module blk_mem_gen_mux__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port MUX_REGCE[0] in module blk_mem_gen_mux__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port MEM_REGCE in module blk_mem_gen_mux__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module blk_mem_gen_mux__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDR_IN[11] in module blk_mem_gen_mux__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDR_IN[10] in module blk_mem_gen_mux__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDR_IN[9] in module blk_mem_gen_mux__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDR_IN[8] in module blk_mem_gen_mux__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDR_IN[7] in module blk_mem_gen_mux__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDR_IN[6] in module blk_mem_gen_mux__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDR_IN[5] in module blk_mem_gen_mux__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDR_IN[4] in module blk_mem_gen_mux__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDR_IN[3] in module blk_mem_gen_mux__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDR_IN[2] in module blk_mem_gen_mux__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDR_IN[1] in module blk_mem_gen_mux__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDR_IN[0] in module blk_mem_gen_mux__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SBITERRIN[1] in module blk_mem_gen_mux__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SBITERRIN[0] in module blk_mem_gen_mux__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DBITERRIN[1] in module blk_mem_gen_mux__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DBITERRIN[0] in module blk_mem_gen_mux__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ECCPIPECE in module blk_mem_gen_mux__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port MUX_RST[0] in module blk_mem_gen_mux__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port MEM_LAT_RST in module blk_mem_gen_mux__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port MEM_REG_RST in module blk_mem_gen_mux__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port MUX_REGCE[0] in module blk_mem_gen_mux__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port MEM_REGCE in module blk_mem_gen_mux__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module blk_mem_gen_mux__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDR_IN[11] in module blk_mem_gen_mux__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDR_IN[10] in module blk_mem_gen_mux__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDR_IN[9] in module blk_mem_gen_mux__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDR_IN[8] in module blk_mem_gen_mux__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDR_IN[7] in module blk_mem_gen_mux__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDR_IN[6] in module blk_mem_gen_mux__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDR_IN[5] in module blk_mem_gen_mux__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDR_IN[4] in module blk_mem_gen_mux__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDR_IN[3] in module blk_mem_gen_mux__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDR_IN[2] in module blk_mem_gen_mux__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDR_IN[1] in module blk_mem_gen_mux__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDR_IN[0] in module blk_mem_gen_mux__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SBITERRIN[1] in module blk_mem_gen_mux__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SBITERRIN[0] in module blk_mem_gen_mux__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DBITERRIN[1] in module blk_mem_gen_mux__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DBITERRIN[0] in module blk_mem_gen_mux__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ECCPIPECE in module blk_mem_gen_mux__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port INJECTSBITERR in module blk_mem_gen_generic_cstr__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port INJECTDBITERR in module blk_mem_gen_generic_cstr__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RSTA in module blk_mem_input_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port REGCEA in module blk_mem_input_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RSTB in module blk_mem_input_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port REGCEB in module blk_mem_input_block__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port INJECTDBITERR in module blk_mem_input_block__parameterized0 is either unconnected or has no load
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:12 ; elapsed = 00:00:28 . Memory (MB): peak = 2700.699 ; gain = 1014.082 ; free physical = 225 ; free virtual = 3452
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:12 ; elapsed = 00:00:28 . Memory (MB): peak = 2700.699 ; gain = 1014.082 ; free physical = 225 ; free virtual = 3452
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:28 . Memory (MB): peak = 2700.699 ; gain = 1014.082 ; free physical = 225 ; free virtual = 3452
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.43 ; elapsed = 00:00:00.43 . Memory (MB): peak = 2700.699 ; gain = 0.000 ; free physical = 232 ; free virtual = 3459
+INFO: [Netlist 29-17] Analyzing 16940 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/agamubuntu/Github/processor/riscv/riscv.gen/sources_1/bd/design_1/ip/design_1_core_0_0/design_1_core_0_0_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/agamubuntu/Github/processor/riscv/riscv.gen/sources_1/bd/design_1/ip/design_1_core_0_0/design_1_core_0_0_ooc.xdc] for cell 'inst'
+Parsing XDC File [/home/agamubuntu/Github/processor/riscv/riscv.runs/design_1_core_0_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/agamubuntu/Github/processor/riscv/riscv.runs/design_1_core_0_0_synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2752.809 ; gain = 0.000 ; free physical = 247 ; free virtual = 3474
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.43 ; elapsed = 00:00:00.17 . Memory (MB): peak = 2752.844 ; gain = 0.000 ; free physical = 247 ; free virtual = 3474
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:20 ; elapsed = 00:00:36 . Memory (MB): peak = 2752.844 ; gain = 1066.227 ; free physical = 243 ; free virtual = 3470
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:20 ; elapsed = 00:00:36 . Memory (MB): peak = 2760.812 ; gain = 1074.195 ; free physical = 243 ; free virtual = 3470
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:36 . Memory (MB): peak = 2760.812 ; gain = 1074.195 ; free physical = 244 ; free virtual = 3471
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-327] inferring latch for variable 'fpu_op_reg' [/home/agamubuntu/Github/processor/core/fpu/fpu_cntrl.v:68]
+WARNING: [Synth 8-327] inferring latch for variable 'fpu_rs1_reg' [/home/agamubuntu/Github/processor/core/fpu/fpu_cntrl.v:70]
+WARNING: [Synth 8-327] inferring latch for variable 'fpu_rd_reg' [/home/agamubuntu/Github/processor/core/fpu/fpu_cntrl.v:69]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:22 ; elapsed = 00:00:39 . Memory (MB): peak = 2760.812 ; gain = 1074.195 ; free physical = 235 ; free virtual = 3466
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:37 ; elapsed = 00:00:54 . Memory (MB): peak = 2807.422 ; gain = 1120.805 ; free physical = 301 ; free virtual = 3533
+---------------------------------------------------------------------------------
+ Sort Area is alu__GC0 p_1_out_0 : 0 0 : 2701 10833 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_0 : 0 1 : 2710 10833 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_0 : 0 2 : 2712 10833 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_0 : 0 3 : 2710 10833 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_4 : 0 0 : 2701 10124 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_4 : 0 1 : 2712 10124 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_4 : 0 2 : 1999 10124 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_4 : 0 3 : 2712 10124 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_6 : 0 0 : 2701 9423 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_6 : 0 1 : 2011 9423 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_6 : 0 2 : 1999 9423 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_6 : 0 3 : 2712 9423 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_8 : 0 0 : 1995 7576 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_8 : 0 1 : 1999 7576 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_8 : 0 2 : 2011 7576 : Used 1 time 0
+ Sort Area is alu__GC0 p_1_out_8 : 0 3 : 1571 7576 : Used 1 time 0
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:58 ; elapsed = 00:01:01 . Memory (MB): peak = 2811.340 ; gain = 1124.723 ; free physical = 574 ; free virtual = 3806
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:01:02 ; elapsed = 00:01:05 . Memory (MB): peak = 2811.340 ; gain = 1124.723 ; free physical = 587 ; free virtual = 3821
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:01:09 ; elapsed = 00:01:12 . Memory (MB): peak = 2811.340 ; gain = 1124.723 ; free physical = 600 ; free virtual = 3832
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:01:11 ; elapsed = 00:01:14 . Memory (MB): peak = 2814.359 ; gain = 1127.742 ; free physical = 604 ; free virtual = 3836
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:11 ; elapsed = 00:01:14 . Memory (MB): peak = 2814.359 ; gain = 1127.742 ; free physical = 601 ; free virtual = 3833
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:14 ; elapsed = 00:01:17 . Memory (MB): peak = 2863.070 ; gain = 1176.453 ; free physical = 530 ; free virtual = 3762
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:14 ; elapsed = 00:01:17 . Memory (MB): peak = 2863.070 ; gain = 1176.453 ; free physical = 530 ; free virtual = 3762
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:15 ; elapsed = 00:01:18 . Memory (MB): peak = 2863.070 ; gain = 1176.453 ; free physical = 531 ; free virtual = 3762
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:15 ; elapsed = 00:01:18 . Memory (MB): peak = 2863.070 ; gain = 1176.453 ; free physical = 531 ; free virtual = 3762
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+DSP Final Report (the ' indicates corresponding REG is set)
++------------+--------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name | DSP Mapping  | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------+--------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|mul         | A*B          | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN>>17+A*B | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN+A*B     | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN>>17+A*B | 30     | 18     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN+A*B     | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN>>17+A*B | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN>>17+A*B | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN>>17+A*B | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mul         | PCIN>>17+A*B | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
++------------+--------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |CARRY4   |   275|
+|2     |DSP48E1  |    16|
+|3     |LUT1     |   326|
+|4     |LUT2     |   871|
+|5     |LUT3     |  8797|
+|6     |LUT4     |   464|
+|7     |LUT5     |  1131|
+|8     |LUT6     |  3602|
+|9     |MUXCY    |  8450|
+|10    |MUXF7    |  1076|
+|11    |MUXF8    |   512|
+|12    |RAMB36E1 |    40|
+|18    |SRL16E   |     2|
+|19    |XORCY    |  8450|
+|20    |FDRE     | 16336|
+|21    |LD       |     8|
++------+---------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:15 ; elapsed = 00:01:18 . Memory (MB): peak = 2863.070 ; gain = 1176.453 ; free physical = 531 ; free virtual = 3762
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 24 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:09 ; elapsed = 00:01:18 . Memory (MB): peak = 2866.984 ; gain = 1128.223 ; free physical = 5405 ; free virtual = 8637
+Synthesis Optimization Complete : Time (s): cpu = 00:01:15 ; elapsed = 00:01:22 . Memory (MB): peak = 2866.984 ; gain = 1180.367 ; free physical = 5405 ; free virtual = 8637
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.43 ; elapsed = 00:00:00.43 . Memory (MB): peak = 2866.984 ; gain = 0.000 ; free physical = 5407 ; free virtual = 8639
+INFO: [Netlist 29-17] Analyzing 18827 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2977.789 ; gain = 0.000 ; free physical = 5363 ; free virtual = 8595
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 2218 instances were transformed.
+  (MUXCY,XORCY) => CARRY4: 2210 instances
+  LD => LDCE: 8 instances
+
+Synth Design complete | Checksum: fd7db521
+INFO: [Common 17-83] Releasing license: Synthesis
+108 Infos, 131 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:37 ; elapsed = 00:01:44 . Memory (MB): peak = 2977.824 ; gain = 1458.004 ; free physical = 5364 ; free virtual = 8596
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 7295.790; main = 2100.797; forked = 5533.792
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 16079.316; main = 2977.793; forked = 13302.492
+INFO: [Coretcl 2-1174] Renamed 1007 cell refs.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.41 ; elapsed = 00:00:00.16 . Memory (MB): peak = 3001.801 ; gain = 0.000 ; free physical = 5339 ; free virtual = 8589
+INFO: [Common 17-1381] The checkpoint '/home/agamubuntu/Github/processor/riscv/riscv.runs/design_1_core_0_0_synth_1/design_1_core_0_0.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file design_1_core_0_0_utilization_synth.rpt -pb design_1_core_0_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Wed Nov 12 16:48:02 2025...

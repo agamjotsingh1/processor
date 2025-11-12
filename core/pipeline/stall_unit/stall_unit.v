@@ -3,9 +3,9 @@ module stall_unit (
     input wire rst,
     input wire stall,
 
-    output reg out_stall
+    output wire out_stall
 );
-    reg ff [0:2];
+    reg ff [0:1];
 
     always @(posedge clk) begin
         if(rst | stall) begin
@@ -16,7 +16,7 @@ module stall_unit (
             ff[0] <= ff[1];
             ff[1] <= ff[0];
         end
-
-        out_stall = ~ff[0];
     end
+
+    assign out_stall = ~ff[0];
 endmodule

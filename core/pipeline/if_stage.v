@@ -29,38 +29,36 @@ module if_stage #(
     wire [(BUS_WIDTH - 1):0] next_unpredicted_pc;
 
     // PC + 1 (plus 1 because instr memory is word addressable)
-    // assign next_pc = imm_pc ? (next_imm_pc >> 2): (cur_pc + 1);
+    //assign next_pc = imm_pc ? (next_imm_pc >> 2): (cur_pc + 1);
 
     // multiply by 4 to give actual pc (in byte addressable format)
     assign pc = cur_pc << 2;
     assign next_unpredicted_pc = imm_pc ? (next_imm_pc): (pc + 4);
 
-    wire branch_consecutive_stall;
-
     always @(posedge clk) begin
         if(rst) cur_pc <= {BUS_WIDTH{1'b0}};
-        else if(~stall & ~branch_consecutive_stall) cur_pc <= next_pc >> 2;
+        else if(~stall) cur_pc <= next_pc >> 2;
     end
 
     //==============================================
     // BRANCH PREDICTION UNIT 
     //==============================================
-    wire branch_prediction_failed_only;
 
     branch_predictor branch_predictor_instance (
         .clk(clk),
-        .stall(stall),
+        .stall(1'b0),
         .rst(rst),
         .if_pc(pc),
         .if_instr(instr),
         .id_branch_taken(id_branch_taken),
         .next_unpredicted_pc(next_unpredicted_pc),
         .next_predicted_pc(next_pc),
-        .branch_prediction_failed(branch_prediction_failed_only),
-        .branch_consecutive_stall(branch_consecutive_stall)
+        .branch_prediction_failed(branch_prediction_failed)
     );
 
-    assign branch_prediction_failed = branch_consecutive_stall | branch_prediction_failed_only;
+    wire [(INSTR_MEM_LEN - 1):0] axi_instr_addr_shifted_raw = axi_instr_addr >> 2;
+    wire [(INSTR_MEM_LEN - 1):0] axi_instr_addr_shifted = axi_instr_addr_shifted_raw | {INSTR_MEM_LEN{1'b0}};
+
 
     instr_mem_gen instr_mem (
         .clka(clk), // input, clock for Port A
@@ -70,7 +68,7 @@ module if_stage #(
         .dina({INSTR_WIDTH{1'b0}}),
         .douta(instr), // output, data output for Port A
         .clkb(axi_instr_clk), // input, clock for Port B
-        .addrb(axi_instr_addr), // input, address for Port B
+        .addrb(axi_instr_addr_shifted), // input, address for Port B
         .enb(axi_instr_en), // enable pin for Port B
         .web(axi_instr_we), // enable pin for Port B  
         .dinb(axi_instr_din), // data input for port B

@@ -1,0 +1,29 @@
+Time resolution is 1 ps
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module core_tb.dut.if_stage_instance.instr_mem.inst.native_mem_module.blk_mem_gen_v8_4_11_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module core_tb.dut.mem_stage_instance.data_mem_instance.genblk1[0].data_mem_sub_unit.inst.native_mem_module.blk_mem_gen_v8_4_11_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module core_tb.dut.mem_stage_instance.data_mem_instance.genblk1[1].data_mem_sub_unit.inst.native_mem_module.blk_mem_gen_v8_4_11_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module core_tb.dut.mem_stage_instance.data_mem_instance.genblk1[2].data_mem_sub_unit.inst.native_mem_module.blk_mem_gen_v8_4_11_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module core_tb.dut.mem_stage_instance.data_mem_instance.genblk1[3].data_mem_sub_unit.inst.native_mem_module.blk_mem_gen_v8_4_11_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module core_tb.dut.mem_stage_instance.data_mem_instance.genblk1[4].data_mem_sub_unit.inst.native_mem_module.blk_mem_gen_v8_4_11_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module core_tb.dut.mem_stage_instance.data_mem_instance.genblk1[5].data_mem_sub_unit.inst.native_mem_module.blk_mem_gen_v8_4_11_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module core_tb.dut.mem_stage_instance.data_mem_instance.genblk1[6].data_mem_sub_unit.inst.native_mem_module.blk_mem_gen_v8_4_11_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module core_tb.dut.mem_stage_instance.data_mem_instance.genblk1[7].data_mem_sub_unit.inst.native_mem_module.blk_mem_gen_v8_4_11_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+$finish called at time : 125 ns : File "/home/agamubuntu/Github/processor/core/core_tb.v" Line 42

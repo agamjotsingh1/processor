@@ -6,12 +6,13 @@ module core_tb;
     
     reg clk;
     reg rst;
+    reg running;
     
     core #(
         .BUS_WIDTH(BUS_WIDTH)
     ) dut (
         .sys_clk(clk),
-        .running(1'b1),
+        .running(running),
         .rst(rst),
         .axi_data_clk(1'b0),
         .axi_data_en(1'b0),
@@ -27,9 +28,13 @@ module core_tb;
     end
     
     initial begin
+        running = 0;
+        rst = 1;
+        #38;
+        running = 1;
         rst = 1;
         @(posedge clk);
-        #10 rst = 0;
+        #80 rst = 0;
         //stall = 1;
         //@(posedge clk);
         //#10 stall = 0;

@@ -3,8 +3,8 @@
 # SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
 # IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
 # SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
-# Start of session at: Tue Nov 11 16:29:21 2025
-# Process ID         : 191856
+# Start of session at: Wed Nov 12 16:48:09 2025
+# Process ID         : 402018
 # Current directory  : /home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1
 # Command line       : vivado -log design_1_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_wrapper.tcl
 # Log file           : /home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/design_1_wrapper.vds
@@ -13,13 +13,13 @@
 # Platform           : Ubuntu
 # Operating System   : Ubuntu 22.04.5 LTS
 # Processor Detail   : AMD Ryzen 7 8845HS w/ Radeon 780M Graphics
-# CPU Frequency      : 1954.766 MHz
+# CPU Frequency      : 1943.705 MHz
 # CPU Physical cores : 8
 # CPU Logical cores  : 16
 # Host memory        : 16029 MB
 # Swap memory        : 2147 MB
 # Total Virtual      : 18177 MB
-# Available Virtual  : 12724 MB
+# Available Virtual  : 10666 MB
 #-----------------------------------------------------------
 source design_1_wrapper.tcl -notrace
 INFO: [IP_Flow 19-234] Refreshing IP repositories
@@ -37,40 +37,40 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 7 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 191928
+INFO: [Synth 8-7075] Helper process launched with PID 402086
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2169.168 ; gain = 441.797 ; free physical = 7270 ; free virtual = 10827
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2169.531 ; gain = 442.039 ; free physical = 5637 ; free virtual = 8906
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'design_1_wrapper' [/home/agamubuntu/Github/processor/riscv/riscv.gen/sources_1/bd/design_1/hdl/design_1_wrapper.v:13]
 INFO: [Synth 8-6157] synthesizing module 'design_1' [/home/agamubuntu/Github/processor/riscv/riscv.gen/sources_1/bd/design_1/synth/design_1.v:13]
-INFO: [Synth 8-6157] synthesizing module 'design_1_axi_bram_ctrl_0_0' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_axi_bram_ctrl_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_bram_ctrl_0_0' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_axi_bram_ctrl_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_axi_bram_ctrl_0_0' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_axi_bram_ctrl_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_bram_ctrl_0_0' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_axi_bram_ctrl_0_0_stub.v:6]
 WARNING: [Synth 8-7071] port 'bram_rst_a' of module 'design_1_axi_bram_ctrl_0_0' is unconnected for instance 'axi_data_mem_controller' [/home/agamubuntu/Github/processor/riscv/riscv.gen/sources_1/bd/design_1/synth/design_1.v:355]
 WARNING: [Synth 8-7023] instance 'axi_data_mem_controller' of module 'design_1_axi_bram_ctrl_0_0' has 40 connections declared, but only 39 given [/home/agamubuntu/Github/processor/riscv/riscv.gen/sources_1/bd/design_1/synth/design_1.v:355]
-INFO: [Synth 8-6157] synthesizing module 'design_1_axi_gpio_0_4' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_axi_gpio_0_4_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_gpio_0_4' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_axi_gpio_0_4_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'design_1_axi_gpio_0_6' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_axi_gpio_0_6_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_gpio_0_6' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_axi_gpio_0_6_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'design_1_axi_debug_row_0' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_axi_debug_row_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_debug_row_0' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_axi_debug_row_0_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'design_1_axi_gpio_0_5' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_axi_gpio_0_5_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_gpio_0_5' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_axi_gpio_0_5_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'design_1_axi_debug_col_0' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_axi_debug_col_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_debug_col_0' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_axi_debug_col_0_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'design_1_axi_gpio_0_3' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_axi_gpio_0_3_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_gpio_0_3' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_axi_gpio_0_3_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'design_1_axi_gpio_0_2' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_axi_gpio_0_2_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_gpio_0_2' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_axi_gpio_0_2_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'design_1_axi_bram_ctrl_0_1' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_axi_bram_ctrl_0_1_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_bram_ctrl_0_1' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_axi_bram_ctrl_0_1_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_axi_gpio_0_4' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_axi_gpio_0_4_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_gpio_0_4' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_axi_gpio_0_4_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_axi_gpio_0_6' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_axi_gpio_0_6_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_gpio_0_6' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_axi_gpio_0_6_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_axi_debug_row_0' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_axi_debug_row_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_debug_row_0' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_axi_debug_row_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_axi_gpio_0_5' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_axi_gpio_0_5_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_gpio_0_5' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_axi_gpio_0_5_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_axi_debug_col_0' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_axi_debug_col_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_debug_col_0' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_axi_debug_col_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_axi_gpio_0_3' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_axi_gpio_0_3_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_gpio_0_3' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_axi_gpio_0_3_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_axi_gpio_0_2' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_axi_gpio_0_2_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_gpio_0_2' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_axi_gpio_0_2_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_axi_bram_ctrl_0_1' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_axi_bram_ctrl_0_1_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_bram_ctrl_0_1' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_axi_bram_ctrl_0_1_stub.v:6]
 WARNING: [Synth 8-7071] port 'bram_rst_a' of module 'design_1_axi_bram_ctrl_0_1' is unconnected for instance 'axi_instr_mem_controller' [/home/agamubuntu/Github/processor/riscv/riscv.gen/sources_1/bd/design_1/synth/design_1.v:542]
 WARNING: [Synth 8-7023] instance 'axi_instr_mem_controller' of module 'design_1_axi_bram_ctrl_0_1' has 40 connections declared, but only 39 given [/home/agamubuntu/Github/processor/riscv/riscv.gen/sources_1/bd/design_1/synth/design_1.v:542]
-INFO: [Synth 8-6157] synthesizing module 'design_1_axi_gpio_0_0' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_axi_gpio_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_gpio_0_0' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_axi_gpio_0_0_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'design_1_axi_gpio_0_1' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_axi_gpio_0_1_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_gpio_0_1' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_axi_gpio_0_1_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'design_1_axi_smc_0' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_axi_smc_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_smc_0' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_axi_smc_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_axi_gpio_0_0' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_axi_gpio_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_gpio_0_0' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_axi_gpio_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_axi_gpio_0_1' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_axi_gpio_0_1_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_gpio_0_1' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_axi_gpio_0_1_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_axi_smc_0' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_axi_smc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_smc_0' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_axi_smc_0_stub.v:6]
 WARNING: [Synth 8-7071] port 'M00_AXI_awqos' of module 'design_1_axi_smc_0' is unconnected for instance 'axi_smc' [/home/agamubuntu/Github/processor/riscv/riscv.gen/sources_1/bd/design_1/synth/design_1.v:624]
 WARNING: [Synth 8-7071] port 'M00_AXI_arqos' of module 'design_1_axi_smc_0' is unconnected for instance 'axi_smc' [/home/agamubuntu/Github/processor/riscv/riscv.gen/sources_1/bd/design_1/synth/design_1.v:624]
 WARNING: [Synth 8-7071] port 'M01_AXI_awprot' of module 'design_1_axi_smc_0' is unconnected for instance 'axi_smc' [/home/agamubuntu/Github/processor/riscv/riscv.gen/sources_1/bd/design_1/synth/design_1.v:624]
@@ -94,12 +94,12 @@ WARNING: [Synth 8-7071] port 'M09_AXI_arprot' of module 'design_1_axi_smc_0' is 
 WARNING: [Synth 8-7071] port 'M10_AXI_awprot' of module 'design_1_axi_smc_0' is unconnected for instance 'axi_smc' [/home/agamubuntu/Github/processor/riscv/riscv.gen/sources_1/bd/design_1/synth/design_1.v:624]
 WARNING: [Synth 8-7071] port 'M10_AXI_arprot' of module 'design_1_axi_smc_0' is unconnected for instance 'axi_smc' [/home/agamubuntu/Github/processor/riscv/riscv.gen/sources_1/bd/design_1/synth/design_1.v:624]
 WARNING: [Synth 8-7023] instance 'axi_smc' of module 'design_1_axi_smc_0' has 277 connections declared, but only 255 given [/home/agamubuntu/Github/processor/riscv/riscv.gen/sources_1/bd/design_1/synth/design_1.v:624]
-INFO: [Synth 8-6157] synthesizing module 'design_1_core_0_0' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_core_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_core_0_0' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_core_0_0_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'design_1_processing_system7_0_0' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_processing_system7_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_processing_system7_0_0' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_processing_system7_0_0_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'design_1_rst_ps7_0_50M_0' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_rst_ps7_0_50M_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_rst_ps7_0_50M_0' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-191856-agam/realtime/design_1_rst_ps7_0_50M_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_core_0_0' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_core_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_core_0_0' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_core_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_processing_system7_0_0' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_processing_system7_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_processing_system7_0_0' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_processing_system7_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_rst_ps7_0_50M_0' [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_rst_ps7_0_50M_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_rst_ps7_0_50M_0' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/.Xil/Vivado-402018-agam/realtime/design_1_rst_ps7_0_50M_0_stub.v:6]
 WARNING: [Synth 8-7071] port 'mb_reset' of module 'design_1_rst_ps7_0_50M_0' is unconnected for instance 'rst_ps7_0_50M' [/home/agamubuntu/Github/processor/riscv/riscv.gen/sources_1/bd/design_1/synth/design_1.v:964]
 WARNING: [Synth 8-7071] port 'bus_struct_reset' of module 'design_1_rst_ps7_0_50M_0' is unconnected for instance 'rst_ps7_0_50M' [/home/agamubuntu/Github/processor/riscv/riscv.gen/sources_1/bd/design_1/synth/design_1.v:964]
 WARNING: [Synth 8-7071] port 'peripheral_reset' of module 'design_1_rst_ps7_0_50M_0' is unconnected for instance 'rst_ps7_0_50M' [/home/agamubuntu/Github/processor/riscv/riscv.gen/sources_1/bd/design_1/synth/design_1.v:964]
@@ -108,18 +108,18 @@ WARNING: [Synth 8-7023] instance 'rst_ps7_0_50M' of module 'design_1_rst_ps7_0_5
 INFO: [Synth 8-6155] done synthesizing module 'design_1' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.gen/sources_1/bd/design_1/synth/design_1.v:13]
 INFO: [Synth 8-6155] done synthesizing module 'design_1_wrapper' (0#1) [/home/agamubuntu/Github/processor/riscv/riscv.gen/sources_1/bd/design_1/hdl/design_1_wrapper.v:13]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2261.105 ; gain = 533.734 ; free physical = 7161 ; free virtual = 10719
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2253.469 ; gain = 525.977 ; free physical = 5548 ; free virtual = 8819
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2275.949 ; gain = 548.578 ; free physical = 7161 ; free virtual = 10719
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2265.344 ; gain = 537.852 ; free physical = 5548 ; free virtual = 8819
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2275.949 ; gain = 548.578 ; free physical = 7161 ; free virtual = 10719
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2265.344 ; gain = 537.852 ; free physical = 5548 ; free virtual = 8819
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2275.949 ; gain = 0.000 ; free physical = 7161 ; free virtual = 10719
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2265.344 ; gain = 0.000 ; free physical = 5548 ; free virtual = 8819
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -163,31 +163,31 @@ Parsing XDC File [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/don
 Finished Parsing XDC File [/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2324.875 ; gain = 0.000 ; free physical = 7155 ; free virtual = 10713
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2314.270 ; gain = 0.000 ; free physical = 5551 ; free virtual = 8822
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2324.910 ; gain = 0.000 ; free physical = 7164 ; free virtual = 10721
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2314.305 ; gain = 0.000 ; free physical = 5551 ; free virtual = 8822
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2324.910 ; gain = 597.539 ; free physical = 7180 ; free virtual = 10738
+Finished Constraint Validation : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2314.305 ; gain = 586.812 ; free physical = 5580 ; free virtual = 8850
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2332.879 ; gain = 605.508 ; free physical = 7180 ; free virtual = 10738
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2322.273 ; gain = 594.781 ; free physical = 5580 ; free virtual = 8850
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2332.879 ; gain = 605.508 ; free physical = 7180 ; free virtual = 10738
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2322.273 ; gain = 594.781 ; free physical = 5581 ; free virtual = 8851
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2332.879 ; gain = 605.508 ; free physical = 7180 ; free virtual = 10739
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2322.273 ; gain = 594.781 ; free physical = 5579 ; free virtual = 8851
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -210,25 +210,25 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2332.879 ; gain = 605.508 ; free physical = 7189 ; free virtual = 10752
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2322.273 ; gain = 594.781 ; free physical = 5595 ; free virtual = 8871
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2415.879 ; gain = 688.508 ; free physical = 7115 ; free virtual = 10679
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 2415.273 ; gain = 687.781 ; free physical = 5532 ; free virtual = 8808
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2415.879 ; gain = 688.508 ; free physical = 7115 ; free virtual = 10679
+Finished Timing Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 2415.273 ; gain = 687.781 ; free physical = 5532 ; free virtual = 8808
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2426.895 ; gain = 699.523 ; free physical = 7107 ; free virtual = 10671
+Finished Technology Mapping : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 2426.289 ; gain = 698.797 ; free physical = 5524 ; free virtual = 8800
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -246,19 +246,19 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 2601.707 ; gain = 874.336 ; free physical = 6985 ; free virtual = 10549
+Finished IO Insertion : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2601.102 ; gain = 873.609 ; free physical = 5368 ; free virtual = 8645
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 2601.707 ; gain = 874.336 ; free physical = 6985 ; free virtual = 10549
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2601.102 ; gain = 873.609 ; free physical = 5368 ; free virtual = 8645
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 2601.707 ; gain = 874.336 ; free physical = 6985 ; free virtual = 10549
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2601.102 ; gain = 873.609 ; free physical = 5368 ; free virtual = 8645
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -299,16 +299,16 @@ Report Cell Usage:
 |15    |design_1_rst_ps7_0_50M        |     1|
 +------+------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 2601.707 ; gain = 874.336 ; free physical = 6985 ; free virtual = 10549
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2601.102 ; gain = 873.609 ; free physical = 5368 ; free virtual = 8645
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2601.707 ; gain = 825.375 ; free physical = 6985 ; free virtual = 10549
-Synthesis Optimization Complete : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 2601.715 ; gain = 874.336 ; free physical = 6985 ; free virtual = 10549
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 2601.102 ; gain = 824.648 ; free physical = 5368 ; free virtual = 8645
+Synthesis Optimization Complete : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2601.109 ; gain = 873.609 ; free physical = 5368 ; free virtual = 8645
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2601.715 ; gain = 0.000 ; free physical = 7020 ; free virtual = 10584
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2601.109 ; gain = 0.000 ; free physical = 5420 ; free virtual = 8696
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2601.715 ; gain = 0.000 ; free physical = 7156 ; free virtual = 10719
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2601.109 ; gain = 0.000 ; free physical = 5531 ; free virtual = 8808
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
@@ -316,9 +316,9 @@ Synth Design complete | Checksum: 5c532755
 INFO: [Common 17-83] Releasing license: Synthesis
 55 Infos, 36 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:18 ; elapsed = 00:00:17 . Memory (MB): peak = 2601.742 ; gain = 1074.215 ; free physical = 7155 ; free virtual = 10719
-INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1788.031; main = 1788.031; forked = 276.052
-INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3314.430; main = 2601.711; forked = 963.547
+synth_design: Time (s): cpu = 00:00:19 ; elapsed = 00:00:18 . Memory (MB): peak = 2601.137 ; gain = 1074.457 ; free physical = 5537 ; free virtual = 8814
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1773.969; main = 1773.969; forked = 274.224
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3291.824; main = 2601.105; forked = 963.547
 INFO: [Common 17-1381] The checkpoint '/home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/design_1_wrapper.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file design_1_wrapper_utilization_synth.rpt -pb design_1_wrapper_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Tue Nov 11 16:29:43 2025...
+INFO: [Common 17-206] Exiting Vivado at Wed Nov 12 16:48:31 2025...

@@ -1,0 +1,7 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../../../../../Xilinx/2025.1/data/rsb/busdef" --include "../../../../../riscv.gen/sources_1/bd/design_1/ipshared/ec67/hdl" --include "../../../../../riscv.gen/sources_1/bd/design_1/ipshared/6cfa/hdl" --include "../../../../../riscv.gen/sources_1/bd/design_1/ipshared/f0b6/hdl/verilog" --include "../../../../../riscv.gen/sources_1/bd/design_1/ipshared/a8e4/hdl/verilog" --include "/home/agamubuntu/Xilinx/2025.1/Vivado/data/xilinx_vip/include" \
+"core_tb_func_impl.v" \
+"../../../../../../core/core_tb.v" \
+
+# Do not sort compile order
+nosort

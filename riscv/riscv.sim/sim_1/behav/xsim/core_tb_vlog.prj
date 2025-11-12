@@ -30,6 +30,7 @@ verilog xil_defaultlib  --include "../../../../../../../Xilinx/2025.1/data/rsb/b
 "../../../../../core/pipeline/mem_stage.v" \
 "../../../../../core/pipeline/mem_wb_reg.v" \
 "../../../../../core/alu/mul.v" \
+"../../../../../core/pipeline/branch_prediction/predictor.v" \
 "../../../../../core/regfile/regfile.v" \
 "../../../../../core/alu/shift_left.v" \
 "../../../../../core/alu/shift_right.v" \

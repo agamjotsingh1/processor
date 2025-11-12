@@ -1,4 +1,4 @@
-module predictor(
+module predictor (
     input wire [31:0] instruction,
     input wire truth, // 1 means it has branched previously
     input wire clk,

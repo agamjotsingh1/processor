@@ -581,7 +581,7 @@ module core #(
 
     // to add a stall because of instruction memory
     // having 1 cycle latency
-    wire cumpolsory_stall;
+    wire compulsory_stall;
 
     // Load Hazard Stalling
     wire load_stall;
@@ -594,17 +594,17 @@ module core #(
         .clk(clk),
         .rst(rst),
         .stall(1'b0),
-        .out_stall(cumpolsory_stall)
+        .out_stall(compulsory_stall)
     );
 
-    assign pc_stall = cumpolsory_stall | load_stall | div_stall;
-    assign if_id_stall = cumpolsory_stall | load_stall | div_stall;
-    assign id_ex_stall = cumpolsory_stall | div_stall;
-    assign ex_mem_stall = cumpolsory_stall | div_stall;
-    assign mem_wb_stall = cumpolsory_stall | div_stall;
+    assign pc_stall = compulsory_stall | load_stall | div_stall;
+    assign if_id_stall = compulsory_stall | load_stall | div_stall;
+    assign id_ex_stall = compulsory_stall | div_stall;
+    assign ex_mem_stall = compulsory_stall | div_stall;
+    assign mem_wb_stall = compulsory_stall | div_stall;
 
-    assign if_id_rst = (~cumpolsory_stall) & jump_stall;
-    assign id_ex_rst = (~cumpolsory_stall) & load_stall;
+    assign if_id_rst = (~compulsory_stall) & jump_stall;
+    assign id_ex_rst = (~compulsory_stall) & load_stall;
     assign ex_mem_rst = 1'b0;
     assign mem_wb_rst = 1'b0;
 
