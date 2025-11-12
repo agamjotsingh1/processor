@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="285.001 ns"></ZoomEndTime>
-      <Cursor1Time time="216.000 ns"></Cursor1Time>
+      <ZoomStartTime time="724.190 ns"></ZoomStartTime>
+      <ZoomEndTime time="778.991 ns"></ZoomEndTime>
+      <Cursor1Time time="735.590 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="290"></NameColumnWidth>
+      <NameColumnWidth column_width="312"></NameColumnWidth>
       <ValueColumnWidth column_width="139"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="34" />
+   <WVObjectSize size="46" />
    <wvobject type="logic" fp_name="/core_tb/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -36,13 +36,57 @@
       <obj_property name="ElementShortName">rst</obj_property>
       <obj_property name="ObjectShortName">rst</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/core_tb/dut/if_stage_instance/rst">
-      <obj_property name="ElementShortName">rst</obj_property>
-      <obj_property name="ObjectShortName">rst</obj_property>
+   <wvobject type="array" fp_name="/core_tb/dut/if_stage_instance/branch_predictor_instance/if_pc">
+      <obj_property name="ElementShortName">if_pc[63:0]</obj_property>
+      <obj_property name="ObjectShortName">if_pc[63:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/core_tb/dut/if_stage_instance/cur_pc">
-      <obj_property name="ElementShortName">cur_pc[63:0]</obj_property>
-      <obj_property name="ObjectShortName">cur_pc[63:0]</obj_property>
+   <wvobject type="array" fp_name="/core_tb/dut/if_stage_instance/branch_predictor_instance/if_instr">
+      <obj_property name="ElementShortName">if_instr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">if_instr[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_tb/dut/if_stage_instance/branch_predictor_instance/id_branch_taken">
+      <obj_property name="ElementShortName">id_branch_taken</obj_property>
+      <obj_property name="ObjectShortName">id_branch_taken</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/if_stage_instance/branch_predictor_instance/next_unpredicted_pc">
+      <obj_property name="ElementShortName">next_unpredicted_pc[63:0]</obj_property>
+      <obj_property name="ObjectShortName">next_unpredicted_pc[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/if_stage_instance/branch_predictor_instance/next_predicted_pc">
+      <obj_property name="ElementShortName">next_predicted_pc[63:0]</obj_property>
+      <obj_property name="ObjectShortName">next_predicted_pc[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_tb/dut/if_stage_instance/branch_predictor_instance/branch_prediction_failed">
+      <obj_property name="ElementShortName">branch_prediction_failed</obj_property>
+      <obj_property name="ObjectShortName">branch_prediction_failed</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_tb/dut/if_stage_instance/branch_predictor_instance/is_branch_state">
+      <obj_property name="ElementShortName">is_branch_state</obj_property>
+      <obj_property name="ObjectShortName">is_branch_state</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/if_stage_instance/branch_predictor_instance/opcode">
+      <obj_property name="ElementShortName">opcode[6:0]</obj_property>
+      <obj_property name="ObjectShortName">opcode[6:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/if_stage_instance/branch_predictor_instance/imm">
+      <obj_property name="ElementShortName">imm[63:0]</obj_property>
+      <obj_property name="ObjectShortName">imm[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_tb/dut/if_stage_instance/branch_predictor_instance/prediction">
+      <obj_property name="ElementShortName">prediction</obj_property>
+      <obj_property name="ObjectShortName">prediction</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_tb/dut/if_stage_instance/branch_predictor_instance/next_prediction">
+      <obj_property name="ElementShortName">next_prediction</obj_property>
+      <obj_property name="ObjectShortName">next_prediction</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/if_stage_instance/branch_predictor_instance/failed_pc">
+      <obj_property name="ElementShortName">failed_pc[63:0]</obj_property>
+      <obj_property name="ObjectShortName">failed_pc[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/if_stage_instance/branch_predictor_instance/stored_imm">
+      <obj_property name="ElementShortName">stored_imm[63:0]</obj_property>
+      <obj_property name="ObjectShortName">stored_imm[63:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/core_tb/dut/if_stage_instance/next_pc">
       <obj_property name="ElementShortName">next_pc[63:0]</obj_property>
@@ -119,6 +163,10 @@
    <wvobject type="array" fp_name="/core_tb/dut/id_stage_instance/regfile_instance/reg_array[2]">
       <obj_property name="ElementShortName">[2][63:0]</obj_property>
       <obj_property name="ObjectShortName">[2][63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_tb/dut/id_stage_instance/regfile_instance/reg_array[3]">
+      <obj_property name="ElementShortName">[3][63:0]</obj_property>
+      <obj_property name="ObjectShortName">[3][63:0]</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/core_tb/dut/imm_pc">
       <obj_property name="ElementShortName">imm_pc</obj_property>

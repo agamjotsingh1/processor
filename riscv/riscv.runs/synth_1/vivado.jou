@@ -3,8 +3,8 @@
 # SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
 # IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
 # SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
-# Start of session at: Wed Nov 12 16:48:09 2025
-# Process ID         : 402018
+# Start of session at: Wed Nov 12 18:47:09 2025
+# Process ID         : 508714
 # Current directory  : /home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1
 # Command line       : vivado -log design_1_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_wrapper.tcl
 # Log file           : /home/agamubuntu/Github/processor/riscv/riscv.runs/synth_1/design_1_wrapper.vds
@@ -13,12 +13,12 @@
 # Platform           : Ubuntu
 # Operating System   : Ubuntu 22.04.5 LTS
 # Processor Detail   : AMD Ryzen 7 8845HS w/ Radeon 780M Graphics
-# CPU Frequency      : 1943.705 MHz
+# CPU Frequency      : 1974.585 MHz
 # CPU Physical cores : 8
 # CPU Logical cores  : 16
 # Host memory        : 16029 MB
 # Swap memory        : 2147 MB
 # Total Virtual      : 18177 MB
-# Available Virtual  : 10666 MB
+# Available Virtual  : 9549 MB
 #-----------------------------------------------------------
 source design_1_wrapper.tcl -notrace

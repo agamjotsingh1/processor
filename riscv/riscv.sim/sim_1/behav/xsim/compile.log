@@ -24,8 +24,8 @@ INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/c
 INFO: [VRFC 10-311] analyzing module control
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/core.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module core
-WARNING: [VRFC 10-3380] identifier 'mem_write_data' is used before its declaration [/home/agamubuntu/Github/processor/core/core.v:376]
-WARNING: [VRFC 10-3380] identifier 'mem_write_data' is used before its declaration [/home/agamubuntu/Github/processor/core/core.v:385]
+WARNING: [VRFC 10-3380] identifier 'mem_mem_read' is used before its declaration [/home/agamubuntu/Github/processor/core/core.v:376]
+WARNING: [VRFC 10-3380] identifier 'mem_mem_read' is used before its declaration [/home/agamubuntu/Github/processor/core/core.v:385]
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/data_mem_unit/data_mem_control.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module data_mem_control
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/agamubuntu/Github/processor/core/data_mem_unit/data_mem_unit.v" into library xil_defaultlib

@@ -32,7 +32,6 @@ Compiling package div_gen_v5_1_24.div_gen_pkg
 Compiling package ieee.std_logic_signed
 Compiling package unisim.vcomponents
 Compiling package div_gen_v5_1_24.pkg_addsub
-Compiling module xil_defaultlib.predictor
 Compiling module xil_defaultlib.branch_predictor
 Compiling module blk_mem_gen_v8_4_11.blk_mem_gen_v8_4_11_output_stage...
 Compiling module blk_mem_gen_v8_4_11.blk_mem_gen_v8_4_11_softecc_outp...

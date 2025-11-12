@@ -373,7 +373,7 @@ module core #(
     // 01 -> from MEM/WB
     // 00 -> Neither
     assign ex_forwarded_read_data1 =
-        (forward_A == 2'b10) ? mem_write_data:
+        (forward_A == 2'b10) ? (mem_mem_read ? mem_mem_out: mem_write_data):
         (forward_A == 2'b01) ? wb_write_data:
         ex_read_data1;  
 
@@ -382,7 +382,7 @@ module core #(
     // 01 -> from MEM/WB
     // 00 -> Neither
     assign ex_forwarded_read_data2 =
-        (forward_B == 2'b10) ? mem_write_data:
+        (forward_B == 2'b10) ? (mem_mem_read ? mem_mem_out: mem_write_data):
         (forward_B == 2'b01) ? wb_write_data:
         ex_read_data2;
 
